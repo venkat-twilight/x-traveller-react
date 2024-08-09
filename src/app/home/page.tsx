@@ -8,6 +8,9 @@ import Image from "next/image";
 import GearIcon from "@rsuite/icons/Gear";
 import Link from "next/link";
 import { User, UsersResponse } from "@/src/models/users.model";
+import AppHeader from "@/src/components/AppHeader";
+import AppBanner from "@/src/components/AppBanner";
+import AppFooter from "@/src/components/AppFooter";
 
 async function fetchData() {
   const res = await fetch(`${process.env.API_URL}/api/users?page=1`);
@@ -19,11 +22,19 @@ export default async function Home() {
   const data: User[] = await fetchData();
 
   return (
-    <div className={styles.main}>
-      <Stack style={{ margin: "20px" }}>
+    <div>
+      <AppHeader />
+      <AppBanner />
+      <div className={styles.appFooter}>
+        <AppFooter />
+      </div>
+
+      {/* <div className={styles.main}> */}
+
+      {/* <Stack style={{ margin: "20px" }}>
         <Heading level={3}>Top Employees</Heading>
-      </Stack>
-      <List
+      </Stack> */}
+      {/* <List
         style={{ boxShadow: "0 3px 10px rgb(0 0 0 / 0.2)", padding: "20px" }}
       >
         {data.map((item: User) => (
@@ -59,7 +70,8 @@ export default async function Home() {
             </Grid>
           </List.Item>
         ))}
-      </List>
+      </List> */}
+      {/* </div> */}
     </div>
   );
 }

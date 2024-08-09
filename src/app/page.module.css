@@ -108,6 +108,16 @@
 .logo {
   position: relative;
 }
+.appFooter{
+  display: flex;
+  justify-content: center;
+  background-color: #F5F6FB;
+  background-image: url('/src//assets//images/FooterRightImg.svg'); /* Replace with the actual path to your image */
+  background-position: right bottom;
+  background-repeat: no-repeat;
+  background-size: contain; 
+}
+
 /* Enable hover only on non-touch devices */
 @media (hover: hover) and (pointer: fine) {
   .card:hover {

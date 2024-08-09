@@ -105,3 +105,14 @@ a {
     color-scheme: dark;
   }
 }
+
+.rs-dropdown-toggle,
+.rs-dropdown-toggle.rs-btn {
+  background-color: #fff !important;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.rs-dropdown .rs-dropdown-menu {
+  width: 100%;
+}
