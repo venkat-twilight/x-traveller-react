@@ -22,67 +22,36 @@ import Calendar from "../assets/images/Calendar.svg";
 import TimerAlert from "../assets/images/TimeRedIcon.svg";
 import Star from "../assets/images/Star.svg";
 
-const optionFilter = [
-  {
-    value: "all",
-    key: "1",
-    name: "All",
-  },
-  {
-    value: "flights",
-    key: "2",
-    name: "Flights",
-  },
-  {
-    value: "hotels",
-    key: "3",
-    name: "Hotels",
-  },
-  {
-    value: "Cabs",
-    key: "4",
-    name: "Cabs",
-  },
-  {
-    value: "bus",
-    key: "5",
-    name: "Bus",
-  },
-  {
-    value: "train",
-    key: "6",
-    name: "Train",
-  },
-];
-
-// const cardData = [
+// const optionFilter = [
 //   {
-//     image: TajMahal,
-//     text: "Pilgrimage Special: Upto 50% off on stays",
-//     subtext: "Valid till 30 Sep 24",
-//     tags: ["Flight", "Hotels", "Train", "Cabs"],
-//     icon: Calendar,
+//     value: "all",
+//     key: "1",
+//     name: "All",
 //   },
 //   {
-//     image: Maldieves,
-//     text: "Book Hotel Royal Park  Starting @upto 20%",
-//     subtext: "Limited Period Offer",
-//     tags: ["Hotels"],
-//     icon: TimerAlert,
+//     value: "flights",
+//     key: "2",
+//     name: "Flights",
 //   },
 //   {
-//     image: EiffelTower,
-//     text: "Get 24x7 Live Assistance for int’t Flight Bookings!",
-//     subtext: "Valid till 30 Sep 24",
-//     tags: ["Flight"],
-//     icon: Calendar,
+//     value: "hotels",
+//     key: "3",
+//     name: "Hotels",
 //   },
 //   {
-//     image: BurjKhalifa,
-//     text: "Book Akasa Air Flights Starting @upto 20%",
-//     subtext: "Limited Period Offer",
-//     tags: ["Flights"],
-//     icon: TimerAlert,
+//     value: "Cabs",
+//     key: "4",
+//     name: "Cabs",
+//   },
+//   {
+//     value: "bus",
+//     key: "5",
+//     name: "Bus",
+//   },
+//   {
+//     value: "train",
+//     key: "6",
+//     name: "Train",
 //   },
 // ];
 
@@ -91,7 +60,6 @@ const cardData = [
     image: TajMahal,
     text: "TajMahal",
     subtext: "UttarPradesh,India",
-
     icon: Calendar,
     roundTrip: "Roundtrip",
     rating: 4.4,
@@ -100,7 +68,6 @@ const cardData = [
     image: Maldieves,
     text: "Maldieves",
     subtext: "SouthAsia",
-
     icon: TimerAlert,
     roundTrip: "Roundtrip",
     rating: 4.4,
@@ -109,7 +76,6 @@ const cardData = [
     image: EiffelTower,
     text: "EiffelTower",
     subtext: "France,Paris",
-
     icon: Calendar,
     roundTrip: "Roundtrip",
     rating: 4.4,
@@ -118,7 +84,6 @@ const cardData = [
     image: BurjKhalifa,
     text: "BurjKhalifa",
     subtext: "Dubai",
-
     icon: TimerAlert,
     roundTrip: "Roundtrip",
     rating: 4.4,
@@ -129,82 +94,36 @@ interface CardProps {
   image: string;
   text: string;
   subtext: string;
-  tags: string[];
   icon: string;
 }
 
-const Card: React.FC<CardProps> = ({ image, text, subtext, tags, icon }) => (
+const Card: React.FC<CardProps> = ({ image, text, subtext, icon }) => (
   <Panel
     bordered
     bodyFill
     style={{
       padding: "0",
       textAlign: "center",
-      height: "350px",
       display: "flex",
       flexDirection: "column",
       width: "100%",
       boxSizing: "border-box",
+      minWidth: "300px",
+      flex: "1 1 300px",
+      height: "350px",
     }}
   >
-    <div style={{ flex: "1 1 50%", position: "relative", height: "200px" }}>
-      <Image src={image} alt="Card Icon" layout="fill" objectFit="cover" />
-    </div>
     <div
       style={{
-        color: "black",
         flex: "1 1 50%",
-        padding: "10px 88px",
-        textAlign: "left",
-        display: "flex",
-        justifyContent: "space-between",
-        flexWrap: "wrap",
+        position: "relative",
+        minHeight: "150px",
+        height: "200px",
       }}
     >
-      <div >
-        <Stack style={{ display: "flex", justifyContent: "flex-start",  }}>
-          <Text
-            style={{
-              fontWeight: "bold",
-              wordBreak: "break-word",
-              fontSize: "1rem",
-            }}
-          >
-            {text}
-          </Text>
-        </Stack>
-        <Stack
-          style={{
-            display: "flex",
-            marginLeft: "0px",
-            marginTop: "5px",
-            justifyContent: "flex-start",
-          }}
-        >
-          <Text
-            style={{
-              display: "flex",
-              alignItems: "center",
-              fontSize: "0.875rem",
-            }}
-          >
-            <small style={{ marginLeft: "5px" }}>{subtext}</small>
-          </Text>
-        </Stack>
-      </div>
-      <div style={{ display: "flex", alignItems: "center" }}>
-        <Image src={Star} alt="Calendar Icon" width={20} height={20} />
-        <Text
-          style={{
-            fontWeight: "bold",
-            wordBreak: "break-word",
-            fontSize: "1rem",
-          }}
-        >
-          4.4
-        </Text>
-      </div>
+      <Image src={image} alt="Card Icon" layout="fill" objectFit="cover" />
     </div>
+
     <div
       style={{
         color: "black",
@@ -212,8 +131,74 @@ const Card: React.FC<CardProps> = ({ image, text, subtext, tags, icon }) => (
         padding: "10px",
         textAlign: "left",
         display: "flex",
+        flexDirection: "column",
         justifyContent: "space-between",
-        flexWrap: "wrap",
+        width: "100%",
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
+        <div>
+          <Stack style={{ display: "flex", justifyContent: "flex-start" }}>
+            <Text
+              style={{
+                fontWeight: "bold",
+                wordBreak: "break-word",
+                fontSize: "1rem",
+              }}
+            >
+              {text}
+            </Text>
+          </Stack>
+          <Stack
+            style={{
+              display: "flex",
+              marginLeft: "0px",
+              marginTop: "5px",
+              justifyContent: "flex-start",
+            }}
+          >
+            <Text
+              style={{
+                display: "flex",
+                alignItems: "center",
+                fontSize: "0.875rem",
+              }}
+            >
+              <small style={{ marginLeft: "5px" }}>{subtext}</small>
+            </Text>
+          </Stack>
+        </div>
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <Image src={Star} alt="Star Icon" width={20} height={20} />
+          <Text
+            style={{
+              fontWeight: "bold",
+              wordBreak: "break-word",
+              fontSize: "1rem",
+              marginLeft: "5px",
+            }}
+          >
+            4.4
+          </Text>
+        </div>
+      </div>
+    </div>
+    <div
+      style={{
+        color: "black",
+        flex: "1 1 auto",
+        padding: "10px",
+        textAlign: "left",
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        width: "100%",
       }}
     >
       <div>
@@ -275,7 +260,6 @@ const PopularTouristspots: React.FC = () => {
                 image={card.image}
                 text={card.text}
                 subtext={card.subtext}
-                tags={card.tags}
                 icon={card.icon}
               />
             </Col>
