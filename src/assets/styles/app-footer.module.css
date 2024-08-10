@@ -2,6 +2,9 @@
 
 .footer {
   padding: 20px 0;
+  display: flex;
+  justify-content: center;
+  
 }
 
 .panel {
@@ -24,23 +27,13 @@
   border-radius: 4px;
 }
 
-.newsletterSubscription button {
-  /* margin-left: 10px; */
-}
+
 .appFooter {
   display: flex;
   justify-content: center;
   background-color: #f5f6fb;
 }
 
-/* ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  ul li {
-    margin-bottom: 5px;
-  } */
 
 .socialMedia {
   display: flex;

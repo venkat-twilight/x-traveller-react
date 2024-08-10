@@ -1,47 +1,43 @@
 import React from "react";
 import Image from "next/image";
-import Background from "../../public/assets/Backgroundimg.svg";
-import { Text, Stack, Footer } from "rsuite";
+import Background from "../assets/images/BackgroundImage.svg";
+import { Text, Stack } from "rsuite";
 import styles from "../assets/styles/app-banner.module.css";
 import HomeCard from "./HomeCard";
 import OffersforYou from "./OffersforYou";
-import bgImage from "../assets/images/bg.jpg";
 import PopularTouristspots from "./PopularTouristspots";
+import AppFooter from "./AppFooter";
 
 export default function AppBanner() {
   return (
     <div>
-      <div className={styles.bannerContainer}>
-        {/* <Image src={Background} alt="Brand Logo" /> */}
-        <div className={styles.centeredText} style={{ alignItems: "center" }}>
-          <Stack>
+      <div
+        className={styles.bannerContainer}
+        style={{ backgroundImage: `url(${Background.src})` }}
+      >
+        <div className={styles.centeredTextContainer}>
+          <Stack className={styles.centeredStack}>
             <h3 className={styles.heading}>
               The world is a{" "}
-              <span style={{ fontFamily: "Raleway", fontStyle: "italic" }}>
-                canvas
-              </span>{" "}
+              <span className={styles.italicText}>canvas</span>{" "}
               to the imagination.
             </h3>
           </Stack>
-          <Stack style={{ margin: "20px 0px 20px 51px", width: "58%" }}>
-            <Text className={styles.subText} style={{ alignItems: "center" }}>
+          <Stack className={styles.subTextStack}>
+            <Text className={styles.subText}>
               we&apos;ve got you covered. Our easy-to-use platform allows you to
-              seamlessly book flights, accommodations, and activities, ensuring
-              a hassle-free travel experience from start to finish.
+              seamlessly book flights, accommodations, and activities,
+              ensuring a hassle-free travel experience from start to finish.
             </Text>
           </Stack>
-          <div>
+          <div style={{width:"100%"}}>
             <HomeCard />
           </div>
         </div>
       </div>
       <div className={styles.centeredCard}>
-        <div>
+        <div className={styles.offersContainer}>
           <OffersforYou />
-        </div>
-      </div>
-      <div className={styles.popularCard}>
-        <div>
           <PopularTouristspots />
         </div>
       </div>

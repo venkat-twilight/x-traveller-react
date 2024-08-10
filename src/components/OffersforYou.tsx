@@ -108,9 +108,21 @@ const Card: React.FC<CardProps> = ({ image, text, subtext, tags, icon }) => (
     <div style={{ flex: "1 1 50%", position: "relative", height: "200px" }}>
       <Image src={image} alt="Card Icon" layout="fill" objectFit="cover" />
     </div>
-    <div style={{ color: "black", flex: "1 1 50%", padding: "10px", textAlign: "left" }}>
+    <div
+      style={{
+        color: "black",
+        flex: "1 1 50%",
+        padding: "10px",
+        textAlign: "left",
+      }}
+    >
       <TagGroup
-        style={{ margin: "10px 5px", display: "flex", justifyContent: "flex-start", flexWrap: "wrap" }}
+        style={{
+          margin: "10px 5px",
+          display: "flex",
+          justifyContent: "flex-start",
+          flexWrap: "wrap",
+        }}
       >
         {tags.map((tag) => (
           <Tag key={tag} size="lg" style={{ margin: "5px" }}>
@@ -119,8 +131,16 @@ const Card: React.FC<CardProps> = ({ image, text, subtext, tags, icon }) => (
         ))}
       </TagGroup>
 
-      <Stack style={{ display: "flex", justifyContent: "flex-start", marginTop: "10px" }}>
-        <Text style={{ fontWeight: "bold", wordBreak: "break-word" }}>{text}</Text>
+      <Stack
+        style={{
+          display: "flex",
+          justifyContent: "flex-start",
+          marginTop: "10px",
+        }}
+      >
+        <Text style={{ fontWeight: "bold", wordBreak: "break-word" }}>
+          {text}
+        </Text>
       </Stack>
       <Stack
         style={{
@@ -132,7 +152,15 @@ const Card: React.FC<CardProps> = ({ image, text, subtext, tags, icon }) => (
       >
         <Text style={{ display: "flex", alignItems: "center" }}>
           <Image src={icon} alt="Calendar Icon" width={20} height={20} />
-          <small style={{ marginLeft: "5px" }}>{subtext}</small>
+          <small
+            style={{
+              marginLeft: "5px",
+              color: subtext === "Limited Period Offer" ? "red" : "#0770E3",
+              fontWeight: "400px",
+            }}
+          >
+            {subtext}
+          </small>
         </Text>
       </Stack>
     </div>
@@ -146,7 +174,7 @@ const OffersforYou: React.FC = () => {
       <div style={{ textAlign: "center" }}>
         <Stack className={styles.heading}>
           <h3>
-            <span style={{ color: "blue" }}>Offers</span> for you
+            <span style={{ color: "#0770E3" }}>Offers</span> for you
           </h3>
         </Stack>
         <Stack style={{ margin: "20px 0px" }}>
@@ -166,7 +194,14 @@ const OffersforYou: React.FC = () => {
         </Stack>
         <Row gutter={16}>
           {cardData.map((card, index) => (
-            <Col key={index} xs={24} sm={12} md={8} lg={6}>
+            <Col
+              key={index}
+              xs={24}
+              sm={12}
+              md={8}
+              lg={6}
+              style={{ marginBottom: "20px" }}
+            >
               <Card
                 image={card.image}
                 text={card.text}
