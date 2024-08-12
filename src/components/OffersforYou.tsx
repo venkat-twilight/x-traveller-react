@@ -138,7 +138,7 @@ const Card: React.FC<CardProps> = ({ image, text, subtext, tags, icon }) => (
           marginTop: "10px",
         }}
       >
-        <Text style={{ fontWeight: "bold", wordBreak: "break-word" }}>
+        <Text style={{ fontWeight: "bold",  }}>
           {text}
         </Text>
       </Stack>

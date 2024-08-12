@@ -38,8 +38,13 @@ export default function AppBanner() {
       <div className={styles.centeredCard}>
         <div className={styles.offersContainer}>
           <OffersforYou />
-          <PopularTouristspots />
+         
         </div>
+      </div>
+      <div className={styles.centeredCard}>
+      <div className={styles.centeredpopCard}>
+      <PopularTouristspots />
+      </div>
       </div>
     </div>
   );
