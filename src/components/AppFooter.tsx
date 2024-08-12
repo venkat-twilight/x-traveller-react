@@ -28,10 +28,10 @@ const Footer: React.FC = () => {
           <Col xs={24} sm={12} md={6}>
             <Panel
               className={styles.panel}
-              style={{ textWrap: "wrap", lineHeight: "2" }}
+              style={{ textWrap: "wrap", lineHeight: "2",marginLeft:"-20px" }}
             >
               <h5>Newsletter</h5>
-              <p>
+              <p style={{padding:"18px 0px"}}>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                 eiusmod tempor incididunt.
               </p>
@@ -71,7 +71,7 @@ const Footer: React.FC = () => {
           <Col xs={24} sm={12} md={5}>
             <Panel className={styles.panel}>
               <h5>Our Products</h5>
-              <ul style={{ listStyleType: "none", lineHeight: "2" }}>
+              <ul style={{ listStyleType: "none", lineHeight: "2",padding:"5px" }}>
                 <li>
                   <a
                     href="#"
@@ -110,7 +110,7 @@ const Footer: React.FC = () => {
                 </li>
               </ul>
               <h5>Travel Essentials</h5>
-              <ul style={{ listStyleType: "none", lineHeight: "2" }}>
+              <ul style={{ listStyleType: "none", lineHeight: "2",padding:"5px" }}>
                 <li>
                   <a
                     href="#"

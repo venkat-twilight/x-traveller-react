@@ -35,8 +35,8 @@ export default function AppBanner() {
           </div>
         </div>
       </div>
-      <div className={styles.centeredCard}>
-        <div className={styles.offersContainer}>
+      <div  style={{margin:"auto",width:"67%"}}>
+        <div >
           <OffersforYou />
          
         </div>

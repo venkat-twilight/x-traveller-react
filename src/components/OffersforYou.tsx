@@ -92,73 +92,26 @@ interface CardProps {
 }
 
 const Card: React.FC<CardProps> = ({ image, text, subtext, tags, icon }) => (
-  <Panel
-    bordered
-    bodyFill
-    style={{
-      padding: "0",
-      textAlign: "center",
-      height: "350px",
-      display: "flex",
-      flexDirection: "column",
-      width: "100%",
-      boxSizing: "border-box",
-    }}
-  >
-    <div style={{ flex: "1 1 50%", position: "relative", height: "200px" }}>
+  <Panel bodyFill className={styles.card}>
+    <div className={styles["card-image"]}>
       <Image src={image} alt="Card Icon" layout="fill" objectFit="cover" />
     </div>
-    <div
-      style={{
-        color: "black",
-        flex: "1 1 50%",
-        padding: "10px",
-        textAlign: "left",
-      }}
-    >
-      <TagGroup
-        style={{
-          margin: "10px 5px",
-          display: "flex",
-          justifyContent: "flex-start",
-          flexWrap: "wrap",
-        }}
-      >
+    <div className={styles["card-content"]}>
+      <TagGroup className={styles["card-tag-group"]}>
         {tags.map((tag) => (
-          <Tag key={tag} size="lg" style={{ margin: "5px" }}>
+          <Tag key={tag} size="lg" style={{ margin: "5px"}}>
             {tag}
           </Tag>
         ))}
       </TagGroup>
 
-      <Stack
-        style={{
-          display: "flex",
-          justifyContent: "flex-start",
-          marginTop: "10px",
-        }}
-      >
-        <Text style={{ fontWeight: "bold",  }}>
-          {text}
-        </Text>
+      <Stack style={{ display: "flex", justifyContent: "flex-start", marginTop: "10px" }}>
+        <Text className={styles["card-text"]} > {text.length > 45 ? text.substring(0, 45) + "..." : text}</Text>
       </Stack>
-      <Stack
-        style={{
-          display: "flex",
-          marginLeft: "0px",
-          marginTop: "5px",
-          justifyContent: "flex-start",
-        }}
-      >
-        <Text style={{ display: "flex", alignItems: "center" }}>
+      <Stack style={{ display: "flex", marginLeft: "0px", marginTop: "5px", justifyContent: "flex-start" }}>
+        <Text className={styles["card-subtext"]}>
           <Image src={icon} alt="Calendar Icon" width={20} height={20} />
-          <small
-            style={{
-              marginLeft: "5px",
-              color: subtext === "Limited Period Offer" ? "red" : "#0770E3",
-              fontWeight: "400px",
-            }}
-          >
+          <small style={{ marginLeft: "5px", color: subtext === "Limited Period Offer" ? "red" : "#0770E3", fontWeight: "400px" }}>
             {subtext}
           </small>
         </Text>

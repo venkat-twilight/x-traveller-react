@@ -90,8 +90,9 @@ interface CardProps {
 
 const Card: React.FC<CardProps> = ({ image, text, subtext, icon, roundTrip, rating }) => (
   <Panel
-    bordered
+   
     bodyFill
+    className={styles.card}
     style={{
       padding: "0",
       textAlign: "center",
@@ -101,6 +102,11 @@ const Card: React.FC<CardProps> = ({ image, text, subtext, icon, roundTrip, rati
       boxSizing: "border-box",
       flex: "1 1 300px",
       marginTop: "20px",
+      border: "0px",
+      boxShadow: "0px 18.63px 53.13px 0px #00000017",
+     transition:"transform 0.3s ease-in-out",
+      borderRadius:"18px"
+      
     }}
   >
     <div style={{ flex: "1 1 auto", position: "relative", height: "200px" }}>

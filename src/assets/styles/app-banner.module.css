@@ -62,18 +62,19 @@
   align-items: center;
   justify-content: center;
   text-align: center;
+  /* margin: auto; */
   
   background: linear-gradient(to top, white 5%, #ecf5ff 75%);
  
 }
-.offersContainer{
+/* .offersContainer{
   width: 68%;
   display: flex;
   flex-direction: column;
   align-items: center;
-}
+} */
 .centeredpopCard{
-  width: 68%;
+  width: 67%;
   display: flex;
   flex-direction: column;
   align-items: center;
