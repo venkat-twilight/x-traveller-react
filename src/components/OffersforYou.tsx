@@ -19,37 +19,14 @@ import styles from "../assets/styles/OfferforYou.module.css";
 import Calendar from "../assets/images/Calendar.svg";
 import TimerAlert from "../assets/images/TimeRedIcon.svg";
 
+
 const optionFilter = [
-  {
-    value: "all",
-    key: "1",
-    name: "All",
-  },
-  {
-    value: "flights",
-    key: "2",
-    name: "Flights",
-  },
-  {
-    value: "hotels",
-    key: "3",
-    name: "Hotels",
-  },
-  {
-    value: "Cabs",
-    key: "4",
-    name: "Cabs",
-  },
-  {
-    value: "bus",
-    key: "5",
-    name: "Bus",
-  },
-  {
-    value: "train",
-    key: "6",
-    name: "Train",
-  },
+  { value: "all", key: "1", name: "All" },
+  { value: "flights", key: "2", name: "Flights" },
+  { value: "hotels", key: "3", name: "Hotels" },
+  { value: "cabs", key: "4", name: "Cabs" },
+  { value: "bus", key: "5", name: "Bus" },
+  { value: "train", key: "6", name: "Train" },
 ];
 
 const cardData = [
@@ -92,26 +69,60 @@ interface CardProps {
 }
 
 const Card: React.FC<CardProps> = ({ image, text, subtext, tags, icon }) => (
+  
   <Panel bodyFill className={styles.card}>
     <div className={styles["card-image"]}>
       <Image src={image} alt="Card Icon" layout="fill" objectFit="cover" />
     </div>
-    <div className={styles["card-content"]}>
-      <TagGroup className={styles["card-tag-group"]}>
+    <div className={styles["card-content"]} >
+      <TagGroup className={styles["card-tag-group"]} >
+        <div className={styles.noscrollbar} >
         {tags.map((tag) => (
-          <Tag key={tag} size="lg" style={{ margin: "5px"}}>
+          <Tag
+            key={tag}
+            size="sm"
+            style={{ margin: "5px", border: "1px solid lightgrey"}}
+          >
             {tag}
           </Tag>
         ))}
+        </div>
       </TagGroup>
-
-      <Stack style={{ display: "flex", justifyContent: "flex-start", marginTop: "10px" }}>
-        <Text className={styles["card-text"]} > {text.length > 45 ? text.substring(0, 45) + "..." : text}</Text>
+      <Stack
+        style={{
+          display: "block",
+          marginTop: "10px",
+        }}
+      >
+        <Text
+          className={styles["card-text"]}
+          style={{
+            textOverflow: "ellipsis",
+            overflow: "hidden",
+            whiteSpace: "nowrap",
+            textWrap: "nowrap",
+          }}
+        >
+          {text}
+        </Text>
       </Stack>
-      <Stack style={{ display: "flex", marginLeft: "0px", marginTop: "5px", justifyContent: "flex-start" }}>
+      <Stack
+        style={{
+          display: "flex",
+          marginLeft: "0px",
+          marginTop: "5px",
+          justifyContent: "flex-start",
+        }}
+      >
         <Text className={styles["card-subtext"]}>
           <Image src={icon} alt="Calendar Icon" width={20} height={20} />
-          <small style={{ marginLeft: "5px", color: subtext === "Limited Period Offer" ? "red" : "#0770E3", fontWeight: "400px" }}>
+          <small
+            style={{
+              marginLeft: "5px",
+              color: subtext === "Limited Period Offer" ? "red" : "#0770E3",
+              fontWeight: "400px",
+            }}
+          >
             {subtext}
           </small>
         </Text>
@@ -122,6 +133,12 @@ const Card: React.FC<CardProps> = ({ image, text, subtext, tags, icon }) => (
 
 const OffersforYou: React.FC = () => {
   const [activeFilter, setActiveFilter] = React.useState("all");
+
+
+  
+
+  
+
   return (
     <div style={{ width: "100%", padding: "20px", boxSizing: "border-box" }}>
       <div style={{ textAlign: "center" }}>
@@ -146,24 +163,31 @@ const OffersforYou: React.FC = () => {
           </ButtonToolbar>
         </Stack>
         <Row gutter={16}>
-          {cardData.map((card, index) => (
-            <Col
-              key={index}
-              xs={24}
-              sm={12}
-              md={8}
-              lg={6}
-              style={{ marginBottom: "20px" }}
-            >
-              <Card
-                image={card.image}
-                text={card.text}
-                subtext={card.subtext}
-                tags={card.tags}
-                icon={card.icon}
-              />
-            </Col>
-          ))}
+          {cardData
+            .filter((card) =>
+              activeFilter === "all"
+                ? true
+                : card.tags.some((tag) => tag.toLowerCase() === activeFilter)
+            )
+            .map((card, index) => (
+              <Col
+                key={index}
+                xs={24}
+                sm={12}
+                md={12}
+                lg={8}
+                xl={6}
+                style={{ marginBottom: "20px" }}
+              >
+                <Card
+                  image={card.image}
+                  text={card.text}
+                  subtext={card.subtext}
+                  tags={card.tags}
+                  icon={card.icon}
+                />
+              </Col>
+            ))}
         </Row>
       </div>
     </div>

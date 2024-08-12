@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Row, Col, Stack, Panel, Text, Tag } from "rsuite";
 import Image from "next/image";
 import TajMahal from "../assets/images/Tajmahal.svg";
@@ -11,6 +11,9 @@ import Calendar from "../assets/images/Calendar.svg";
 import TimerAlert from "../assets/images/TimeRedIcon.svg";
 import Star from "../assets/images/Star.svg";
 import styles from "../assets/styles/populartouristspots.module.css";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
 
 const cardData = [
   {
@@ -88,9 +91,15 @@ interface CardProps {
   rating: string;
 }
 
-const Card: React.FC<CardProps> = ({ image, text, subtext, icon, roundTrip, rating }) => (
+const Card: React.FC<CardProps> = ({
+  image,
+  text,
+  subtext,
+  icon,
+  roundTrip,
+  rating,
+}) => (
   <Panel
-   
     bodyFill
     className={styles.card}
     style={{
@@ -104,9 +113,8 @@ const Card: React.FC<CardProps> = ({ image, text, subtext, icon, roundTrip, rati
       marginTop: "20px",
       border: "0px",
       boxShadow: "0px 18.63px 53.13px 0px #00000017",
-     transition:"transform 0.3s ease-in-out",
-      borderRadius:"18px"
-      
+      transition: "transform 0.3s ease-in-out",
+      borderRadius: "18px",
     }}
   >
     <div style={{ flex: "1 1 auto", position: "relative", height: "200px" }}>
@@ -125,7 +133,7 @@ const Card: React.FC<CardProps> = ({ image, text, subtext, icon, roundTrip, rati
       }}
     >
       <Row>
-        <Col md={17}>
+        <Col md={17} xs={17}>
           <Stack
             style={{
               display: "flex",
@@ -221,17 +229,71 @@ const Card: React.FC<CardProps> = ({ image, text, subtext, icon, roundTrip, rati
 );
 
 const PopularTouristspots: React.FC = () => {
+  const sliderRef = useRef<Slider>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const handleNext = () => {
-    if (currentIndex < cardData.length - 4) {
-      setCurrentIndex(currentIndex + 1);
+  // const handleNext = () => {
+  //   if (currentIndex < cardData.length - 4) {
+  //     setCurrentIndex(currentIndex + 1);
+  //   }
+  // };
+
+  // const handlePrevious = () => {
+  //   if (currentIndex > 0) {
+  //     setCurrentIndex(currentIndex - 1);
+  //   }
+  // };
+
+  const settings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    className: "center",
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    focusOnSelect: true,
+    arrows: false,
+    // nextArrow: <Image src={RightArrowIcon} alt="Next" />,
+    // prevArrow: <Image src={LeftArrowIcon} alt="Previous"  />,
+    swipeToSlide: true,
+
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          initialSlide: 2,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
+
+  const handlePrevClick = () => {
+    if (sliderRef.current) {
+      sliderRef.current.slickPrev();
     }
   };
 
-  const handlePrevious = () => {
-    if (currentIndex > 0) {
-      setCurrentIndex(currentIndex - 1);
+  const handleNextClick = () => {
+    if (sliderRef.current) {
+      sliderRef.current.slickNext();
     }
   };
 
@@ -245,28 +307,30 @@ const PopularTouristspots: React.FC = () => {
             </h3>
           </Stack>
           <Stack style={{ margin: "20px 0px" }}>
-            <div style={{ padding: "0px 20px" }} onClick={handlePrevious}>
+            <div style={{ padding: "0px 20px" }} onClick={handlePrevClick}>
               <Image src={LeftArrowIcon} alt="LeftArrowIcon" />
             </div>
-            <div onClick={handleNext}>
+            <div onClick={handleNextClick}>
               <Image src={RightArrowIcon} alt="RightArrowIcon" />
             </div>
           </Stack>
         </div>
 
         <Row gutter={16}>
-          {cardData.slice(currentIndex, currentIndex + 4).map((card, index) => (
-            <Col key={index} xs={24} sm={12} md={8} lg={6}>
-              <Card
-                image={card.image}
-                text={card.text}
-                subtext={card.subtext}
-                icon={card.icon}
-                roundTrip={card.roundTrip}
-                rating={card.rating}
-              />
-            </Col>
-          ))}
+          <Slider {...settings} ref={sliderRef}>
+            {cardData.map((card, index) => (
+              <Col key={index} xs={24} sm={12} md={12} lg={8} xl={6}>
+                <Card
+                  image={card.image}
+                  text={card.text}
+                  subtext={card.subtext}
+                  icon={card.icon}
+                  roundTrip={card.roundTrip}
+                  rating={card.rating}
+                />
+              </Col>
+            ))}
+          </Slider>
         </Row>
       </div>
     </div>

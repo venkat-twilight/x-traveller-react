@@ -25,7 +25,11 @@ const Footer: React.FC = () => {
           }}
         >
           {/* Newsletter Column */}
-          <Col xs={24} sm={12} md={6}>
+          <Col  xs={24}
+                sm={12}
+                md={12}
+                lg={8}
+                xl={7}>
             <Panel
               className={styles.panel}
               style={{ textWrap: "wrap", lineHeight: "2",marginLeft:"-20px" }}
@@ -68,7 +72,11 @@ const Footer: React.FC = () => {
           </Col>
 
           {/* Our Product Column */}
-          <Col xs={24} sm={12} md={5}>
+          <Col   xs={24}
+                sm={12}
+                md={12}
+                lg={8}
+                xl={5}>
             <Panel className={styles.panel}>
               <h5>Our Products</h5>
               <ul style={{ listStyleType: "none", lineHeight: "2",padding:"5px" }}>
@@ -78,7 +86,7 @@ const Footer: React.FC = () => {
                     style={{
                       textDecoration: "none",
                       color: "inherit",
-                      cursor: "default",
+                      cursor: "pointer",
                     }}
                   >
                     <span>Domestic Hotel</span>
@@ -90,7 +98,7 @@ const Footer: React.FC = () => {
                     style={{
                       textDecoration: "none",
                       color: "inherit",
-                      cursor: "default",
+                      cursor: "pointer",
                     }}
                   >
                     <span>International Hotel</span>
@@ -102,7 +110,7 @@ const Footer: React.FC = () => {
                     style={{
                       textDecoration: "none",
                       color: "inherit",
-                      cursor: "default",
+                      cursor: "pointer",
                     }}
                   >
                     <span>Domestic Flights</span>
@@ -117,7 +125,7 @@ const Footer: React.FC = () => {
                     style={{
                       textDecoration: "none",
                       color: "inherit",
-                      cursor: "default",
+                      cursor: "pointer",
                     }}
                   >
                     <span>PNR Status</span>
@@ -129,7 +137,7 @@ const Footer: React.FC = () => {
                     style={{
                       textDecoration: "none",
                       color: "inherit",
-                      cursor: "default",
+                      cursor: "pointer",
                     }}
                   >
                     <span>Offers</span>
@@ -140,7 +148,11 @@ const Footer: React.FC = () => {
           </Col>
 
           {/* More Links Column */}
-          <Col xs={24} sm={12} md={4}>
+          <Col   xs={24}
+                sm={12}
+                md={12}
+                lg={8}
+                xl={5}>
             <Panel className={styles.panel}>
               <h5>More Links</h5>
               <ul style={{ listStyleType: "none", lineHeight: "2" }}>
@@ -150,7 +162,7 @@ const Footer: React.FC = () => {
                     style={{
                       textDecoration: "none",
                       color: "inherit",
-                      cursor: "default",
+                      cursor: "pointer",
                     }}
                   >
                     <span>Cheap Flight</span>
@@ -162,7 +174,7 @@ const Footer: React.FC = () => {
                     style={{
                       textDecoration: "none",
                       color: "inherit",
-                      cursor: "default",
+                      cursor: "pointer",
                     }}
                   >
                     <span>Hotels Near Me</span>
@@ -174,7 +186,7 @@ const Footer: React.FC = () => {
                     style={{
                       textDecoration: "none",
                       color: "inherit",
-                      cursor: "default",
+                      cursor: "pointer",
                     }}
                   >
                     <span>My Booking</span>
@@ -186,7 +198,7 @@ const Footer: React.FC = () => {
                     style={{
                       textDecoration: "none",
                       color: "inherit",
-                      cursor: "default",
+                      cursor: "pointer",
                     }}
                   >
                     <span>Cancellation</span>
@@ -198,7 +210,7 @@ const Footer: React.FC = () => {
                     style={{
                       textDecoration: "none",
                       color: "inherit",
-                      cursor: "default",
+                      cursor: "pointer",
                     }}
                   >
                     <span>My Account</span>
@@ -210,7 +222,7 @@ const Footer: React.FC = () => {
                     style={{
                       textDecoration: "none",
                       color: "inherit",
-                      cursor: "default",
+                      cursor: "pointer",
                     }}
                   >
                     <span>Wallet</span>
@@ -222,7 +234,7 @@ const Footer: React.FC = () => {
                     style={{
                       textDecoration: "none",
                       color: "inherit",
-                      cursor: "default",
+                      cursor: "pointer",
                     }}
                   >
                     <span>Advertise with Us</span>
@@ -234,7 +246,11 @@ const Footer: React.FC = () => {
 
           {/* Contact Us Column */}
 
-          <Col xs={24} sm={12} md={6}>
+          <Col   xs={24}
+                sm={12}
+                md={12}
+                lg={8}
+                xl={7}>
             <Panel className={styles.panel}>
               <h5>Contact Us</h5>
               <div className={styles.socialMedia}>
@@ -243,7 +259,7 @@ const Footer: React.FC = () => {
                   style={{
                     textDecoration: "none",
                     color: "inherit",
-                    cursor: "default",
+                    cursor: "pointer",
                   }}
                 >
                   <Image src={Facebook} alt="Facebook" />
@@ -253,7 +269,7 @@ const Footer: React.FC = () => {
                   style={{
                     textDecoration: "none",
                     color: "inherit",
-                    cursor: "default",
+                    cursor: "pointer",
                   }}
                 >
                   <Image src={Instagram} alt="Instagram" />
@@ -263,7 +279,7 @@ const Footer: React.FC = () => {
                   style={{
                     textDecoration: "none",
                     color: "inherit",
-                    cursor: "default",
+                    cursor: "pointer",
                   }}
                 >
                   <Image src={Twitter} alt="Twitter" />
@@ -273,7 +289,7 @@ const Footer: React.FC = () => {
                   style={{
                     textDecoration: "none",
                     color: "inherit",
-                    cursor: "default",
+                    cursor: "pointer",
                   }}
                 >
                   <Image src={Linkedin} alt="Linkedin" />

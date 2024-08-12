@@ -62,8 +62,9 @@
 .card-tag-group {
   margin: 10px 5px;
   display: flex;
-  justify-content: flex-start;
-  flex-wrap: wrap;
+  /* justify-content: flex-start;
+  flex-wrap: wrap; */
+  overflow-x: scroll;
 }
 
 .card-text {
@@ -72,6 +73,7 @@
   overflow: hidden;
   text-overflow: ellipsis !important;
   white-space: nowrap;
+
 }
 
 .card-subtext {
@@ -80,4 +82,16 @@
   margin-left: 10px;
   padding-top: 5px;
 }
+.noscrollbar {
+  display: flex;
+  overflow-x: scroll;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+.noscrollbar::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}
+
+
 
