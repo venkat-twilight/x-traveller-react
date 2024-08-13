@@ -256,6 +256,7 @@ const PopularTouristspots: React.FC = () => {
     // nextArrow: <Image src={RightArrowIcon} alt="Next" />,
     // prevArrow: <Image src={LeftArrowIcon} alt="Previous"  />,
     swipeToSlide: true,
+  
 
     responsive: [
       {
@@ -317,9 +318,9 @@ const PopularTouristspots: React.FC = () => {
         </div>
 
         <Row gutter={16}>
-          <Slider {...settings} ref={sliderRef}>
+          <Slider {...settings} ref={sliderRef} >
             {cardData.map((card, index) => (
-              <Col key={index} xs={24} sm={12} md={12} lg={8} xl={6}>
+              <Col key={index} xs={24} sm={12} md={12} lg={8} xl={6} >
                 <Card
                   image={card.image}
                   text={card.text}
