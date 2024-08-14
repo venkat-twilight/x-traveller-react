@@ -9,8 +9,9 @@ import Calendar from "../../assets/images/Calendar.svg";
 import { Navbar, Nav, Container, Content } from "rsuite";
 
 import Image from "next/image";
+import styles from "../../assets/styles/flight-listing.module.css"
 
-import styles from "../../assets/styles/FlightCard.module.css";
+
 import {
   List,
   Grid,
@@ -298,16 +299,11 @@ const FlightListingPage: React.FC = () => {
     items,
     ...props
   }) => (
-    <div style={{ margin: "auto", width: "80%" }}>
-      <Dropdown title={title} size="lg">
+    <div style={{ margin: "auto", width: "80%"}}>
+      <Dropdown title={title} size="lg" className={styles.dropdownbtn} >
         <Dropdown.Item>New File</Dropdown.Item>
-        <Dropdown.Item>New File with Current Profile</Dropdown.Item>
-        <Dropdown.Item>Download As...</Dropdown.Item>
-        <Dropdown.Item>Export PDF</Dropdown.Item>
-        <Dropdown.Item>Export HTML</Dropdown.Item>
-        <Dropdown.Item>Settings</Dropdown.Item>
-        <Dropdown.Item>About</Dropdown.Item>
-      </Dropdown>
+        
+      </Dropdown> 
     </div>
   );
   return (
@@ -317,8 +313,8 @@ const FlightListingPage: React.FC = () => {
         background: "linear-gradient(to right,  #0770E3 ,#0087E1,#174495)",
       }}
     >
-      <Row className="show-grid">
-        <Col xs={24} sm={12} md={4} lg={4} xl={3} xxl={3}>
+      <Row className={styles.showgrid}>
+        <Col xs={24} sm={12} md={4} lg={4} xl={2} xxl={2}>
           <div
             style={{
               display: "flex",
@@ -326,13 +322,14 @@ const FlightListingPage: React.FC = () => {
               position: "relative",
               marginBottom: "20px",
               marginTop: "20px", // Add marginTop to the main container
+              
             }}
           >
             <CustomDropdown title="Select way" items={ways} trigger="click" />
           </div>
         </Col>
 
-        <Col xs={24} sm={12} md={6}>
+        <Col xs={24} sm={12} md={5}>
           <div
             style={{
               display: "flex",
@@ -340,6 +337,7 @@ const FlightListingPage: React.FC = () => {
               position: "relative",
               marginBottom: "20px",
               marginTop: "20px", // Add marginTop to the main container
+             
             }}
           >
             {/* "From" TextField */}
@@ -481,7 +479,7 @@ const FlightListingPage: React.FC = () => {
           </div>
         </Col>
 
-        <Col xs={24} sm={12} md={4}>
+        <Col xs={24} sm={12} md={3}>
           <div style={{ display: "flex", gap: "10px", marginTop: "20px" }}>
             <div
               style={{
@@ -512,7 +510,7 @@ const FlightListingPage: React.FC = () => {
                     <Image
                       src={Calendar}
                       alt="Calendar Icon"
-                      style={{ width: 20, height: 20 }}
+                      style={{ width: 17, height: 16 }}
                     />
                   </div>
                 </InputGroup.Addon>
@@ -531,7 +529,23 @@ const FlightListingPage: React.FC = () => {
             </div>
           </div>
         </Col>
-        <Col xs={24} sm={12} md={4}>
+        {/* <Col xs={24} sm={12} md={4}>
+          <div style={{ display: "flex", alignItems: "center", position: "relative", marginBottom: "20px", marginTop: "20px" }}>
+            
+          <DatePicker
+                  format="dd/MM/yyyy"
+                  value={departureDate}
+                  caretAs={CustomCaret}
+                  onChange={handleDepartureChange}
+                  // open={departurePickerOpen}
+                  // onOpen={() => setDeparturePickerOpen(true)}
+                  // onClose={() => setDeparturePickerOpen(false)}
+                  placeholder="Departure Date"
+                 
+                />
+          </div>
+        </Col> */}
+        <Col xs={24} sm={12} md={3}>
           <div style={{ display: "flex", gap: "10px", marginTop: "20px" }}>
             <div
               style={{
@@ -556,6 +570,7 @@ const FlightListingPage: React.FC = () => {
                     ? setArrivalPickerOpen(true)
                     : setArrivalPickerOpen(false)
                 }
+                className={styles.calendar}
               >
                 <InputGroup.Addon>
                   <div
@@ -570,7 +585,7 @@ const FlightListingPage: React.FC = () => {
                     <Image
                       src={Calendar}
                       alt="Calendar Icon"
-                      style={{ width: 20, height: 20 }}
+                      style={{ width: 17, height: 16 }}
                     />
                   </div>
                 </InputGroup.Addon>

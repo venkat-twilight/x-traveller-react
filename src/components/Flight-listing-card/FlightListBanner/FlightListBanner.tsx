@@ -1,5 +1,6 @@
 import React from "react";
 import SideNav from "./SideNav";
+import FlightContent from "./FlightContent";
 
 // interface HotelCardProps {
 //   backdrop: string;
@@ -7,8 +8,11 @@ import SideNav from "./SideNav";
 
 const FlightBannerCard: React.FC = () => {
   return (
-    <div style={{ color: "lightgrey" }}>
+    <div style={{ width:"100%" }}>
+      <div style={{ display:"flex",width: "70%",margin:"auto" }}>
       <SideNav/>
+      <FlightContent/>
+      </div>
     </div>
   );
 };

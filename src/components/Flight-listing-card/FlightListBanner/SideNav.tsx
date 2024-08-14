@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Sidenav, Nav, Slider, Checkbox, Radio, RadioGroup } from 'rsuite';
-import MagicIcon from '@rsuite/icons/legacy/Magic';
+
 
 
 const headerStyles: React.CSSProperties = {
@@ -11,6 +11,9 @@ const headerStyles: React.CSSProperties = {
 //   color: '#fff',
 //   textAlign: 'center'
 };
+const bodyStyles: React.CSSProperties ={
+  backgroundColor:"blue"
+}
 
 const sliderContainerStyles: React.CSSProperties = {
   display: 'flex',
@@ -119,15 +122,15 @@ const SideNav = () => {
   };
 
   return (
-    <div style={{ width: 340 }}>
+    <div style={{ width: 340, }}>
       <Sidenav defaultOpenKeys={['departure', 'arrival', 'stops', 'price', 'duration', 'airlines']}  >
         <Sidenav.Header>
           <div style={headerStyles}>Filters</div>
         </Sidenav.Header>
         <Sidenav.Body>
-          <Nav>
+          <Nav >
             {filters.map(filter => (
-              <Nav.Menu key={filter.type} eventKey={filter.type} title={filter.label} icon={<MagicIcon />} >
+              <Nav.Menu key={filter.type} eventKey={filter.type} title={filter.label}  >
                 <Nav.Item>
                   {filter.type === 'price' ? (
                     <div style={sliderContainerStyles}>
