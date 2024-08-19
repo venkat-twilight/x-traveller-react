@@ -40,6 +40,7 @@ import FlightListDropdown from "./FlightListDropdown";
 import { Dropdown } from "rsuite";
 import FlightBannerCard from "./FlightListBanner/FlightListBanner";
 import { ItemDataType } from "rsuite/esm/MultiCascadeTree";
+import { FormControlBaseProps } from "rsuite/esm/internals/types";
 
 type Option = {
   label: string;
@@ -251,8 +252,8 @@ const FlightListingPage: React.FC = () => {
   const [departurePickerOpen, setDeparturePickerOpen] = React.useState(false);
   const [arrivalPickerOpen, setArrivalPickerOpen] = React.useState(false);
 
-  const [fromValue, setFromValue] = React.useState<string | null>(null);
-  const [toValue, setToValue] = React.useState<string | null>(null);
+  const [fromValue, setFromValue] = React.useState<string | null>();
+  const [toValue, setToValue] = React.useState<string | null | undefined>(null);
 
   const adjustedFromValue: string | undefined =
     fromValue === null ? undefined : fromValue;
@@ -391,7 +392,7 @@ const FlightListingPage: React.FC = () => {
                   onBlur={() => setIsFocused(false)}
                   placeholder="Select a location"
                   renderMenuItem={renderMenuItem}
-                  value={fromValue}
+                  value={adjustedFromValue}
                   onChange={setFromValue}
                 />
               </InputGroup>
@@ -471,7 +472,7 @@ const FlightListingPage: React.FC = () => {
                   onFocus={() => setIsFocused(true)}
                   onBlur={() => setIsFocused(false)}
                   renderMenuItem={renderMenuItem}
-                  value={toValue}
+                  value={adjustedToValue}
                   onChange={setToValue}
                 />
               </InputGroup>
