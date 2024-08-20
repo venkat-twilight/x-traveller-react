@@ -6,6 +6,7 @@ import Image from 'next/image';
 import AirlineIcon from '../../../assets/images/Indigo.svg'; // Adjust path as needed
 import TimerIcon from '../../../assets/images/Timer.svg'; // Adjust path as needed
 import styles from "../../../assets/styles/flight-modal.module.css"
+import Luggage from "../../../assets/images/Luggage.svg"
 
 interface FlightDetailsModalProps {
     open: boolean;
@@ -63,6 +64,13 @@ const flightDetails = {
           '* Feel free to call our Contact Centre for exact cancellation/change fee.',
           '* Cancellation/date change request will be accepted 30hrs prior to departure.'
         ]
+      }
+    ],
+    baggageInclusion: [
+      {
+        type: 'Adult',
+        checkIn: '15 Kgs (1 Piece only)',
+        cabin: '7 Kgs (1 Piece only)',
       }
     ]
   };
@@ -154,6 +162,42 @@ const flightDetails = {
               </div>
             </div>
           )}
+           {activeKey === 'Baggage-Inclusion' && (
+          <div style={{ marginTop: '20px' }}>
+            <div style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              padding: '10px',
+              backgroundColor: '#f7f7f7',
+              borderRadius: '5px',
+              border: '1px solid #cccccc'
+            }}>
+              <div style={{ flex: 1, textAlign: 'left', fontWeight: '600',fontSize:"15px" }}>Baggage Type</div>
+              <div style={{ flex: 1, textAlign: 'left', fontWeight: '600',fontSize:"15px" }}>Check-in</div>
+              <div style={{ flex: 1, textAlign: 'left', fontWeight: '600',fontSize:"15px" }}>Cabin</div>
+            </div>
+
+            {flightDetails.baggageInclusion.map((item, index) => (
+              <div
+                key={index}
+                style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  marginTop:"5px",
+                  padding: '10px',
+                  borderRadius: '5px',
+              border: '1px solid #cccccc'
+                 
+                }}
+              >
+                <div style={{ flex: 1, textAlign: 'left',color:"#666666", fontWeight: '400',fontSize:"15px"  }}>
+                {item.type}</div>
+                <div style={{ flex: 1, textAlign: 'left',color:"#666666", fontWeight: '400',fontSize:"15px" }}> <Image src={Luggage} alt="Flight Duration"  />{item.checkIn}</div>
+                <div style={{ flex: 1, textAlign: 'left',color:"#666666", fontWeight: '400',fontSize:"15px" }}> <Image src={Luggage} alt="Flight Duration"  />{item.cabin}</div>
+              </div>
+            ))}
+          </div>
+        )}
         </Modal.Body>
       </Modal>
     );
