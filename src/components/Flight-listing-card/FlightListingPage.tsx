@@ -9,8 +9,7 @@ import Calendar from "../../assets/images/Calendar.svg";
 import { Navbar, Nav, Container, Content } from "rsuite";
 
 import Image from "next/image";
-import styles from "../../assets/styles/flight-listing.module.css"
-
+import styles from "../../assets/styles/flight-listing.module.css";
 
 import {
   List,
@@ -55,7 +54,7 @@ const CustomCaret: React.FC = () => (
   <div style={{ width: "10px", height: "16px" }}></div> // Empty div or custom component
 );
 
-const renderMenuItem = (label: React.ReactNode, item:ItemDataType) => {
+const renderMenuItem = (label: React.ReactNode, item: ItemDataType) => {
   const option = options.find((opt) => opt.value === String(item.value));
   return option ? (
     <div>
@@ -300,11 +299,10 @@ const FlightListingPage: React.FC = () => {
     items,
     ...props
   }) => (
-    <div style={{ margin: "auto", width: "80%"}}>
-      <Dropdown title={title} size="lg" className={styles.dropdownbtn} >
+    <div style={{ margin: "auto", width: "80%" }}>
+      <Dropdown title={title} size="lg" className={styles.dropdownbtn}>
         <Dropdown.Item>New File</Dropdown.Item>
-        
-      </Dropdown> 
+      </Dropdown>
     </div>
   );
   return (
@@ -323,7 +321,6 @@ const FlightListingPage: React.FC = () => {
               position: "relative",
               marginBottom: "20px",
               marginTop: "20px", // Add marginTop to the main container
-              
             }}
           >
             <CustomDropdown title="Select way" items={ways} trigger="click" />
@@ -338,7 +335,6 @@ const FlightListingPage: React.FC = () => {
               position: "relative",
               marginBottom: "20px",
               marginTop: "20px", // Add marginTop to the main container
-             
             }}
           >
             {/* "From" TextField */}

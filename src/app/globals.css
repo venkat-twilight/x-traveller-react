@@ -108,7 +108,7 @@ a {
 
 .rs-dropdown-toggle,
 .rs-dropdown-toggle.rs-btn {
-  background-color: #fff !important;
+  background-color: #fff ;
   justify-content: space-between;
   width: 100%;
 }

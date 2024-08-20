@@ -4,6 +4,8 @@ padding : 7px 16px !important
 .showgrid{
 width:100%;
 margin: auto 150px;
+display: flex;
+justify-content: center;
 }
 .calendar span{
     padding: 7px 12px; 

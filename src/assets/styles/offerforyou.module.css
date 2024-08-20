@@ -64,7 +64,8 @@
   display: flex;
   /* justify-content: flex-start;
   flex-wrap: wrap; */
-  overflow-x: scroll;
+  /* overflow-x: scroll; */
+  
 }
 
 .card-text {
@@ -84,14 +85,15 @@
 }
 .noscrollbar {
   display: flex;
-  overflow-x: scroll;
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  /* overflow-x: scroll; */
+  /* scrollbar-width: none; /* Firefox */
+  /* -ms-overflow-style: none; 
+  overscroll-behavior-x: none; */ 
 }
 
-.noscrollbar::-webkit-scrollbar {
-  display: none; /* Safari and Chrome */
-}
+
+
+
 
 
 

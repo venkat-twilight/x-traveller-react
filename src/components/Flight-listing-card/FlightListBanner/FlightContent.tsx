@@ -383,47 +383,59 @@ const createFareDetailsPopover = (
         style={{
           display: "flex",
           alignItems: "center",
-          borderBottom: "1px solid black",
+          justifyContent: "space-between",
+          backgroundColor: "#F2F4F5",
+          padding: "10px",
+          borderBottom: "1px solid lightgrey",
+          margin: "-10px -10px 0 -10px", // Ensure the title covers full width
         }}
       >
-        <Image
-          src={Fareicon}
-          alt="Fareicon"
-          width={30}
-          height={30}
-          style={{ marginRight: "8px" }}
-        />
-        Fare Details
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <Image
+            src={Fareicon}
+            alt="Fareicon"
+            width={30}
+            height={30}
+            style={{ marginRight: "8px" }}
+          />
+          <span>Fare Details</span>
+        </div>
       </div>
     }
     style={{ borderBottom: "1px solid black", borderRadius: "10px" }}
   >
-    <div style={{ padding: "10px 0", width: "250px" }}>
-      {Object.entries(breakdown).map(([key, value]) => (
-        <div
-          key={key}
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            marginBottom: "10px",
-          }}
-        >
-          <span>
-            {key
-              .replace(/([A-Z])/g, " $1")
-              .replace(/^./, (str) => str.toUpperCase())}
-          </span>
-          <span>{value}</span>
+    <div style={{ padding: "10px", width: "250px" }}>
+      <div style={{ paddingBottom: "10px", borderBottom: "1px solid lightgrey" }}>
+        <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "10px" }}>
+          <strong>Base Fare</strong>
+          <strong>{breakdown.baseFare}</strong>
         </div>
-      ))}
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          borderTop: "1px solid black",
-          paddingTop: "10px",
-        }}
-      >
+        <div style={{ display: "flex", justifyContent: "space-between", color: "#5B5B5B", marginBottom: "10px" }}>
+          <span>Adult (1 X {breakdown.adultFare})</span>
+          <span>{breakdown.adultFare}</span>
+        </div>
+      </div>
+      
+      <div style={{ marginTop: "10px", borderBottom: "1px solid lightgrey", paddingLeft: "10px", paddingBottom: "10px" }}>
+        <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "10px" }}>
+          <strong>Tax & Charges</strong>
+          <strong>{breakdown.taxAndCharges}</strong>
+        </div>
+        <div style={{ display: "flex", justifyContent: "space-between", color: "#5B5B5B", marginBottom: "10px" }}>
+          <span>User Dev. Fee</span>
+          <span>{breakdown.userDevelopmentFee}</span>
+        </div>
+        <div style={{ display: "flex", justifyContent: "space-between", color: "#5B5B5B", marginBottom: "10px" }}>
+          <span>K3 Tax</span>
+          <span>{breakdown.k3Tax}</span>
+        </div>
+        <div style={{ display: "flex", justifyContent: "space-between", color: "#5B5B5B", marginBottom: "10px", }}>
+          <span>Airline Misc</span>
+          <span>{breakdown.airlineMisc}</span>
+        </div>
+      </div>
+
+      <div style={{ display: "flex", justifyContent: "space-between", paddingTop: "10px" }}>
         <strong>Total Amount</strong>
         <strong>{option.price}</strong>
       </div>

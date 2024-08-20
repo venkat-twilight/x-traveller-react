@@ -21,6 +21,13 @@ const sliderContainerStyles: React.CSSProperties = {
   alignItems: 'center',
   padding: '10px 0'
 };
+const navItemStyles: React.CSSProperties = {
+  borderBottom: '1px solid lightgrey',
+  width: "93%",
+  margin: "auto 10px"
+};
+
+
 
 const sliderLabelStyles: React.CSSProperties = {
   display: 'flex',
@@ -131,7 +138,7 @@ const SideNav = () => {
           <Nav >
             {filters.map(filter => (
               <Nav.Menu key={filter.type} eventKey={filter.type} title={filter.label}  >
-                <Nav.Item>
+                <Nav.Item style={navItemStyles}>
                   {filter.type === 'price' ? (
                     <div style={sliderContainerStyles}>
                       <div style={sliderLabelStyles}>
@@ -139,6 +146,7 @@ const SideNav = () => {
                         <span>₹{filter.maxValue}</span>
                       </div>
                       <Slider 
+                       progress
                         style={{ width: 200, margin: '0 10px' }} 
                         min={filter.minValue}
                         max={filter.maxValue}
@@ -151,6 +159,7 @@ const SideNav = () => {
                         <span>{filter.maxValue !== undefined ? formatMinutes(filter.maxValue) : ''}</span>
                       </div>
                       <Slider 
+                       progress
                         style={{ width: 200, margin: '0 10px' }} 
                         min={filter.minValue}
                         max={filter.maxValue}
@@ -164,7 +173,7 @@ const SideNav = () => {
                           onClick={() => handleCheckboxChange(option.value)}
                           style={{ display: 'block' }}
                         >
-                          {option.label} ₹{option.price ?? 0}
+                          {option.label}  ₹{option.price ?? 0}
                         </Checkbox>
                       </div>
                     ))

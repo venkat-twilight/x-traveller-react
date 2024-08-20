@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Dropdown, Button, Col, Text } from "rsuite"; // Adjust import based on your library
-import styles from "../../assets/styles/FlightCard.module.css";
+import styles from "../../assets/styles/flight-card.module.css";
 import User from "../../assets/images/User.svg";
 import Image from "next/image";
 
@@ -50,9 +50,11 @@ const FlightListDropdown: React.FC = () => {
         flexDirection: "column",
         alignItems: "flex-start",
       }}
+      
     >
     
       <Dropdown
+       className={styles.dropdown}
         title={
           <div
             style={{
@@ -88,6 +90,7 @@ const FlightListDropdown: React.FC = () => {
         }}
       >
         <Dropdown.Item
+       
           style={{ backgroundColor: "white", width: "100%", height: "auto" }}
         >
           <>
