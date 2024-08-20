@@ -12,6 +12,7 @@ import Seats from "../../../assets/images/Seat.svg";
 import Iicon from "../../../assets/images/Iicon.svg";
 import Fareicon from "../../../assets/images/FareIcon.svg";
 import styles from "../../../assets/styles/flight-content.module.css";
+import FlightDetailspopup from "./FlightDetailsPopup";
 
 interface PricingOption {
   fare: string;
@@ -288,88 +289,170 @@ const flights: Flight[] = [
       },
     ],
   },
-  // {
-  //   icon: Indigo,
-  //   airline: "IndiGo",
-  //   departure: "BLR 19:15",
-  //   departureLocation: "Bengaluru International Airport, India",
-  //   duration: "2hrs 50min",
-  //   durationDetails: "Non Stop",
-  //   arrival: "DEL 22:05",
-  //   arrivalLocation: "Indira Gandhi International Airport, India",
-  //   pricingOptions: [
-  //     {
-  //       fare: "SME FARE",
-  //       code: "(PUIP)",
-  //       seats: 2,
-  //       price: "₹8,688",
-  //       breakdown: {
-  //         baseFare: "₹7,246",
-  //         adultFare: "₹7,246",
-  //         taxAndCharges: "₹1,442",
-  //         userDevelopmentFee: "₹649",
-  //         k3Tax: "₹372",
-  //         airlineMisc: "₹421",
-  //       },
-  //     },
-  //     {
-  //       fare: "SME FARE",
-  //       code: "(PUIP)",
-  //       seats: 2,
-  //       price: "₹8,688",
-  //       breakdown: {
-  //         baseFare: "₹7,246",
-  //         adultFare: "₹7,246",
-  //         taxAndCharges: "₹1,442",
-  //         userDevelopmentFee: "₹649",
-  //         k3Tax: "₹372",
-  //         airlineMisc: "₹421",
-  //       },
-  //     },
-  //     {
-  //       fare: "SME FARE",
-  //       code: "(PUIP)",
-  //       seats: 2,
-  //       price: "₹8,688",
-  //       breakdown: {
-  //         baseFare: "₹7,246",
-  //         adultFare: "₹7,246",
-  //         taxAndCharges: "₹1,442",
-  //         userDevelopmentFee: "₹649",
-  //         k3Tax: "₹372",
-  //         airlineMisc: "₹421",
-  //       },
-  //     },
-  //     {
-  //       fare: "SME FARE",
-  //       code: "(PUIP)",
-  //       seats: 2,
-  //       price: "₹8,688",
-  //       breakdown: {
-  //         baseFare: "₹7,246",
-  //         adultFare: "₹7,246",
-  //         taxAndCharges: "₹1,442",
-  //         userDevelopmentFee: "₹649",
-  //         k3Tax: "₹372",
-  //         airlineMisc: "₹421",
-  //       },
-  //     },
-  //     {
-  //       fare: "SME FARE",
-  //       code: "(PUIP)",
-  //       seats: 2,
-  //       price: "₹8,688",
-  //       breakdown: {
-  //         baseFare: "₹7,246",
-  //         adultFare: "₹7,246",
-  //         taxAndCharges: "₹1,442",
-  //         userDevelopmentFee: "₹649",
-  //         k3Tax: "₹372",
-  //         airlineMisc: "₹421",
-  //       },
-  //     },
-  //   ],
-  // },
+  {
+    icon: Indigo,
+    airline: "IndiGo",
+    departure: "BLR 19:15",
+    departureLocation: "Bengaluru International Airport, India",
+    duration: "2hrs 50min",
+    durationDetails: "Non Stop",
+    arrival: "DEL 22:05",
+    arrivalLocation: "Indira Gandhi International Airport, India",
+    pricingOptions: [
+      {
+        fare: "SME FARE",
+        code: "(PUIP)",
+        seats: 2,
+        price: "₹8,688",
+        breakdown: {
+          baseFare: "₹7,246",
+          adultFare: "₹7,246",
+          taxAndCharges: "₹1,442",
+          userDevelopmentFee: "₹649",
+          k3Tax: "₹372",
+          airlineMisc: "₹421",
+        },
+      },
+      {
+        fare: "SME FARE",
+        code: "(PUIP)",
+        seats: 2,
+        price: "₹8,688",
+        breakdown: {
+          baseFare: "₹7,246",
+          adultFare: "₹7,246",
+          taxAndCharges: "₹1,442",
+          userDevelopmentFee: "₹649",
+          k3Tax: "₹372",
+          airlineMisc: "₹421",
+        },
+      },
+      {
+        fare: "SME FARE",
+        code: "(PUIP)",
+        seats: 2,
+        price: "₹8,688",
+        breakdown: {
+          baseFare: "₹7,246",
+          adultFare: "₹7,246",
+          taxAndCharges: "₹1,442",
+          userDevelopmentFee: "₹649",
+          k3Tax: "₹372",
+          airlineMisc: "₹421",
+        },
+      },
+      {
+        fare: "SME FARE",
+        code: "(PUIP)",
+        seats: 2,
+        price: "₹8,688",
+        breakdown: {
+          baseFare: "₹7,246",
+          adultFare: "₹7,246",
+          taxAndCharges: "₹1,442",
+          userDevelopmentFee: "₹649",
+          k3Tax: "₹372",
+          airlineMisc: "₹421",
+        },
+      },
+      {
+        fare: "SME FARE",
+        code: "(PUIP)",
+        seats: 2,
+        price: "₹8,688",
+        breakdown: {
+          baseFare: "₹7,246",
+          adultFare: "₹7,246",
+          taxAndCharges: "₹1,442",
+          userDevelopmentFee: "₹649",
+          k3Tax: "₹372",
+          airlineMisc: "₹421",
+        },
+      },
+    ],
+  },
+  {
+    icon: Vistara,
+    airline: "Vistara",
+    departure: "BLR 19:15",
+    departureLocation: "Bengaluru International Airport, India",
+    duration: "2hrs 50min",
+    durationDetails: "Non Stop",
+    arrival: "DEL 22:05",
+    arrivalLocation: "Indira Gandhi International Airport, India",
+    pricingOptions: [
+      {
+        fare: "SAVER",
+        code: "(PUIP)",
+        seats: 2,
+        price: "₹8,688",
+        breakdown: {
+          baseFare: "₹7,246",
+          adultFare: "₹7,246",
+          taxAndCharges: "₹1,442",
+          userDevelopmentFee: "₹649",
+          k3Tax: "₹372",
+          airlineMisc: "₹421",
+        },
+      },
+      {
+        fare: "SME FARE",
+        code: "(PUIP)",
+        seats: 2,
+        price: "₹8,688",
+        breakdown: {
+          baseFare: "₹7,246",
+          adultFare: "₹7,246",
+          taxAndCharges: "₹1,442",
+          userDevelopmentFee: "₹649",
+          k3Tax: "₹372",
+          airlineMisc: "₹421",
+        },
+      },
+      {
+        fare: "SME FARE",
+        code: "(PUIP)",
+        seats: 2,
+        price: "₹8,688",
+        breakdown: {
+          baseFare: "₹7,246",
+          adultFare: "₹7,246",
+          taxAndCharges: "₹1,442",
+          userDevelopmentFee: "₹649",
+          k3Tax: "₹372",
+          airlineMisc: "₹421",
+        },
+      },
+      {
+        fare: "SME FARE",
+        code: "(PUIP)",
+        seats: 2,
+        price: "₹8,688",
+        breakdown: {
+          baseFare: "₹7,246",
+          adultFare: "₹7,246",
+          taxAndCharges: "₹1,442",
+          userDevelopmentFee: "₹649",
+          k3Tax: "₹372",
+          airlineMisc: "₹421",
+        },
+      },
+      {
+        fare: "SME FARE",
+        code: "(PUIP)",
+        seats: 2,
+        price: "₹8,688",
+        breakdown: {
+          baseFare: "₹7,246",
+          adultFare: "₹7,246",
+          taxAndCharges: "₹1,442",
+          userDevelopmentFee: "₹649",
+          k3Tax: "₹372",
+          airlineMisc: "₹421",
+        },
+      },
+    ],
+  },
   // Add more flight objects here
 ];
 
@@ -405,37 +488,92 @@ const createFareDetailsPopover = (
     style={{ borderBottom: "1px solid black", borderRadius: "10px" }}
   >
     <div style={{ padding: "10px", width: "250px" }}>
-      <div style={{ paddingBottom: "10px", borderBottom: "1px solid lightgrey" }}>
-        <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "10px" }}>
+      <div
+        style={{ paddingBottom: "10px", borderBottom: "1px solid lightgrey" }}
+      >
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            marginBottom: "10px",
+          }}
+        >
           <strong>Base Fare</strong>
           <strong>{breakdown.baseFare}</strong>
         </div>
-        <div style={{ display: "flex", justifyContent: "space-between", color: "#5B5B5B", marginBottom: "10px" }}>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            color: "#5B5B5B",
+            marginBottom: "10px",
+          }}
+        >
           <span>Adult (1 X {breakdown.adultFare})</span>
           <span>{breakdown.adultFare}</span>
         </div>
       </div>
-      
-      <div style={{ marginTop: "10px", borderBottom: "1px solid lightgrey", paddingLeft: "10px", paddingBottom: "10px" }}>
-        <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "10px" }}>
+
+      <div
+        style={{
+          marginTop: "10px",
+          borderBottom: "1px solid lightgrey",
+          paddingLeft: "10px",
+          paddingBottom: "10px",
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            marginBottom: "10px",
+          }}
+        >
           <strong>Tax & Charges</strong>
           <strong>{breakdown.taxAndCharges}</strong>
         </div>
-        <div style={{ display: "flex", justifyContent: "space-between", color: "#5B5B5B", marginBottom: "10px" }}>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            color: "#5B5B5B",
+            marginBottom: "10px",
+          }}
+        >
           <span>User Dev. Fee</span>
           <span>{breakdown.userDevelopmentFee}</span>
         </div>
-        <div style={{ display: "flex", justifyContent: "space-between", color: "#5B5B5B", marginBottom: "10px" }}>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            color: "#5B5B5B",
+            marginBottom: "10px",
+          }}
+        >
           <span>K3 Tax</span>
           <span>{breakdown.k3Tax}</span>
         </div>
-        <div style={{ display: "flex", justifyContent: "space-between", color: "#5B5B5B", marginBottom: "10px", }}>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            color: "#5B5B5B",
+            marginBottom: "10px",
+          }}
+        >
           <span>Airline Misc</span>
           <span>{breakdown.airlineMisc}</span>
         </div>
       </div>
 
-      <div style={{ display: "flex", justifyContent: "space-between", paddingTop: "10px" }}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          paddingTop: "10px",
+        }}
+      >
         <strong>Total Amount</strong>
         <strong>{option.price}</strong>
       </div>
@@ -590,7 +728,7 @@ const FlightCard: React.FC<{ flight: Flight; index: number }> = ({
           </Panel>
         )}
       </Panel>
-      {index % 2 === 1 && (
+      {index === 1 && (
         <div style={{ textAlign: "center", margin: "20px 0" }}>
           <Image
             src={ListBanner}
@@ -606,6 +744,10 @@ const FlightCard: React.FC<{ flight: Flight; index: number }> = ({
 };
 
 const PricingOptionRow: React.FC<{ option: PricingOption }> = ({ option }) => {
+  const [openModal, setOpenModal] = useState<boolean>(false);
+
+  const handleOpen = () => setOpenModal(true);
+  const handleClose = () => setOpenModal(false);
   return (
     <div
       className={styles.text}
@@ -649,9 +791,11 @@ const PricingOptionRow: React.FC<{ option: PricingOption }> = ({ option }) => {
               color: "#0770E3",
               fontWeight: "600",
             }}
+            onClick={handleOpen}
           >
             View Flight Details
           </Button>
+          <FlightDetailspopup open={openModal} onClose={handleClose} />
         </div>
         <div style={{ flex: 1, textAlign: "center" }}>
           <p
