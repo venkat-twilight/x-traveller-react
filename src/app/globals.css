@@ -116,3 +116,30 @@ a {
 .rs-dropdown .rs-dropdown-menu {
   width: 100%;
 }
+ 
+
+ .rs-sidenav-item, 
+.rs-sidenav-default {
+    background-color: #f2f4f5 !important;
+    background-color: var(--rs-sidenav-default-bg, #f2f4f5);
+}
+.rs-radio-control {
+  display: inline-block;
+  height: 16px;
+  left: 10px;
+  position: absolute;
+  top: 10px;
+  width: 16px;
+  background-color: white;
+  border-radius: 10px;
+}
+
+.rs-checkbox-control {
+  display: inline-block;
+  height: 16px;
+  left: 10px;
+  position: absolute;
+  top: 10px;
+  width: 16px;
+  background-color: white;
+}

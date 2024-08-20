@@ -1,11 +1,17 @@
 import React, { useState } from "react";
 import { Sidenav, Nav, Slider, Checkbox, Radio, RadioGroup } from "rsuite";
+import styles from "../../../assets/styles/sidenav-listing.module.css"
+import Vistara from "../../../assets/images/Vistara.svg"
+import AirIndia from "../../../assets/images/AirIndia.svg"
+import Indigo from "../../../assets/images/Indigo.svg"
+import Image from "next/image";
 
 const headerStyles: React.CSSProperties = {
   padding: 20,
-  fontSize: 14,
+  fontSize: 16,
   fontWeight: "bold",
-  //   backgroundColor: '#34c3ff',
+  borderBottom:"1px solid lightgrey"
+     
   //   color: '#fff',
   //   textAlign: 'center'
 };
@@ -42,6 +48,7 @@ interface FilterOption {
   value: string;
   label: string;
   price?: number;
+  icon:any;
 }
 
 interface Filter {
@@ -57,29 +64,29 @@ const filters: Filter[] = [
     type: "departure",
     label: "Departure",
     options: [
-      { value: "before6am", label: "Before 6AM" },
-      { value: "6am-12pm", label: "6AM-12PM" },
-      { value: "12pm-6pm", label: "12PM-6PM" },
-      { value: "after6pm", label: "After 6PM" },
+      { value: "before6am",icon: Vistara, label: "Before 6AM" },
+      { value: "6am-12pm",icon: Vistara, label: "6AM-12PM" },
+      { value: "12pm-6pm",icon: Vistara, label: "12PM-6PM" },
+      { value: "after6pm",icon: Vistara, label: "After 6PM" },
     ],
   },
   {
     type: "arrival",
     label: "Arrival",
     options: [
-      { value: "before6am", label: "Before 6AM" },
-      { value: "6am-12pm", label: "6AM-12PM" },
-      { value: "12pm-6pm", label: "12PM-6PM" },
-      { value: "after6pm", label: "After 6PM" },
+      { value: "before6am",icon: Vistara, label: "Before 6AM" },
+      { value: "6am-12pm",icon: Vistara, label: "6AM-12PM" },
+      { value: "12pm-6pm", icon: Vistara,label: "12PM-6PM" },
+      { value: "after6pm", icon: Vistara,label: "After 6PM" },
     ],
   },
   {
     type: "stops",
     label: "Stops",
     options: [
-      { value: "nonstop", label: "Non stop" },
-      { value: "1stop", label: "1 Stop" },
-      { value: "2plusstop", label: "2+ Stops" },
+      { value: "nonstop",icon: Vistara, label: "Non stop" },
+      { value: "1stop",icon: Vistara, label: "1 Stop" },
+      { value: "2plusstop",icon: Vistara, label: "2+ Stops" },
     ],
   },
   {
@@ -98,10 +105,10 @@ const filters: Filter[] = [
     type: "airlines",
     label: "Preferred Airlines",
     options: [
-      { value: "airIndia", label: "Air India", price: 6196 },
-      { value: "indiGo", label: "IndiGo", price: 6399 },
-      { value: "vistara", label: "Vistara", price: 6448 },
-      { value: "multiAirline", label: "Multi-Airline", price: 7416 },
+      { value: "airIndia",icon: Indigo, label: "Air India", price: 6196 },
+      { value: "indiGo",icon: Vistara, label: "IndiGo", price: 6399 },
+      { value: "vistara",icon: AirIndia, label: "Vistara", price: 6448 },
+      { value: "multiAirline",icon: Vistara, label: "Multi-Airline", price: 7416 },
     ],
   },
 ];
@@ -122,7 +129,7 @@ const SideNav = () => {
   };
 
   return (
-    <div style={{ width: 340, borderRadius: "8px" }}>
+    <div style={{ width: 340, borderRadius: "8px", }}>
       <Sidenav
         defaultOpenKeys={[
           "departure",
@@ -143,6 +150,7 @@ const SideNav = () => {
                 key={filter.type}
                 eventKey={filter.type}
                 title={filter.label}
+                style={{fontWeight:"bold"}}
               >
                 <Nav.Item style={navItemStyles}>
                   {filter.type === "price" ? (
@@ -181,13 +189,20 @@ const SideNav = () => {
                     </div>
                   ) : filter.type === "airlines" ? (
                     filter.options?.map((option) => (
-                      <div key={option.value} style={{ padding: "5px 0" }}>
+                      <div key={option.value} style={{ padding: "5px 0", }}>
                         <Checkbox
                           checked={checkedOptions.has(option.value)}
                           onClick={() => handleCheckboxChange(option.value)}
-                          style={{ display: "block" }}
+                          style={{ display: "block"  }}
                         >
-                          {option.label} ₹{option.price ?? 0}
+                          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center",width: "95%",
+                            margin: "auto 10px", }}>
+                            <div style={{ display: "flex", alignItems: "center" }}>
+                              <Image src={option.icon} alt="Vistara" width={20} height={20} />
+                              <span style={{marginLeft:"10px"}}>{option.label}</span>
+                            </div>
+                            <div>₹{option.price ?? 0}</div>
+                          </div>
                         </Checkbox>
                       </div>
                     ))
