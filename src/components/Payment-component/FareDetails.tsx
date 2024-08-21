@@ -23,7 +23,7 @@ const FareDetails: React.FC = () => {
           <span>Fare Details</span>
         </div>
       </div>
-      <div style={{ padding: "10px", width: "250px" }}>
+      <div style={{ padding: "10px" }}>
         <div
           style={{
             marginTop: "10px",
@@ -72,7 +72,7 @@ const FareDetails: React.FC = () => {
               <Image src={IconsPlus} alt="Brand Logo" />
               Airline Misc
             </span>
-            <strong>₹9,999</strong> 
+            <strong>₹9,999</strong>
           </div>
         </div>
         <div

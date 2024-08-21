@@ -40,6 +40,7 @@ import { Dropdown } from "rsuite";
 import FlightBannerCard from "./FlightListBanner/FlightListBanner";
 import { ItemDataType } from "rsuite/esm/MultiCascadeTree";
 import { FormControlBaseProps } from "rsuite/esm/internals/types";
+import TButton from "../Common/TButton";
 
 type Option = {
   label: string;
@@ -606,19 +607,7 @@ const FlightListingPage: React.FC = () => {
           <FlightListDropdown />
         </Col>
         <Col xs={24} sm={12} md={2} style={{ marginTop: "20px" }}>
-          <Button
-            appearance="primary"
-            style={{
-              background: "linear-gradient(to right, #0087E1 0%, #174495 100%)",
-              border: "none",
-              borderRadius: "4px",
-              color: "white",
-              padding: "10px 20px",
-              cursor: "pointer",
-            }}
-          >
-            Search Flight
-          </Button>
+          <TButton label="Search Flight" />
         </Col>
       </Row>
     </Grid>

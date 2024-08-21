@@ -3,7 +3,7 @@ padding : 7px 16px !important
 }
 .showgrid{
 width:100%;
-margin: auto 150px;
+margin: auto;
 display: flex;
 justify-content: center;
 }

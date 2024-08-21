@@ -10,7 +10,9 @@ const AppHeader = () => {
     <Navbar id="mmain">
       <div className={styles.navbar_container}>
         <Nav style={{ flex: 1, cursor: "pointer" }}>
-          <Image src={Logo} alt="Brand Logo" />
+          <a href="/home">
+            <Image src={Logo} alt="Logo" />
+          </a>
         </Nav>
         <Nav style={{ cursor: "pointer" }}>
           <Button appearance="ghost">Create Account/Login</Button>

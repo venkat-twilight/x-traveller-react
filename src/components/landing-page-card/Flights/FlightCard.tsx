@@ -34,6 +34,7 @@ import FlightFrom from "../../../assets/images/Fromicon.svg";
 import FlightDropdown from "./FlightDropdown";
 import IndianFlag from "../../../assets/images/IndianFlag.svg";
 import Link from "next/link";
+import TButton from "../../Common/TButton";
 
 type Option = {
   label: string;
@@ -631,20 +632,8 @@ const FlightCard: React.FC<CardProps> = () => {
             alignItems: "center",
           }}
         >
-           <Link href="/flightlist">
-          <Button
-            appearance="primary"
-            style={{
-              background: "linear-gradient(to right, #0087E1 0%, #174495 100%)",
-              border: "none",
-              borderRadius: "4px",
-              color: "white",
-              padding: "10px 20px",
-              cursor: "pointer",
-            }}
-          >
-            Search Flight
-          </Button>
+          <Link href="/flightlist">
+            <TButton label="Search Flight" link="/flightlist" />
           </Link>
         </Col>
       </Row>
