@@ -6,6 +6,7 @@ import Image from "next/image";
 import AirlineIcon from "../../../assets/images/Indigo.svg"; // Adjust path as needed
 import TimerIcon from "../../../assets/images/Timer.svg"; // Adjust path as needed
 import styles from "../../../assets/styles/flight-modal.module.css";
+import TTable from "../../Common/TTable";
 
 interface FlightDetailsModalProps {
   open: boolean;
@@ -65,6 +66,13 @@ const flightDetails = {
       ],
     },
   ],
+  baggageInclusion: [
+    {
+      baggagetype: "Adult",
+      checkinweight: "15 Kgs (1 Piece only)",
+      cabinweight: "7 Kgs (1 Piece only)",
+    },
+  ],
 };
 
 const FlightDetailsModal: React.FC<FlightDetailsModalProps> = ({
@@ -72,6 +80,7 @@ const FlightDetailsModal: React.FC<FlightDetailsModalProps> = ({
   onClose,
 }) => {
   const [activeKey, setActiveKey] = useState<string>("BLR-DEL");
+  const headers = ["Baggage Type", "Check in Weight", "Cabin Weight"];
 
   const handleSelect = (eventKey: string) => {
     setActiveKey(eventKey);
@@ -131,6 +140,42 @@ const FlightDetailsModal: React.FC<FlightDetailsModalProps> = ({
         )}
 
         {activeKey === "BLR-DEL" && <FlightInfo />}
+        {/* {activeKey === 'Baggage-Inclusion' && (
+          <div style={{ marginTop: '20px' }}>
+            <div style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              padding: '10px',
+              backgroundColor: '#D9D9D9',
+              borderRadius: '10px',
+              border: '1px solid lightgrey'
+            }}>
+              <div style={{ flex: 1, textAlign: 'center', fontWeight: 'bold' }}>Baggage Type</div>
+              <div style={{ flex: 1, textAlign: 'center', fontWeight: 'bold' }}>Check-in</div>
+              <div style={{ flex: 1, textAlign: 'center', fontWeight: 'bold' }}>Cabin</div>
+            </div>
+
+            {flightDetails.baggageInclusion.map((item, index) => (
+              <div
+                key={index}
+                style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  padding: '10px',
+                  borderBottom: '1px solid lightgrey',
+                  borderRadius: index === flightDetails.baggageInclusion.length - 1 ? '0 0 10px 10px' : 'none'
+                }}
+              >
+                <div style={{ flex: 1, textAlign: 'center' }}>{item.type}</div>
+                <div style={{ flex: 1, textAlign: 'center' }}>{item.checkIn}</div>
+                <div style={{ flex: 1, textAlign: 'center' }}>{item.cabin}</div>
+              </div>
+            ))}
+          </div>
+        )} */}
+        {activeKey === "Baggage-Inclusion" && (
+          <TTable data={flightDetails.baggageInclusion} headers={headers} />
+        )}
       </Modal.Body>
     </Modal>
   );
