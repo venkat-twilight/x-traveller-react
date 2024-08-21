@@ -1,0 +1,27 @@
+.bookingPanel {
+  margin-bottom: 20px;
+  text-wrap: wrap;
+  border: 1px solid lightgrey;
+  line-height: 2;
+}
+
+.bookingAccordian {
+  border-radius: 15px;
+}
+
+.bookingAccordian h2 {
+  padding: 5px !important;
+  border-bottom: 1px solid lightgrey;
+}
+
+.bookingAccordian button {
+  background-color: #fff !important;
+}
+
+.bookingAccordian button:hover {
+  background-color: #fff !important;
+}
+
+.FareList {
+  padding: 20px 0px;
+}
