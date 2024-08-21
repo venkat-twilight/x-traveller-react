@@ -158,12 +158,12 @@ export const FlightInfo: React.FC = () => {
             />
           </div>
           <div>
-            <div style={{ fontWeight: "500", fontSize: "18px" }}>IndiGo</div>
-            <div
+            <p style={{ fontWeight: "500", fontSize: "18px" }}>IndiGo</p>
+            <span
               style={{ fontWeight: "500", color: "#9E9E9E", fontSize: "14px" }}
             >
               (PUIP)
-            </div>
+            </span>
           </div>
         </div>
         <div style={{ color: "#019901", padding: "5px 0px" }}>
@@ -177,7 +177,7 @@ export const FlightInfo: React.FC = () => {
           flex: 2,
           display: "flex",
           justifyContent: "space-around",
-          padding: "5px",
+          padding: "0px 15px",
         }}
       >
         <div style={{ textAlign: "left" }}>
@@ -199,7 +199,9 @@ export const FlightInfo: React.FC = () => {
           style={{ textAlign: "center", marginTop: "30px", padding: "15px" }}
         >
           <Image src={TimerIcon} alt="Flight Duration" />
-          <div>- {flightInfo.duration} -</div>
+          <div style={{ fontWeight: "700", fontSize: "18px" }}>
+            {flightInfo.duration}
+          </div>
           <div style={{ color: "#9E9E9E" }}>
             {flightInfo.isNonStop ? "Non Stop" : ""}
           </div>

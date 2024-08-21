@@ -7,9 +7,10 @@ import styles from "../../assets/styles/booking.module.css";
 import TTimer from "../Common/TTimer";
 import TAccordion from "../Common/TAccordion";
 import FareDetailsPanel from "./FareDetails";
-import PassengerDetailsAccordion from "./PassengerAccordion";
 import Image from "next/image";
-import TInputField from "../Common/TInputField";
+import TFrom from "../Common/TFrom";
+import TWarning from "../Common/TWarning";
+import Addons from "./Addons";
 
 const fontColor: string = "#F88D02";
 
@@ -28,8 +29,18 @@ const FareDetailsList = [
   },
 ];
 
-const fields = [
-  { title: "Title", placeholder: "Mr/Ms/Mrs", type: "select", name: "title" },
+const PassengerFields = [
+  {
+    title: "Title",
+    placeholder: "Mr/...",
+    type: "select",
+    name: "title",
+    options: [
+      { label: "Mr", value: "mr" },
+      { label: "Ms", value: "ms" },
+      { label: "Mrs", value: "mrs" },
+    ],
+  },
   {
     title: "First Name",
     placeholder: "First Name",
@@ -48,10 +59,52 @@ const fields = [
     type: "input",
     name: "mobile",
   },
-  { title: "Email ID", placeholder: "Email ID", type: "input", name: "email" },
+  {
+    title: "Email ID",
+    placeholder: "Email ID",
+    type: "input",
+    name: "email",
+  },
+];
+
+const GSTFields = [
+  { title: "GSTIN", placeholder: "GSTIN", name: "gstin", type: "input" },
+  {
+    title: "GSTIN Mobile Number",
+    placeholder: "GSTIN Mobile Number",
+    name: "gstinMobile",
+    type: "input",
+  },
+  {
+    title: "GSTIN Email Address",
+    placeholder: "GSTIN Email Address",
+    name: "gstinEmail",
+    type: "input",
+  },
+  {
+    title: "GSTIN Phone Number",
+    placeholder: "GSTIN Phone Number",
+    name: "gstinPhone",
+    type: "input",
+  },
 ];
 
 export default function PaymentBase() {
+  // const [formData, setFormData] = useState(() =>
+  //   fields.reduce((acc, field) => {
+  //     acc[field.name] = field.type === "checkbox" ? false : "";
+  //     return acc;
+  //   }, {} as Record<string, string | boolean>)
+  // );
+
+  // // Handle field changes
+  // const handleFieldChange = (name: string, value: string | boolean) => {
+  //   setFormData((prev) => ({
+  //     ...prev,
+  //     [name]: value,
+  //   }));
+  // };
+
   return (
     <div
       style={{
@@ -94,20 +147,23 @@ export default function PaymentBase() {
               classname={styles.bookingAccordian}
               render={
                 <>
-                  {fields.length > 0 && (
+                  {PassengerFields.length > 0 && (
                     <div style={rowStyle}>
-                      {fields.map((field, idx) => (
-                        <TInputField
+                      {PassengerFields.map((field, idx) => (
+                        <TFrom
                           key={idx}
                           title={field.title}
                           placeholder={field.placeholder}
                           name={field.name}
+                          type={field.type as "input" | "select" | "checkbox"}
+                          options={field.options}
+                          // value={formData[field.name]}
+                          // onChange={handleFieldChange}
                         />
                       ))}
                     </div>
                   )}
-                  <div>Passenger Name: {""} John Doe</div>
-                  <div>Passenger Email: {""} johndoe@gmail.com</div>
+                  <TWarning content="These details will be passed to the Airlines for booking" />
                 </>
               }
             />
@@ -156,7 +212,34 @@ export default function PaymentBase() {
                 </div>
               }
             />
-            <PassengerDetailsAccordion />
+            <br />
+            <TAccordion
+              header="GST Details for Business travel (Optional)"
+              classname={styles.bookingAccordian}
+              render={
+                <>
+                  {GSTFields.length > 0 && (
+                    <div style={rowStyle}>
+                      {GSTFields.map((field, idx) => (
+                        <TFrom
+                          key={idx}
+                          title={field.title}
+                          placeholder={field.placeholder}
+                          name={field.name}
+                          type={field.type as "input" | "select" | "checkbox"}
+                        />
+                      ))}
+                    </div>
+                  )}
+                </>
+              }
+            />
+            <br />
+            <TAccordion
+              header="Addons (Optional)"
+              classname={styles.bookingAccordian}
+              render={<Addons />}
+            />
           </Panel>
         </Col>
         <Col xs={5}>

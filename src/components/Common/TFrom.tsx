@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Input,
   SelectPicker,
@@ -20,6 +20,7 @@ interface FieldProps {
   type: "input" | "select" | "checkbox" | "radio";
   options?: FieldOption[];
   value?: string | boolean;
+  layout?: "vertical" | "horizontal"; // Layout option for radio group
   searchable?: boolean;
   onChange?: (name: string, value: string | boolean) => void;
 }
@@ -31,6 +32,7 @@ const TInputField: React.FC<FieldProps> = ({
   type,
   options = [],
   value,
+  layout = "vertical", // Default to vertical layout
   searchable = false,
   onChange,
 }) => {
@@ -47,47 +49,51 @@ const TInputField: React.FC<FieldProps> = ({
         marginBottom: "20px",
       }}
     >
-      <div style={{ marginBottom: "4px", color: "grey" }}>{title}</div>
-      <InputGroup inside style={{ width: "100%" }}>
-        {type === "input" && (
-          <Input
-            placeholder={placeholder}
-            value={value as string}
-            onChange={(value) => handleChange(value)}
-          />
-        )}
-        {type === "select" && (
-          <SelectPicker
-            data={options}
-            placeholder={placeholder}
-            value={value as string}
-            onChange={(value) => handleChange(value)}
-            searchable={searchable}
-            style={{ width: "100%" }}
-          />
-        )}
-        {type === "checkbox" && (
-          <Checkbox
-            checked={value as boolean}
-            onChange={(value) => handleChange(value)}
-          >
-            {placeholder}
-          </Checkbox>
-        )}
-        {type === "radio" && (
-          <RadioGroup
-            name={name}
-            value={value as string}
-            onChange={(value) => handleChange(value)}
-          >
-            {options.map((option) => (
-              <Radio key={option.value} value={option.value}>
-                {option.label}
-              </Radio>
-            ))}
-          </RadioGroup>
-        )}
-      </InputGroup>
+      {type === "radio" ? (
+        <RadioGroup
+          name={name}
+          value={value as string}
+          onChange={(value) => handleChange(value)}
+          inline={layout !== "horizontal"}
+        >
+          {options.map((option) => (
+            <Radio key={option.value} value={option.value}>
+              {option.label}
+            </Radio>
+          ))}
+        </RadioGroup>
+      ) : (
+        <div>
+          <div style={{ marginBottom: "4px", color: "grey" }}>{title}</div>
+          <InputGroup inside style={{ width: "100%" }}>
+            {type === "input" && (
+              <Input
+                placeholder={placeholder}
+                value={value as string}
+                onChange={(value) => handleChange(value)}
+              />
+            )}
+            {type === "select" && (
+              <SelectPicker
+                data={options}
+                placeholder={placeholder}
+                value={value as string}
+                onChange={(value) => handleChange(value)}
+                searchable={searchable}
+                style={{ width: "100%" }}
+              />
+            )}
+            {type === "checkbox" && (
+              <Checkbox
+                checked={value as boolean}
+                onChange={(value) => handleChange(value)}
+              >
+                {placeholder}
+              </Checkbox>
+            )}
+          </InputGroup>
+        </div>
+      )}
     </div>
   );
 };
