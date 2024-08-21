@@ -1,6 +1,6 @@
 import React from "react";
 import { List, Grid, Row, Col, Heading, Text, Stack, Panel } from "rsuite";
-import FareDetails from "@/src/components/Payment-component/FareDetails";
+import FareDetails from "@/src/components/booking-card/FareDetails";
 import { FlightInfo } from "@/src/components/Flight-listing-card/FlightListBanner/FlightDetailsPopup";
 import FlightListingPage from "@/src/components/Flight-listing-card/FlightListingPage";
 import styles from "../../assets/styles/app-footer.module.css";
