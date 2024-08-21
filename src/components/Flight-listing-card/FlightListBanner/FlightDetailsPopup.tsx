@@ -64,16 +64,15 @@ const flightDetails = {
         "* Feel free to call our Contact Centre for exact cancellation/change fee.",
         "* Cancellation/date change request will be accepted 30hrs prior to departure.",
       ],
-     
     },
   ],
   baggageInclusion: [
-    
-    
-      { baggagetype: 'Adult', checkinweight:'15 Kgs (1 Piece only)', cabinweight: '7 Kgs (1 Piece only)' },
-    
-    
-  ]
+    {
+      baggagetype: "Adult",
+      checkinweight: "15 Kgs (1 Piece only)",
+      cabinweight: "7 Kgs (1 Piece only)",
+    },
+  ],
 };
 
 const FlightDetailsModal: React.FC<FlightDetailsModalProps> = ({
@@ -81,7 +80,7 @@ const FlightDetailsModal: React.FC<FlightDetailsModalProps> = ({
   onClose,
 }) => {
   const [activeKey, setActiveKey] = useState<string>("BLR-DEL");
-  const headers = ['Baggage Type', 'Check in Weight', 'Cabin Weight'];
+  const headers = ["Baggage Type", "Check in Weight", "Cabin Weight"];
 
   const handleSelect = (eventKey: string) => {
     setActiveKey(eventKey);
@@ -174,9 +173,9 @@ const FlightDetailsModal: React.FC<FlightDetailsModalProps> = ({
             ))}
           </div>
         )} */}
-{activeKey === 'Baggage-Inclusion' && (
-      <TTable data={flightDetails.baggageInclusion} headers={headers}/>
-)}
+        {activeKey === "Baggage-Inclusion" && (
+          <TTable data={flightDetails.baggageInclusion} headers={headers} />
+        )}
       </Modal.Body>
     </Modal>
   );
@@ -204,12 +203,12 @@ export const FlightInfo: React.FC = () => {
             />
           </div>
           <div>
-            <div style={{ fontWeight: "500", fontSize: "18px" }}>IndiGo</div>
-            <div
+            <p style={{ fontWeight: "500", fontSize: "18px" }}>IndiGo</p>
+            <span
               style={{ fontWeight: "500", color: "#9E9E9E", fontSize: "14px" }}
             >
               (PUIP)
-            </div>
+            </span>
           </div>
         </div>
         <div style={{ color: "#019901", padding: "5px 0px" }}>
@@ -223,7 +222,7 @@ export const FlightInfo: React.FC = () => {
           flex: 2,
           display: "flex",
           justifyContent: "space-around",
-          padding: "5px",
+          padding: "0px 15px",
         }}
       >
         <div style={{ textAlign: "left" }}>
@@ -245,7 +244,9 @@ export const FlightInfo: React.FC = () => {
           style={{ textAlign: "center", marginTop: "30px", padding: "15px" }}
         >
           <Image src={TimerIcon} alt="Flight Duration" />
-          <div>- {flightInfo.duration} -</div>
+          <div style={{ fontWeight: "700", fontSize: "18px" }}>
+            {flightInfo.duration}
+          </div>
           <div style={{ color: "#9E9E9E" }}>
             {flightInfo.isNonStop ? "Non Stop" : ""}
           </div>

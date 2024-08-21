@@ -5,6 +5,7 @@ interface TimerProps {
   render?: any;
   classname?: string;
 }
+
 const TAccordion: React.FC<TimerProps> = ({ header, render, classname }) => {
   return (
     <>
