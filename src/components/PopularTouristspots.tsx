@@ -1,3 +1,4 @@
+'use client';
 import React, { useState, useRef } from "react";
 import { Row, Col, Stack, Panel, Text, Tag } from "rsuite";
 import Image from "next/image";
@@ -230,34 +231,15 @@ const Card: React.FC<CardProps> = ({
 
 const PopularTouristspots: React.FC = () => {
   const sliderRef = useRef<Slider>(null);
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  // const handleNext = () => {
-  //   if (currentIndex < cardData.length - 4) {
-  //     setCurrentIndex(currentIndex + 1);
-  //   }
-  // };
-
-  // const handlePrevious = () => {
-  //   if (currentIndex > 0) {
-  //     setCurrentIndex(currentIndex - 1);
-  //   }
-  // };
 
   const settings = {
     dots: false,
     infinite: true,
     speed: 500,
-    className: "center",
     slidesToShow: 4,
     slidesToScroll: 1,
-    focusOnSelect: true,
     arrows: false,
-    // nextArrow: <Image src={RightArrowIcon} alt="Next" />,
-    // prevArrow: <Image src={LeftArrowIcon} alt="Previous"  />,
     swipeToSlide: true,
-  
-
     responsive: [
       {
         breakpoint: 1024,
@@ -308,19 +290,19 @@ const PopularTouristspots: React.FC = () => {
             </h3>
           </Stack>
           <Stack style={{ margin: "20px 0px" }}>
-            <div style={{ padding: "0px 20px" }} onClick={handlePrevClick}>
+            <div style={{ padding: "0px 20px", cursor: "pointer" }} onClick={handlePrevClick}>
               <Image src={LeftArrowIcon} alt="LeftArrowIcon" />
             </div>
-            <div onClick={handleNextClick}>
+            <div style={{ cursor: "pointer" }} onClick={handleNextClick}>
               <Image src={RightArrowIcon} alt="RightArrowIcon" />
             </div>
           </Stack>
         </div>
 
         <Row gutter={16}>
-          <Slider {...settings} ref={sliderRef} >
+          <Slider {...settings} ref={sliderRef}>
             {cardData.map((card, index) => (
-              <Col key={index} xs={24} sm={12} md={12} lg={8} xl={6} >
+              <Col key={index} xs={24} sm={12} md={12} lg={8} xl={6}>
                 <Card
                   image={card.image}
                   text={card.text}
