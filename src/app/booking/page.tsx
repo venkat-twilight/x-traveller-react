@@ -8,6 +8,7 @@ import FlightListingPage from "@/src/components/Flight-listing-card/FlightListin
 import { User, UsersResponse } from "@/src/models/users.model";
 import BookingBase from "../../components/booking/BookingBase";
 
+
 async function fetchData() {
   const res = await fetch(`${process.env.API_URL}/api/users?page=1`);
   const data: UsersResponse = await res.json();

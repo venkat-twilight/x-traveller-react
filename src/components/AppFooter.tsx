@@ -14,10 +14,12 @@ import Instagram from "../assets/images/Instagram.svg";
 import Twitter from "../assets/images/Twitter.svg";
 import Linkedin from "../assets/images/LinkedIn.svg";
 import Image from "next/image";
+import Background from "../assets/images/FooterRightImg.svg"
 
 const Footer: React.FC = () => {
   return (
-    <footer className={styles.footer}>
+    <footer className={styles.footer}  style={{ backgroundImage: `url(${Background.src})`,backgroundPosition:"right bottom",backgroundRepeat:"no-repeat",backgroundSize:"contain"
+      }}>
       <Container>
         <Row
           style={{
