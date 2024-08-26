@@ -4,7 +4,6 @@ import TTab from "../Common/TTab";
 import MealsList from "./AddonsComponent/MealsList";
 import { Text } from "rsuite";
 import BaggageList from "./AddonsComponent/BaggageList";
-import Seating from "./AddonsComponent/Seating";
 
 const Addons: React.FC = () => {
   const [mealOption, setMealOption] = useState<string>("veg");
@@ -79,7 +78,37 @@ const Addons: React.FC = () => {
     {
       title: "Seat",
       key: "Seat",
-      content: <Seating />,
+      content: (
+        <>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              marginBottom: "20px",
+              padding: "10px",
+              background: "#efefef",
+            }}
+          >
+            <div>
+              <div>
+                Bangalore <span>&rarr;</span> Delhi
+              </div>
+              <span> --</span>
+            </div>
+            <div>
+              {" "}
+              <div>
+                <Text weight="semibold">₹350</Text>
+              </div>
+              <span>Added to fare</span>
+            </div>
+          </div>
+          <div style={{ padding: "20px" }}>
+            <h3>Upcoming Seats</h3>
+            <p>Details about upcoming seats will be displayed here.</p>
+          </div>
+        </>
+      ),
     },
   ];
 
