@@ -25,7 +25,7 @@ interface FieldProps {
   onChange?: (name: string, value: string | boolean) => void;
 }
 
-const TInputField: React.FC<FieldProps> = ({
+const TFrom: React.FC<FieldProps> = ({
   title,
   placeholder,
   name,
@@ -98,4 +98,4 @@ const TInputField: React.FC<FieldProps> = ({
   );
 };
 
-export default TInputField;
+export default TFrom;

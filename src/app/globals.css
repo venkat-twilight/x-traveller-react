@@ -108,7 +108,7 @@ a {
 
 .rs-dropdown-toggle,
 .rs-dropdown-toggle.rs-btn {
-  background-color: #fff ;
+  background-color: #fff;
   justify-content: space-between;
   width: 100%;
 }
@@ -116,12 +116,11 @@ a {
 .rs-dropdown .rs-dropdown-menu {
   width: 100%;
 }
- 
 
- .rs-sidenav-item, 
+.rs-sidenav-item,
 .rs-sidenav-default {
-    background-color: #f2f4f5 !important;
-    background-color: var(--rs-sidenav-default-bg, #f2f4f5);
+  background-color: #f2f4f5 !important;
+  background-color: var(--rs-sidenav-default-bg, #f2f4f5);
 }
 .rs-radio-control {
   display: inline-block;
@@ -142,4 +141,34 @@ a {
   top: 10px;
   width: 16px;
   background-color: white;
+}
+
+#login-dialog .rs-modal-content {
+  padding: 0px;
+  border-radius: 20px;
+}
+
+#login-dialog .rs-modal-body {
+  padding: 0px;
+  border-radius: 20px;
+}
+
+#icon-dropdown .rs-dropdown-menu {
+  width: 220px;
+}
+
+.rs-nav-subtle.rs-nav-horizontal .rs-nav-bar {
+  border-top: 1.5px solid #d3d3d3 !important;
+  height: 2px; /* Adjust height if necessary */
+  margin-top: -2px; /* Adjust position to align with the original border */
+}
+
+.slick-list {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  margin: 0;
+  padding: 5px;
+  height: 419px;
+  background: linear-gradient(to top, white 5%, #ecf5ff 75%);
 }

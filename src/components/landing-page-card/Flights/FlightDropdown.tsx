@@ -1,3 +1,4 @@
+"use client";
 import React, { useState } from "react";
 import { Dropdown, Button, Col, Text } from "rsuite"; // Adjust import based on your library
 import styles from "../../assets/styles/FlightCard.module.css";

@@ -14,12 +14,12 @@ import Instagram from "../assets/images/Instagram.svg";
 import Twitter from "../assets/images/Twitter.svg";
 import Linkedin from "../assets/images/LinkedIn.svg";
 import Image from "next/image";
-import Background from "../assets/images/FooterRightImg.svg"
+import Background from "../assets/images/FooterRightImg.svg";
+import TButton from "./Common/TButton";
 
 const Footer: React.FC = () => {
   return (
-    <footer className={styles.footer}  style={{ backgroundImage: `url(${Background.src})`,backgroundPosition:"right bottom",backgroundRepeat:"no-repeat",backgroundSize:"contain"
-      }}>
+    <footer className={styles.footer}>
       <Container>
         <Row
           style={{
@@ -27,17 +27,13 @@ const Footer: React.FC = () => {
           }}
         >
           {/* Newsletter Column */}
-          <Col  xs={24}
-                sm={12}
-                md={12}
-                lg={8}
-                xl={7}>
+          <Col xs={24} sm={12} md={12} lg={8} xl={7}>
             <Panel
               className={styles.panel}
-              style={{ textWrap: "wrap", lineHeight: "2",marginLeft:"-20px" }}
+              style={{ textWrap: "wrap", lineHeight: "2", marginLeft: "-20px" }}
             >
               <h5>Newsletter</h5>
-              <p style={{padding:"18px 0px"}}>
+              <p style={{ padding: "18px 0px" }}>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                 eiusmod tempor incididunt.
               </p>
@@ -54,34 +50,23 @@ const Footer: React.FC = () => {
                     paddingLeft: "10px",
                   }}
                 />
-                <Button
-                  style={{
-                    borderTopLeftRadius: "0",
-                    borderBottomLeftRadius: "0",
-                    background:
-                      "linear-gradient(to right, #0087E1 0%, #174495 100%)",
-                    border: "none",
-                    borderRadius: "0px 4px 4px 0px",
-                    color: "white",
-                    padding: "10px 20px",
-                    cursor: "pointer",
-                  }}
-                >
-                  Subscribe
-                </Button>
+
+                <TButton label={"Subscribe"} />
               </div>
             </Panel>
           </Col>
 
           {/* Our Product Column */}
-          <Col   xs={24}
-                sm={12}
-                md={12}
-                lg={8}
-                xl={5}>
+          <Col xs={24} sm={12} md={12} lg={8} xl={5}>
             <Panel className={styles.panel}>
               <h5>Our Products</h5>
-              <ul style={{ listStyleType: "none", lineHeight: "2",padding:"5px" }}>
+              <ul
+                style={{
+                  listStyleType: "none",
+                  lineHeight: "2",
+                  padding: "5px",
+                }}
+              >
                 <li>
                   <a
                     href="#"
@@ -120,7 +105,13 @@ const Footer: React.FC = () => {
                 </li>
               </ul>
               <h5>Travel Essentials</h5>
-              <ul style={{ listStyleType: "none", lineHeight: "2",padding:"5px" }}>
+              <ul
+                style={{
+                  listStyleType: "none",
+                  lineHeight: "2",
+                  padding: "5px",
+                }}
+              >
                 <li>
                   <a
                     href="#"
@@ -150,11 +141,7 @@ const Footer: React.FC = () => {
           </Col>
 
           {/* More Links Column */}
-          <Col   xs={24}
-                sm={12}
-                md={12}
-                lg={8}
-                xl={5}>
+          <Col xs={24} sm={12} md={12} lg={8} xl={5}>
             <Panel className={styles.panel}>
               <h5>More Links</h5>
               <ul style={{ listStyleType: "none", lineHeight: "2" }}>
@@ -248,11 +235,7 @@ const Footer: React.FC = () => {
 
           {/* Contact Us Column */}
 
-          <Col   xs={24}
-                sm={12}
-                md={12}
-                lg={8}
-                xl={7}>
+          <Col xs={24} sm={12} md={12} lg={8} xl={7}>
             <Panel className={styles.panel}>
               <h5>Contact Us</h5>
               <div className={styles.socialMedia}>

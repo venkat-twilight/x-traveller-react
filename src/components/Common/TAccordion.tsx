@@ -10,7 +10,7 @@ const TAccordion: React.FC<TimerProps> = ({ header, render, classname }) => {
   return (
     <>
       <PanelGroup accordion bordered className={classname}>
-        <Panel header={header} defaultExpanded>
+        <Panel header={header} defaultExpanded className="test">
           {render}
         </Panel>
       </PanelGroup>

@@ -240,6 +240,35 @@ export default function PaymentBase() {
               classname={styles.bookingAccordian}
               render={<Addons />}
             />
+            <br />
+            <TAccordion
+              header="Pay Now"
+              classname={styles.bookingAccordian}
+              render={
+                <>
+                  <p>Payment rules & Restriction</p>
+                  <p>
+                    1. Kindly check the spelling & reconfirm the passenger
+                    name(s) before you book.
+                    <br />
+                    2. Ticket name changes are not permitted once issues
+                  </p>
+                  <p>
+                    The above mentioned purchase are subject to cancellation,
+                    date changes fees ans\d once purchased tickets are
+                    non-transferable and names changes are permitted. For
+                    further details,read the overview of all the Resctriction,
+                    Penalitites & Cancellation Charges.
+                  </p>
+                </>
+              }
+            />
+            <br />
+            <TAccordion
+              header="Payment option"
+              classname={styles.bookingAccordian}
+              render={<Addons />}
+            />
           </Panel>
         </Col>
         <Col xs={5}>
