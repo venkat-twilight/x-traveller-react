@@ -16,7 +16,7 @@ import ResortImage from "../assets/images/PrimilageImg.svg";
 import HotelImage from "../assets/images/HotelImage.svg";
 import FlightImageone from "../assets/images/FlightImage-one.svg";
 import FlightImagetwo from "../assets/images/FlightImage-Two.svg";
-import styles from "../assets/styles/OfferforYou.module.css";
+import styles from "../assets/styles/offerforyou.module.css";
 import Calendar from "../assets/images/Calendar.svg";
 import TimerAlert from "../assets/images/TimeRedIcon.svg";
 

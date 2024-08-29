@@ -31,7 +31,7 @@ import {
 } from "rsuite";
 import AvatarIcon from "@rsuite/icons/legacy/Avatar";
 import Flightto from "../../assets/images/Toicon.svg";
-import FlightFrom from "../../assets/images/Fromicon.svg";
+import FlightFrom from "../../assets/images/FromIcon.svg";
 
 import IndianFlag from "../../assets/images/IndianFlag.svg";
 import FlightDropdown from "../landing-page-card/Flights/FlightDropdown";

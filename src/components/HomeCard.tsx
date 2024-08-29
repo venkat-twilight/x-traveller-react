@@ -29,7 +29,7 @@ import TrainIcon from "../assets/images/Train.svg";
 import TrainIconB from "../assets/images/TrainIconBlue.svg";
 import BusIcon from "../assets/images/Bus.svg";
 import BusIconB from "../assets/images/BusIconBlue.svg";
-import HolidayIcon from "../assets/images/Holidayicon.svg";
+import HolidayIcon from "../assets/images/HolidayIcon.svg";
 import HolidayIconB from "../assets/images/HolidayIconBlue.svg";
 import { SelectPicker } from "rsuite";
 import MemberIcon from "@rsuite/icons/Member";
