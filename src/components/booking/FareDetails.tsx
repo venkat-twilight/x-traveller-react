@@ -18,7 +18,7 @@ const FareDetailsPanel: React.FC<FareDetailsProps> = ({ list, Total }) => {
   return (
     <Panel
       bordered
-      style={{ borderRadius: "14px", border: "1px solid lightgrey" }}
+      style={{ borderRadius: "14px", border: "1px solid lightgrey",background:"#fff" }}
     >
       <div style={headerStyle}>Fare Details</div>
       <div className={styles.FareList}>

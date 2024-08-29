@@ -31,7 +31,7 @@ import {
 } from "rsuite";
 import AvatarIcon from "@rsuite/icons/legacy/Avatar";
 import Flightto from "../../assets/images/Toicon.svg";
-import FlightFrom from "../../assets/images/FromIcon.svg";
+import FlightFrom from "../../assets/images/Fromicon.svg";
 
 import IndianFlag from "../../assets/images/IndianFlag.svg";
 import FlightDropdown from "../landing-page-card/Flights/FlightDropdown";
@@ -300,7 +300,7 @@ const FlightListingPage: React.FC = () => {
     items,
     ...props
   }) => (
-    <div style={{ margin: "auto", width: "80%" }}>
+    <div style={{ margin: "auto", width: "55%" }}>
       <Dropdown title={title} size="lg" className={styles.dropdownbtn}>
         <Dropdown.Item>New File</Dropdown.Item>
       </Dropdown>
@@ -313,20 +313,23 @@ const FlightListingPage: React.FC = () => {
         background: "linear-gradient(to right,  #0770E3 ,#0087E1,#174495)",
       }}
     >
-      <Row className={styles.showgrid}>
-        <Col xs={24} sm={12} md={4} lg={4} xl={2} xxl={2}>
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              position: "relative",
-              marginBottom: "20px",
-              marginTop: "20px", // Add marginTop to the main container
-            }}
-          >
-            <CustomDropdown title="Select way" items={ways} trigger="click" />
-          </div>
-        </Col>
+      <Row className={styles.showgrid} style={{
+      justifyContent: "center", // Center the columns horizontally
+      gap: "10px", // Add gap between columns
+    }}>
+         <Col xs={24} sm={12} md={4} lg={4} xl={2} xxl={2}>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center", // Center the content within the column
+          marginBottom: "20px",
+          marginTop: "20px", // Add marginTop to the main container
+        }}
+      >
+        <CustomDropdown title="Select way" items={ways} trigger="click" />
+      </div>
+    </Col>
 
         <Col xs={24} sm={12} md={5}>
           <div

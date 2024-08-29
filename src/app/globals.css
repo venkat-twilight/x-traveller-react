@@ -6,8 +6,10 @@
     "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
 
   --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  /* --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255; */
+  --background-start-rgb: 219, 236, 253;
+  --background-end-rgb: 219, 236, 253;
 
   --primary-glow: conic-gradient(
     from 180deg at 50% 50%,
@@ -92,7 +94,7 @@ body {
       transparent,
       rgb(var(--background-end-rgb))
     )
-    rgb(var(--background-start-rgb));
+    rgb(var(--background-start-rgb)) !important;
 }
 
 a {
@@ -172,3 +174,52 @@ a {
   height: 419px;
   background: linear-gradient(to top, white 5%, #ecf5ff 75%);
 }
+
+.custom-stepper .rs-steps-item-title {
+  color: #fff; /* White text for titles */
+}
+
+.custom-stepper .rs-steps-item-line {
+  background-color: #fff; /* White stepper line */
+}
+
+.custom-stepper .rs-steps-item-icon {
+  background-color: #fff; /* White background for step icons */
+  color: #0770E3; /* Blue text inside the circle */
+  border-radius: 50%; /* Make the icon a circle */
+  width: 30px; /* Adjust size to ensure it's circular */
+  height: 30px; /* Adjust size to ensure it's circular */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #fff; /* White border for the circle */
+}
+
+.custom-stepper .rs-steps-item {
+  display: flex;
+  align-items: center;
+}
+
+
+
+/* Style to make the stepper line white */
+.rs-steps-horizontal .rs-steps-item-title:after {
+  border-top-style: solid;
+  border-top-width: 3px !important;
+  content: "";
+  left: 100%;
+  top: 15px;
+  width: 9999px;
+  background-color: white !important; /* White stepper line */
+  color: white !important;
+}
+
+/* Ensure that the stepper tail and title after elements are also white */
+.rs-steps-item-status-process .rs-steps-item-tail, 
+.rs-steps-item-status-process .rs-steps-item-title:after, 
+.rs-steps-item-tail, 
+.rs-steps-item-title:after {
+  border-color: #fff !important; /* White border color for active and inactive steps */
+}
+
+

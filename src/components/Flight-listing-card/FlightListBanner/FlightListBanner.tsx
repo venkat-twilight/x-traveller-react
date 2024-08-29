@@ -1,5 +1,5 @@
 import React from "react";
-import SideNav from "./SideNav";
+import FilterPanel from "./SideNav";
 import FlightContent from "./FlightContent";
 
 // interface HotelCardProps {
@@ -11,14 +11,16 @@ const FlightBannerCard: React.FC = () => {
     <div style={{ width: "100%" }}>
       <div
         style={{
-          padding: "40px 0px",
+          // padding: "40px 0px",
           display: "flex",
           width: "70%",
           margin: "auto",
         }}
       >
-        <SideNav />
+       
         <FlightContent />
+        <FilterPanel />
+
       </div>
     </div>
   );

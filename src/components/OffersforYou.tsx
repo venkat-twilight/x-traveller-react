@@ -16,9 +16,10 @@ import ResortImage from "../assets/images/PrimilageImg.svg";
 import HotelImage from "../assets/images/HotelImage.svg";
 import FlightImageone from "../assets/images/FlightImage-one.svg";
 import FlightImagetwo from "../assets/images/FlightImage-Two.svg";
-import styles from "../assets/styles/offerforyou.module.css";
+import styles from "../assets/styles/OfferforYou.module.css";
 import Calendar from "../assets/images/Calendar.svg";
 import TimerAlert from "../assets/images/TimeRedIcon.svg";
+
 
 const optionFilter = [
   { value: "all", key: "1", name: "All" },
@@ -69,22 +70,23 @@ interface CardProps {
 }
 
 const Card: React.FC<CardProps> = ({ image, text, subtext, tags, icon }) => (
-  <Panel bodyFill className={styles.card}>
+  
+  <Panel bodyFill className={styles.card} style={{background:"#fff"}}>
     <div className={styles["card-image"]}>
       <Image src={image} alt="Card Icon" layout="fill" objectFit="cover" />
     </div>
-    <div className={styles["card-content"]}>
-      <TagGroup className={styles["card-tag-group"]}>
-        <div className={styles.noscrollbar}>
-          {tags.map((tag) => (
-            <Tag
-              key={tag}
-              size="sm"
-              style={{ margin: "5px", border: "1px solid lightgrey" }}
-            >
-              {tag}
-            </Tag>
-          ))}
+    <div className={styles["card-content"]} >
+      <TagGroup className={styles["card-tag-group"]} >
+        <div className={styles.noscrollbar} >
+        {tags.map((tag) => (
+          <Tag
+            key={tag}
+            size="sm"
+            style={{ margin: "5px", border: "1px solid lightgrey"}}
+          >
+            {tag}
+          </Tag>
+        ))}
         </div>
       </TagGroup>
       <Stack
@@ -133,6 +135,11 @@ const Card: React.FC<CardProps> = ({ image, text, subtext, tags, icon }) => (
 const OffersforYou: React.FC = () => {
   const [activeFilter, setActiveFilter] = React.useState("all");
 
+
+  
+
+  
+
   return (
     <div style={{ width: "100%", padding: "20px", boxSizing: "border-box" }}>
       <div style={{ textAlign: "center" }}>
@@ -172,6 +179,7 @@ const OffersforYou: React.FC = () => {
                 lg={8}
                 xl={6}
                 style={{ marginBottom: "20px" }}
+               
               >
                 <Card
                   image={card.image}
@@ -179,6 +187,7 @@ const OffersforYou: React.FC = () => {
                   subtext={card.subtext}
                   tags={card.tags}
                   icon={card.icon}
+                 
                 />
               </Col>
             ))}

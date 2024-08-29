@@ -9,6 +9,7 @@ import { User, UsersResponse } from "@/src/models/users.model";
 import BookingBase from "../../components/booking/BookingBase";
 import styles from "../page.module.css";
 import Background from "../../assets/images/FooterRightImg.svg";
+import StepperHeader from "@/src/components/StepperHeader";
 
 async function fetchData() {
   const res = await fetch(`${process.env.API_URL}/api/users?page=1`);
@@ -22,7 +23,7 @@ export default async function FlightList() {
   return (
     <div>
       <AppHeader />
-      <FlightListingPage />
+      <StepperHeader />
       <BookingBase />
       <div
         className={styles.appFooter}

@@ -65,6 +65,12 @@ const PassengerFields = [
     type: "input",
     name: "email",
   },
+  {
+    title: "Address",
+    placeholder: "Address",
+    type: "input",
+    name: "Address",
+  },
 ];
 
 const GSTFields = [
@@ -87,6 +93,30 @@ const GSTFields = [
     name: "gstinPhone",
     type: "input",
   },
+  
+];
+
+const CancelFields = [
+  { title: "GSTIN", placeholder: "GSTIN", name: "gstin", type: "input" },
+  {
+    title: "GSTIN Mobile Number",
+    placeholder: "GSTIN Mobile Number",
+    name: "gstinMobile",
+    type: "input",
+  },
+  {
+    title: "GSTIN Email Address",
+    placeholder: "GSTIN Email Address",
+    name: "gstinEmail",
+    type: "input",
+  },
+  {
+    title: "GSTIN Phone Number",
+    placeholder: "GSTIN Phone Number",
+    name: "gstinPhone",
+    type: "input",
+  },
+  
 ];
 
 export default function PaymentBase() {
@@ -115,60 +145,179 @@ export default function PaymentBase() {
     >
       <Row>
         <Col xs={19}>
-          <Panel className={styles.bookingPanel}>
-            <div>
-              <div
+        <Panel>
+  <div
+    style={{
+      fontSize: "22px",
+      fontWeight: 700,
+      padding:"10px 0px 20px"
+    }}
+  >
+    Complete Your Booking Details
+  </div>
+  <div>
+    <Panel
+      bordered
+      style={{
+        backgroundColor: "#FFFFFF",
+        borderRadius: "15px",
+        padding: "10px",
+        boxShadow: "0 3px 10px rgb(0 0 0 / 0.2)",
+        marginBottom: "20px", // Add margin-bottom to create a gap between the two panels
+      }}
+    >
+      <div style={{ borderLeft: "4px solid orange", padding: "10px" }}>
+        <div
+          style={{
+            fontSize: "12px",
+            fontWeight: 500,
+            color: "#222222",
+          }}
+        >
+          Depart 14th July 2024
+        </div>
+        <div
+          style={{
+            fontSize: "14px",
+            fontWeight: 700,
+          }}
+        >
+          Bangalore (BLE) → New Delhi (DEL)
+        </div>
+        <div style={{ color: "#9E9E9E", padding: "0px 0px 10px" }}>
+          Non Stop | 02 hrs 50 min
+        </div>
+      </div>
+    </Panel>
+
+              <Panel
+                bordered
                 style={{
-                  fontSize: "12px",
-                  fontWeight: 500,
-                  color: "#222222",
+                  backgroundColor: "#FFFFFF",
+                  borderRadius: "15px",
+                  padding: "10px",
+                  boxShadow: "0 3px 10px rgb(0 0 0 / 0.2)",
+                  marginTop: "20px", // Gap between the two panels
                 }}
               >
-                Depart 14th July 2024
-              </div>
+                <FlightInfo />
+              </Panel>
               <div
                 style={{
-                  fontSize: "14px",
-                  fontWeight: 700,
+                  marginTop: "20px", // Add gap between the Accordion and Panel
                 }}
               >
-                Bangalore(BLE) → New Delhi(DEL)
-              </div>
-              <div style={{ color: "#9E9E9E", padding: "0px 0px 10px" }}>
-                Non Stop | 02 hrs 50 min
+                <TAccordion
+                  header="Passenger Information"
+                  classname={styles.bookingAccordian}
+                  render={
+                    <>
+                      {PassengerFields.length > 0 && (
+                        <div style={rowStyle}>
+                          {PassengerFields.map((field, idx) => (
+                            <TFrom
+                              key={idx}
+                              title={field.title}
+                              placeholder={field.placeholder}
+                              name={field.name}
+                              type={
+                                field.type as "input" | "select" | "checkbox"
+                              }
+                              options={field.options}
+                            />
+                          ))}
+                        </div>
+                      )}
+                      <TWarning content="These details will be passed to the Airlines for booking" />
+                    </>
+                  }
+                />
               </div>
             </div>
-            <Panel className={styles.bookingPanel}>
-              <FlightInfo />
-            </Panel>
 
+            <br />
+           
             <TAccordion
-              header="Passenger Information"
+              header="GST Details for Business travel (Optional)"
               classname={styles.bookingAccordian}
               render={
                 <>
-                  {PassengerFields.length > 0 && (
+                  {GSTFields.length > 0 && (
                     <div style={rowStyle}>
-                      {PassengerFields.map((field, idx) => (
+                      {GSTFields.map((field, idx) => (
                         <TFrom
                           key={idx}
                           title={field.title}
                           placeholder={field.placeholder}
                           name={field.name}
                           type={field.type as "input" | "select" | "checkbox"}
-                          options={field.options}
-                          // value={formData[field.name]}
-                          // onChange={handleFieldChange}
                         />
                       ))}
                     </div>
                   )}
-                  <TWarning content="These details will be passed to the Airlines for booking" />
+                </>
+              }
+            />
+             <br />
+           
+           <TAccordion
+             header="Cancellation & Reshedule Policy"
+             classname={styles.bookingAccordian}
+             render={
+               <>
+                 {CancelFields.length > 0 && (
+                   <div style={rowStyle}>
+                     {CancelFields.map((field, idx) => (
+                       <TFrom
+                         key={idx}
+                         title={field.title}
+                         placeholder={field.placeholder}
+                         name={field.name}
+                         type={field.type as "input" | "select" | "checkbox"}
+                       />
+                     ))}
+                   </div>
+                 )}
+               </>
+             }
+           />
+            {/* <br />
+            <TAccordion
+              header="Addons (Optional)"
+              classname={styles.bookingAccordian}
+              render={<Addons />}
+            />
+            <br />
+            <TAccordion
+              header="Pay Now"
+              classname={styles.bookingAccordian}
+              render={
+                <>
+                  <p>Payment rules & Restriction</p>
+                  <p>
+                    1. Kindly check the spelling & reconfirm the passenger
+                    name(s) before you book.
+                    <br />
+                    2. Ticket name changes are not permitted once issues
+                  </p>
+                  <p>
+                    The above mentioned purchase are subject to cancellation,
+                    date changes fees ans\d once purchased tickets are
+                    non-transferable and names changes are permitted. For
+                    further details,read the overview of all the Resctriction,
+                    Penalitites & Cancellation Charges.
+                  </p>
                 </>
               }
             />
             <br />
             <TAccordion
+              header="Payment option"
+              classname={styles.bookingAccordian}
+              render={<Addons />}
+            />
+             <br />
+             <TAccordion
               header="Share and Confirm"
               classname={styles.bookingAccordian}
               render={
@@ -212,63 +361,7 @@ export default function PaymentBase() {
                 </div>
               }
             />
-            <br />
-            <TAccordion
-              header="GST Details for Business travel (Optional)"
-              classname={styles.bookingAccordian}
-              render={
-                <>
-                  {GSTFields.length > 0 && (
-                    <div style={rowStyle}>
-                      {GSTFields.map((field, idx) => (
-                        <TFrom
-                          key={idx}
-                          title={field.title}
-                          placeholder={field.placeholder}
-                          name={field.name}
-                          type={field.type as "input" | "select" | "checkbox"}
-                        />
-                      ))}
-                    </div>
-                  )}
-                </>
-              }
-            />
-            <br />
-            <TAccordion
-              header="Addons (Optional)"
-              classname={styles.bookingAccordian}
-              render={<Addons />}
-            />
-            <br />
-            <TAccordion
-              header="Pay Now"
-              classname={styles.bookingAccordian}
-              render={
-                <>
-                  <p>Payment rules & Restriction</p>
-                  <p>
-                    1. Kindly check the spelling & reconfirm the passenger
-                    name(s) before you book.
-                    <br />
-                    2. Ticket name changes are not permitted once issues
-                  </p>
-                  <p>
-                    The above mentioned purchase are subject to cancellation,
-                    date changes fees ans\d once purchased tickets are
-                    non-transferable and names changes are permitted. For
-                    further details,read the overview of all the Resctriction,
-                    Penalitites & Cancellation Charges.
-                  </p>
-                </>
-              }
-            />
-            <br />
-            <TAccordion
-              header="Payment option"
-              classname={styles.bookingAccordian}
-              render={<Addons />}
-            />
+            <br /> */}
           </Panel>
         </Col>
         <Col xs={5}>
@@ -286,4 +379,5 @@ const rowStyle: React.CSSProperties = {
   display: "flex",
   flexWrap: "wrap",
   gap: "16px",
+  paddingTop:"20px"
 };

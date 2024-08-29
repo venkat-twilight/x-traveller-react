@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import Background from "../assets/images/BackgroundImage.svg";
+import Background from "../assets/images/HomeBackgroundImage.svg";
 import { Text, Stack } from "rsuite";
 import styles from "../assets/styles/app-banner.module.css";
 import HomeCard from "./HomeCard";

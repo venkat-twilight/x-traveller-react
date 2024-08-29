@@ -1,3 +1,4 @@
+import { ArowBack } from "@rsuite/icons";
 import React, { useState, useEffect } from "react";
 
 interface TimerProps {
@@ -37,6 +38,8 @@ const TTimer: React.FC<TimerProps> = ({
     textAlign: "center",
     display: "inline-block",
     fontSize: "20px",
+    background:"#fff"
+  
   });
 
   return (

@@ -1,92 +1,85 @@
 import React, { useState } from "react";
-import { Sidenav, Nav, Slider, Checkbox, Radio, RadioGroup } from "rsuite";
-import styles from "../../../assets/styles/sidenav-listing.module.css"
-import Vistara from "../../../assets/images/Vistara.svg"
-import AirIndia from "../../../assets/images/AirIndia.svg"
-import Indigo from "../../../assets/images/Indigo.svg"
+import { Slider, Checkbox, Radio, RadioGroup, Tabs, Placeholder } from "rsuite";
+import styles from "../../../assets/styles/sidenav-listing.module.css";
+import Vistara from "../../../assets/images/Vistara.svg";
+import AirIndia from "../../../assets/images/AirIndia.svg";
+import Indigo from "../../../assets/images/Indigo.svg";
 import Image from "next/image";
 
-const headerStyles: React.CSSProperties = {
-  padding: 20,
-  fontSize: 16,
-  fontWeight: "bold",
-  borderBottom:"1px solid lightgrey"
-     
-  //   color: '#fff',
-  //   textAlign: 'center'
-};
-const bodyStyles: React.CSSProperties = {
-  backgroundColor: "blue",
-};
-
-const sliderContainerStyles: React.CSSProperties = {
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  padding: "10px 0",
-};
-const navItemStyles: React.CSSProperties = {
-  borderBottom: "1px solid lightgrey",
-  width: "93%",
-  margin: "auto 10px",
-};
-
-const sliderLabelStyles: React.CSSProperties = {
-  display: "flex",
-  justifyContent: "space-between",
-  width: "100%",
-  paddingBottom: 10,
-};
-
-const formatMinutes = (minutes: number) => {
-  const hrs = Math.floor(minutes / 60);
-  const mins = minutes % 60;
-  return `${hrs}h ${mins}m`;
-};
-
-interface FilterOption {
-  value: string;
-  label: string;
-  price?: number;
-  icon:any;
+interface TabNavItem {
+  title: string;
+  key: string;
+  content: React.ReactNode;
 }
 
-interface Filter {
+interface TTabProps {
+  TabNav: TabNavItem[];
+}
+
+const TTab: React.FC<TTabProps> = ({ TabNav }) => {
+  const [selectedNav, setSelectedNav] = useState<string>(TabNav[0]?.key);
+
+  return (
+    <div>
+      <Tabs
+        defaultActiveKey={selectedNav}
+        appearance="subtle"
+        onSelect={(key) => setSelectedNav(key as string)}
+        className={styles.tabNav}
+      >
+        {TabNav.map((item) => (
+          <Tabs.Tab eventKey={item.key} title={item.title} key={item.key}>
+            {item.content || <Placeholder.Paragraph graph="image" />}
+          </Tabs.Tab>
+        ))}
+      </Tabs>
+    </div>
+  );
+};
+
+type FilterOption = {
+  value: string;
+  icon: string;
+  label: string;
+  price?: number;
+};
+
+type Filter = {
   type: string;
   label: string;
   options?: FilterOption[];
-  minValue?: number; // In minutes
-  maxValue?: number; // In minutes
-}
+  minValue?: number;
+  maxValue?: number;
+};
 
 const filters: Filter[] = [
   {
     type: "departure",
     label: "Departure",
     options: [
-      { value: "before6am",icon: Vistara, label: "Before 6AM" },
-      { value: "6am-12pm",icon: Vistara, label: "6AM-12PM" },
-      { value: "12pm-6pm",icon: Vistara, label: "12PM-6PM" },
-      { value: "after6pm",icon: Vistara, label: "After 6PM" },
+      { value: "before6am", icon: Vistara, label: "Before 6AM" },
+      { value: "6am-12pm", icon: Vistara, label: "6AM-12PM" },
+      { value: "12pm-6pm", icon: Vistara, label: "12PM-6PM" },
+      { value: "after6pm", icon: Vistara, label: "After 6PM" },
     ],
   },
   {
     type: "arrival",
     label: "Arrival",
     options: [
-      { value: "before6am",icon: Vistara, label: "Before 6AM" },
-      { value: "6am-12pm",icon: Vistara, label: "6AM-12PM" },
-      { value: "12pm-6pm", icon: Vistara,label: "12PM-6PM" },
-      { value: "after6pm", icon: Vistara,label: "After 6PM" },
+      { value: "before6am", icon: Vistara, label: "Before 6AM" },
+      { value: "6am-12pm", icon: Vistara, label: "6AM-12PM" },
+      { value: "12pm-6pm", icon: Vistara, label: "12PM-6PM" },
+      { value: "after6pm", icon: Vistara, label: "After 6PM" },
     ],
   },
   {
     type: "stops",
     label: "Stops",
     options: [
-      { value: "nonstop",icon: Vistara, label: "Non stop" },
-      { value: "1stop",icon: Vistara, label: "1 Stop" },
-      { value: "2plusstop",icon: Vistara, label: "2+ Stops" },
+      { value: "nonstop", icon: Vistara, label: "Non stop" },
+      { value: "1stop", icon: Vistara, label: "1 Stop" },
+      { value: "2plusstop", icon: Vistara, label: "2+ Stops" },
     ],
   },
   {
@@ -105,124 +98,123 @@ const filters: Filter[] = [
     type: "airlines",
     label: "Preferred Airlines",
     options: [
-      { value: "airIndia",icon: Indigo, label: "Air India", price: 6196 },
-      { value: "indiGo",icon: Vistara, label: "IndiGo", price: 6399 },
-      { value: "vistara",icon: AirIndia, label: "Vistara", price: 6448 },
-      { value: "multiAirline",icon: Vistara, label: "Multi-Airline", price: 7416 },
+      { value: "airIndia", icon: Indigo, label: "Air India", price: 6196 },
+      { value: "indiGo", icon: Vistara, label: "IndiGo", price: 6399 },
+      { value: "vistara", icon: AirIndia, label: "Vistara", price: 6448 },
+      { value: "multiAirline", icon: Vistara, label: "Multi-Airline", price: 7416 },
     ],
   },
 ];
 
-const SideNav = () => {
-  const [checkedOptions, setCheckedOptions] = useState<Set<string>>(new Set());
+const FilterPanel: React.FC = () => {
+  // Initialize state with "multiAirline" selected by default
+  const [checkedOptions, setCheckedOptions] = useState<Map<string, string>>(
+    new Map([
+      [ "multiAirline","airlines"] // Set "multiAirline" as checked by default
+    ])
+  );
 
+  // Function to handle radio button changes
+  const handleRadioChange = (type: string, value: string) => {
+    setCheckedOptions((prev) => new Map(prev).set(type, value));
+  };
+
+  // Function to handle checkbox changes
   const handleCheckboxChange = (value: string) => {
     setCheckedOptions((prev) => {
-      const newCheckedOptions = new Set(prev);
+      const newCheckedOptions = new Map(prev);
       if (newCheckedOptions.has(value)) {
         newCheckedOptions.delete(value);
       } else {
-        newCheckedOptions.add(value);
+        newCheckedOptions.set(value, value);
       }
       return newCheckedOptions;
     });
   };
 
+  // Generate tab navigation items
+  const tabNavItems: TabNavItem[] = filters
+    .filter((filter) => filter.type === "departure" || filter.type === "arrival" || filter.type === "stops")
+    .map((filter) => ({
+      title: filter.label,
+      key: filter.type,
+      content: (
+        <RadioGroup
+          name={filter.type}
+          onChange={(value) => handleRadioChange(filter.type, value as string)} // Handle radio selection per group
+          
+          value={checkedOptions.get(filter.type) || ""} // Get the selected value for the specific filter type
+        >
+          {filter.options?.map((option) => (
+            <Radio key={option.value} value={option.value}>
+              {/* <Image src={option.icon} alt={option.label} width={20} height={20} /> */}
+              {option.label}
+            </Radio>
+          ))}
+        </RadioGroup>
+      ),
+    }));
+
   return (
-    <div style={{ width: 340, borderRadius: "8px", }}>
-      <Sidenav
-        defaultOpenKeys={[
-          "departure",
-          "arrival",
-          "stops",
-          "price",
-          "duration",
-          "airlines",
-        ]}
-      >
-        <Sidenav.Header>
-          <div style={headerStyles}>Filters</div>
-        </Sidenav.Header>
-        <Sidenav.Body>
-          <Nav>
-            {filters.map((filter) => (
-              <Nav.Menu
-                key={filter.type}
-                eventKey={filter.type}
-                title={filter.label}
-                style={{fontWeight:"bold"}}
-              >
-                <Nav.Item style={navItemStyles}>
-                  {filter.type === "price" ? (
-                    <div style={sliderContainerStyles}>
-                      <div style={sliderLabelStyles}>
-                        <span>₹{filter.minValue}</span>
-                        <span>₹{filter.maxValue}</span>
+    <div style={{ width: 340,   border: "0px",
+      boxShadow: "0px 1.63px 53.13px 0px #00000017", borderRadius: 8, padding: 16,
+      height: "fit-content",backgroundColor:"#fff",marginTop:"53px"}}>
+        {/* <div style={{borderBottom:"1px solid lightgrey"}}> */}
+      <h5 style={{ margin: "0 0 16px",padding:"10px" }}>Filter</h5>
+      {/* </div> */}
+      <TTab TabNav={tabNavItems} />
+
+      <div style={{ marginTop: 20 }}>
+        {filters
+          .filter((filter) => filter.type === "price" || filter.type === "duration" || filter.type === "airlines")
+          .map((filter) => (
+            <div key={filter.type} style={{ marginBottom: 16 }}>
+              <h5>{filter.label}</h5>
+              {filter.type === "price" || filter.type === "duration" ? (
+                 <div style={{ padding: "10px 0" }}>
+               
+                 <Slider
+                   progress
+                   style={{ width: "100%", margin: "0 auto" }} // Make slider width 100% to fit container
+                   min={filter.minValue}
+                   max={filter.maxValue}
+                 />
+                   <div style={{ display: "flex", justifyContent: "space-between", margin: "15px 8px 8px" }}>
+                   <span>{filter.type === "price" ? `₹${filter.minValue}` : formatMinutes(filter.minValue ?? 0)}</span>
+                   <span>{filter.type === "price" ? `₹${filter.maxValue}` : formatMinutes(filter.maxValue ?? 0)}</span>
+                 </div>
+               </div>
+              ) : filter.type === "airlines" ? (
+                filter.options?.map((option) => (
+                  <div key={option.value} style={{ padding: "5px 0" }}>
+                    <Checkbox
+                      checked={checkedOptions.has(option.value)}
+                      onChange={() => handleCheckboxChange(option.value)}
+                      style={{ display: "block" }}
+                    >
+                      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", width: "95%", margin: "auto 10px" }}>
+                        <div style={{ display: "flex", alignItems: "center" }}>
+                          <Image src={option.icon} alt={option.label} width={20} height={20} />
+                          <span style={{ marginLeft: "10px" }}>{option.label}</span>
+                        </div>
+                        <div>₹{option.price ?? 0}</div>
                       </div>
-                      <Slider
-                        progress
-                        style={{ width: 200, margin: "0 10px" }}
-                        min={filter.minValue}
-                        max={filter.maxValue}
-                      />
-                    </div>
-                  ) : filter.type === "duration" ? (
-                    <div style={sliderContainerStyles}>
-                      <div style={sliderLabelStyles}>
-                        <span>
-                          {filter.minValue !== undefined
-                            ? formatMinutes(filter.minValue)
-                            : ""}
-                        </span>
-                        <span>
-                          {filter.maxValue !== undefined
-                            ? formatMinutes(filter.maxValue)
-                            : ""}
-                        </span>
-                      </div>
-                      <Slider
-                        progress
-                        style={{ width: 200, margin: "0 10px" }}
-                        min={filter.minValue}
-                        max={filter.maxValue}
-                      />
-                    </div>
-                  ) : filter.type === "airlines" ? (
-                    filter.options?.map((option) => (
-                      <div key={option.value} style={{ padding: "5px 0", }}>
-                        <Checkbox
-                          checked={checkedOptions.has(option.value)}
-                          onClick={() => handleCheckboxChange(option.value)}
-                          style={{ display: "block"  }}
-                        >
-                          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center",width: "95%",
-                            margin: "auto 10px", }}>
-                            <div style={{ display: "flex", alignItems: "center" }}>
-                              <Image src={option.icon} alt="Vistara" width={20} height={20} />
-                              <span style={{marginLeft:"10px"}}>{option.label}</span>
-                            </div>
-                            <div>₹{option.price ?? 0}</div>
-                          </div>
-                        </Checkbox>
-                      </div>
-                    ))
-                  ) : filter.options ? (
-                    <RadioGroup name={filter.type}>
-                      {filter.options.map((option) => (
-                        <Radio key={option.value} value={option.value}>
-                          {option.label}
-                        </Radio>
-                      ))}
-                    </RadioGroup>
-                  ) : null}
-                </Nav.Item>
-              </Nav.Menu>
-            ))}
-          </Nav>
-        </Sidenav.Body>
-      </Sidenav>
+                    </Checkbox>
+                  </div>
+                ))
+              ) : null}
+            </div>
+          ))}
+      </div>
     </div>
   );
 };
 
-export default SideNav;
+// Utility function to format duration in minutes to HH:mm format
+function formatMinutes(minutes: number): string {
+  const hours = Math.floor(minutes / 60);
+  const mins = minutes % 60;
+  return `${hours}h ${mins}m`;
+}
+
+export default FilterPanel;

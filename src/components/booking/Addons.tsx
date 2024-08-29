@@ -114,7 +114,9 @@ const Addons: React.FC = () => {
 
   return (
     <>
+    <div style={{padding:"10px"}}>
       <TTab TabNav={TabNav} />
+      </div>
     </>
   );
 };
