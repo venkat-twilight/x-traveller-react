@@ -20,7 +20,7 @@ const TTable: React.FC<DataTableProps> = ({ data, headers, icons }) => {
       <div
         style={{
           display: "flex",
-          backgroundColor: "#f7f7f7",
+          backgroundColor: "#F6F6FB",
           borderBottom: "2px solid #e5e5e5",
 
           fontWeight: "bold",
@@ -52,6 +52,7 @@ const TTable: React.FC<DataTableProps> = ({ data, headers, icons }) => {
             border: "1px solid #e5e5e5",
             borderRadius: rowIndex === 0 ? "10px " : "0",
             marginBottom: "5px",
+            backgroundColor:"#fff"
           }}
         >
           {headers.map((header, colIndex) => (

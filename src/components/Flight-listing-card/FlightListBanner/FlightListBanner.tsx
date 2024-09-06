@@ -17,10 +17,8 @@ const FlightBannerCard: React.FC = () => {
           margin: "auto",
         }}
       >
-       
         <FlightContent />
         <FilterPanel />
-
       </div>
     </div>
   );

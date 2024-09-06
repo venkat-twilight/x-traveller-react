@@ -185,8 +185,8 @@ export default FlightDetailsModal;
 
 export const FlightInfo: React.FC = () => {
   return (
-    <div style={{ display: "flex", padding: "10px 0" }}>
-      <div style={{ borderRight: "1px solid lightgrey", paddingRight: "25px" }}>
+    <div style={{ display: "flex", padding: "10px 0"  }}>
+      <div style={{ borderRight: "1px solid lightgrey", paddingRight: "25px"}}>
         <div
           style={{
             display: "flex",

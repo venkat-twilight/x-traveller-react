@@ -21,6 +21,7 @@ import Fb from "../assets/icons/Fb.svg";
 import VisibleIcon from "../assets/icons/VisibleIcon.svg";
 import InVisibleIcon from "../assets/icons/InVisibleIcon.svg";
 import styles from "../assets/styles/login.module.css";
+import TButton from "./Common/TButton";
 
 // Define the PasswordProps type
 interface PasswordProps {
@@ -141,63 +142,34 @@ const Login: React.FC<LoginModalProps> = ({ open, onClose }) => {
                       </Form.Group>
 
                       <VStack spacing={5}>
-                        <Button appearance="primary" block>
-                          Sign in
-                        </Button>
-                        <a href="#" style={{ textDecoration: "none" }}>
-                          Forgot password?
-                        </a>
+                        <TButton
+                          label="Sign in"
+                          type="primary"
+                          padding="10px 0"
+                          block={true}
+                          link="/home"
+                        />
+                        <div>
+                          <a href="#" style={{ textDecoration: "none" }}>
+                            Forgot password?
+                          </a>
+                          <div
+                            style={{ textAlign: "center", marginTop: "10px" }}
+                          >
+                            <span>Don’t have an account? </span>
+                            <a
+                              href="/signup"
+                              style={{
+                                color: "#0770E3",
+                                textDecoration: "none",
+                              }}
+                            >
+                              Sign up
+                            </a>
+                          </div>
+                        </div>
                       </VStack>
                     </Form>
-
-                    <Divider>OR</Divider>
-                    <div
-                      style={{
-                        display: "flex",
-                        justifyContent: "center",
-                        gap: "20px",
-                      }}
-                    >
-                      <Button
-                        appearance="ghost"
-                        href="https://google.com"
-                        style={{
-                          width: "193px",
-                          height: "40px",
-                          border: "1px solid lightgrey",
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                        }}
-                      >
-                        <Image src={Google} alt="Google" height={28} />
-                        <span style={{ marginLeft: "5px" }}>Google</span>
-                      </Button>
-                      <Button
-                        appearance="ghost"
-                        href="https://Facebook.com"
-                        style={{
-                          width: "193px",
-                          height: "40px",
-                          border: "1px solid lightgrey",
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                        }}
-                      >
-                        <Image src={Fb} alt="Facebook" />
-                        <span style={{ marginLeft: "5px" }}>Facebook</span>
-                      </Button>
-                    </div>
-                    <div style={{ textAlign: "center", marginTop: "10px" }}>
-                      <span>Don’t have an account? </span>
-                      <a
-                        href="/signup"
-                        style={{ color: "#0770E3", textDecoration: "none" }}
-                      >
-                        Sign up
-                      </a>
-                    </div>
                   </Panel>
                 </Stack>
               </Content>

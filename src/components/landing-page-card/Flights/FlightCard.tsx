@@ -1,5 +1,5 @@
 import React from "react";
-import { SelectPicker } from "rsuite";
+import { Checkbox, SelectPicker,} from "rsuite";
 import MemberIcon from "@rsuite/icons/Member";
 import { AutoComplete } from "rsuite";
 import { Input, InputGroup } from "rsuite";
@@ -12,6 +12,7 @@ import Image from "next/image";
 import styles from "../../assets/styles/FlightCard.module.css";
 import {
   List,
+  CheckPicker,
   Grid,
   Row,
   Col,
@@ -30,11 +31,20 @@ import {
 } from "rsuite";
 import AvatarIcon from "@rsuite/icons/legacy/Avatar";
 import Flightto from "../../../assets/images/Toicon.svg";
-import FlightFrom from "../../../assets/images/FromIcon.svg";
+import FlightFrom from "../../../assets/images/Fromicon.svg";
 import FlightDropdown from "./FlightDropdown";
 import IndianFlag from "../../../assets/images/IndianFlag.svg";
 import Link from "next/link";
 import TButton from "../../Common/TButton";
+
+const data = [
+  "Select All",
+  "Trujet [2t]",
+  "IndiGo [6E]",
+  "Airliance Air [9I]",
+  "Air India Express-AX [AX]",
+  "Coupon Indigo [C6E]",
+].map((item) => ({ label: item, value: item }));
 
 type Option = {
   label: string;
@@ -289,9 +299,10 @@ const FlightCard: React.FC<CardProps> = () => {
   //   };
 
   return (
+    <>
     <div>
       <Row>
-        <Col md={16}>
+        <Col md={8}>
           <div
             style={{
               display: "flex",
@@ -459,50 +470,7 @@ const FlightCard: React.FC<CardProps> = () => {
             </div>
           </div>
         </Col>
-
-        <Col>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              flex: 1,
-              position: "relative",
-            }}
-          >
-            <Text
-              style={{
-                marginBottom: "4px",
-                alignSelf: "flex-start",
-                color: "grey",
-              }}
-            >
-              Ways
-            </Text>
-            <ButtonGroup>
-              {ways.map((key) => (
-                <Button
-                  key={key}
-                  active={key === activeKey}
-                  style={{
-                    backgroundColor: key === activeKey ? "#DDECFC" : undefined,
-                    color: key === activeKey ? " #0770E3" : "#666666",
-                    border:
-                      key === activeKey
-                        ? "1px solid #DDECFC"
-                        : "1px solid lightgrey",
-                  }}
-                  onClick={() => setActiveKey(key)}
-                >
-                  {key}
-                </Button>
-              ))}
-            </ButtonGroup>
-          </div>
-        </Col>
-      </Row>
-
-      <Row>
-        <Col xs={24} sm={12} md={6}>
+        <Col xs={24} sm={12} md={4}>
           <div style={{ display: "flex", gap: "10px" }}>
             <div
               style={{
@@ -513,7 +481,7 @@ const FlightCard: React.FC<CardProps> = () => {
             >
               <Text
                 style={{
-                  marginBottom: "8px",
+                  marginBottom: "3px",
                   color: "grey",
                 }}
               >
@@ -560,7 +528,7 @@ const FlightCard: React.FC<CardProps> = () => {
             </div>
           </div>
         </Col>
-        <Col xs={24} sm={12} md={6}>
+        <Col xs={24} sm={12} md={4}>
           <div style={{ display: "flex", gap: "10px" }}>
             <div
               style={{
@@ -571,7 +539,7 @@ const FlightCard: React.FC<CardProps> = () => {
             >
               <Text
                 style={{
-                  marginBottom: "8px",
+                  marginBottom: "3px",
                   color: "grey",
                 }}
               >
@@ -619,8 +587,175 @@ const FlightCard: React.FC<CardProps> = () => {
             </div>
           </div>
         </Col>
-        <Col md={12}>
+        <Col>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              flex: 1,
+              position: "relative",
+            }}
+          >
+            <Text
+              style={{
+                marginBottom: "4px",
+                alignSelf: "flex-start",
+                color: "grey",
+              }}
+            >
+              Ways
+            </Text>
+            <ButtonGroup>
+              {ways.map((key) => (
+                <Button
+                  key={key}
+                  active={key === activeKey}
+                  style={{
+                    backgroundColor: key === activeKey ? "#DDECFC" : undefined,
+                    color: key === activeKey ? " #0770E3" : "#666666",
+                    border:
+                      key === activeKey
+                        ? "1px solid #DDECFC"
+                        : "1px solid lightgrey",
+                  }}
+                  onClick={() => setActiveKey(key)}
+                >
+                  {key}
+                </Button>
+              ))}
+            </ButtonGroup>
+          </div>
+        </Col>
+      </Row>
+
+      <Row>
+        <Col md={8}>
           <FlightDropdown />
+        </Col>
+        <Col>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              flex: 1,
+              position: "relative",
+            }}
+          >
+            <Text
+              style={{
+                marginBottom: "8px",
+                alignSelf: "flex-start",
+                color: "grey",
+              }}
+            >
+              Airline Preference
+            </Text>
+
+            <Stack spacing={10} direction="column" alignItems="flex-start">
+              <CheckPicker
+                data={data}
+                searchable={false}
+                style={{ width: 224 }}
+                placeholder="Select Your Airlines"
+              />
+            </Stack>
+          </div>
+        </Col>
+        <Col>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              flex: 1,
+              position: "relative",
+            }}
+          >
+            <div style={{ marginTop: "25px" }}>
+              <Stack spacing={10} direction="column" alignItems="flex-start">
+                <Checkbox style={{color:"black"}}>Low Cost Airlines</Checkbox>
+              </Stack>
+            </div>
+          </div>
+        </Col>
+        <Col>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              flex: 1,
+              position: "relative",
+            }}
+          >
+            <div style={{ marginTop: "25px" }}>
+              <Stack spacing={10} direction="column" alignItems="flex-start">
+                <Checkbox style={{color:"black"}}>GDS Airlines</Checkbox>
+              </Stack>
+            </div>
+          </div>
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              flex: 1,
+              position: "relative",
+            }}
+          >
+            <div style={{ marginTop: "25px"}}>
+              <RadioGroup
+                name="radio-group-inline"
+                inline
+                defaultValue="A"
+                style={{ gap: "10px" ,}}
+              >
+                <Radio
+                  value="A"
+                  style={{
+                    border: "1px solid LightGrey",
+                    borderRadius: "20px",
+                    paddingRight: "10px",
+                   
+                  }}
+                >
+                  <span style={{color:"black"}}>  Direct flight</span>
+                
+                </Radio>
+                <Radio
+                  value="B"
+                  style={{
+                    border: "1px solid LightGrey",
+                    borderRadius: "20px",
+                    paddingRight: "10px",
+                  }}
+                >
+                   <span style={{color:"black"}}>Near By Airports</span>
+                </Radio>
+                <Radio
+                  value="C"
+                  style={{
+                    border: "1px solid LightGrey",
+                    borderRadius: "20px",
+                    paddingRight: "10px",
+                  }}
+                >
+                 <span style={{color:"black"}}> Students Fare</span> 
+                </Radio>
+                <Radio
+                  value="D"
+                  style={{
+                    border: "1px solid LightGrey",
+                    borderRadius: "20px",
+                    paddingRight: "10px",
+                  }}
+                >
+                 <span style={{color:"black"}}>Senior Citizen Fare</span> 
+                </Radio>
+              </RadioGroup>
+            </div>
+          </div>
         </Col>
       </Row>
       <Row style={{ marginTop: "15px", position: "sticky" }}>
@@ -638,6 +773,8 @@ const FlightCard: React.FC<CardProps> = () => {
         </Col>
       </Row>
     </div>
+    
+    </>
   );
 };
 

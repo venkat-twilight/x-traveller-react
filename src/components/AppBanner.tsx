@@ -7,6 +7,9 @@ import HomeCard from "./HomeCard";
 import OffersforYou from "./OffersforYou";
 import PopularTouristspots from "./PopularTouristspots";
 import AppFooter from "./AppFooter";
+import { Panel, Placeholder, Row, Col } from "rsuite";
+import NoticeBoard from "../assets/icons/NoticeBoard.svg";
+import NoticeBoardPanel from "./Preferences";
 
 export default function AppBanner() {
   return (
@@ -34,6 +37,12 @@ export default function AppBanner() {
           </div>
         </div>
       </div>
+      <div style={{ margin: "auto", width: "65%" }}>
+        <div>
+          <NoticeBoardPanel />
+        </div>
+      </div>
+
       <div style={{ margin: "auto", width: "67%" }}>
         <div>
           <OffersforYou />

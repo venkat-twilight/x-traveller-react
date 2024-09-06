@@ -17,6 +17,10 @@ import TButton from "../Common/TButton";
 
 const fontColor: string = "#F88D02";
 
+const privacyPolicyUrl = "#";
+const userAgreementUrl = "#";
+const termsOfServiceUrl = "#";
+
 const FareDetailsList = [
   {
     title: "Base Fare",
@@ -137,7 +141,6 @@ const Tabledata = {
         },
       ],
     },
-    
   ],
 };
 
@@ -168,31 +171,58 @@ export default function FlightPaymentDetails() {
       <Row>
         <Col>
           <Panel className={styles.bookingPanel}>
-            <div>
-              <div
-                style={{
-                  fontSize: "12px",
-                  fontWeight: 500,
-                  color: "#222222",
-                }}
-              >
-                Depart 14th July 2024
+            <Panel
+              bordered
+              style={{
+                backgroundColor: "#FFFFFF",
+                borderRadius: "15px",
+                padding: "10px",
+                boxShadow: "0 3px 10px rgb(0 0 0 / 0.2)",
+                marginBottom: "20px", // Add margin-bottom to create a gap between the two panels
+              }}
+            >
+              <div style={{ display: "flex", justifyContent: "space-between" }}>
+                <div
+                  style={{
+                    borderLeft: "4px solid orange",
+                    padding: "10px",
+                  }}
+                >
+                  <div
+                    style={{
+                      fontSize: "12px",
+                      fontWeight: 500,
+                      color: "#222222",
+                    }}
+                  >
+                    Depart 14th July 2024
+                  </div>
+                  <div
+                    style={{
+                      fontSize: "14px",
+                      fontWeight: 700,
+                    }}
+                  >
+                    Bangalore (BLE) → New Delhi (DEL)
+                  </div>
+                  <div style={{ color: "#9E9E9E", padding: "0px 0px 10px" }}>
+                    Non Stop | 02 hrs 50 min
+                  </div>
+                </div>
+                <div style={{ color: "blue", marginTop: "12px" }}>
+                  <h5>change flights</h5>
+                </div>
               </div>
-              <div
-                style={{
-                  fontSize: "14px",
-                  fontWeight: 700,
-                }}
-              >
-                Bangalore(BLE) → New Delhi(DEL)
-              </div>
-              <div style={{ color: "#9E9E9E", padding: "0px 0px 10px" }}>
-                Non Stop | 02 hrs 50 min
-              </div>
-            </div>
+            </Panel>
             <Row>
               <Col xs={18}>
-                <Panel className={styles.bookingPanel}>
+                <Panel
+                  className={styles.bookingPanel}
+                  style={{
+                    backgroundColor: "#fff",
+                    boxShadow: "0 3px 10px rgb(0 0 0 / 0.2)",
+                  }}
+                >
                   <FlightInfo />
                 </Panel>
               </Col>
@@ -203,40 +233,76 @@ export default function FlightPaymentDetails() {
             <div>
               {Tabledata.sections.map((section, index) => (
                 <div key={index}>
-                  <div
+                  <Panel
                     style={{
-                      fontSize: "14px",
-                      fontWeight: 700,
-                      marginBottom: "10px",
-                      marginTop: index !== 0 ? "20px" : "0px",
+                      marginBottom: "20px",
+                      background: "#fff",
+                      borderRadius: "10px",
+                      marginTop: "20px",
+                      boxShadow: "0 3px 10px rgb(0 0 0 / 0.2)",
                     }}
                   >
-                    {section.title}
-                  </div>
-                  <TTable
-                    headers={section.headers}
-                    data={section.data}
-                    icons={section.icons as { [key: string]: string }}
-                  />
+                    <div
+                      style={{
+                        fontSize: "14px",
+                        fontWeight: 700,
+                        marginBottom: "10px",
+                      }}
+                    >
+                      {section.title}
+                    </div>
+                    <TTable
+                      headers={section.headers}
+                      data={section.data}
+                      icons={section.icons as { [key: string]: string }}
+                    />
+                  </Panel>
                 </div>
               ))}
             </div>
-            {/* Terms and condition */}
             <div
               style={{
+                position: "fixed",
+                bottom: 0,
+                left: 0,
+                width: "100%",
                 display: "flex",
                 alignItems: "center",
-                justifyContent: "space-between",
+                justifyContent: "space-around",
                 marginTop: "20px",
                 fontSize: "14px",
+                background: "#fff",
+                padding: "20px",
+                boxShadow: "0 -2px 4px rgba(0, 0, 0, 0.1)",
+                zIndex: 1000,
               }}
             >
               {/* Checkbox with Label */}
               <div style={{ display: "flex", alignItems: "center" }}>
                 <input type="checkbox" id="agree" name="agree" />
                 <label htmlFor="agree" style={{ marginLeft: "10px" }}>
-                  I agree with the booking policies, Privacy policy, Terms &
-                  Conditions
+                  By continuing to pay, I understand and agree with the {""}
+                  <a
+                    href={privacyPolicyUrl}
+                    style={{ textDecoration: "none", color: "#0770E3" }}
+                  >
+                    privacy policy
+                  </a>
+                  , <br />
+                  <a
+                    href={userAgreementUrl}
+                    style={{ textDecoration: "none", color: "#0770E3" }}
+                  >
+                    user agreement
+                  </a>{" "}
+                  and
+                  <a
+                    href={termsOfServiceUrl}
+                    style={{ textDecoration: "none", color: "#0770E3" }}
+                  >
+                    terms of service
+                  </a>
+                  .
                 </label>
               </div>
 
@@ -245,7 +311,7 @@ export default function FlightPaymentDetails() {
                 <span style={{ fontWeight: 700, marginRight: "20px" }}>
                   ₹9999
                 </span>
-                <TButton label={"Make Payment"} />
+                <TButton label={"MakePayment"} />
               </div>
             </div>
           </Panel>

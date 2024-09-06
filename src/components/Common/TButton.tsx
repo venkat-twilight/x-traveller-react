@@ -12,6 +12,7 @@ interface TButtonProps {
   link?: string;
   onClick?: () => void;
   padding?: string;
+  block?: boolean; // Add this prop
 }
 
 const TButton: React.FC<TButtonProps> = ({
@@ -21,6 +22,7 @@ const TButton: React.FC<TButtonProps> = ({
   icon,
   type = "primary",
   padding = "10px 20px",
+  block = false, // Default is not full-width
 }) => {
   const router = useRouter();
 
@@ -35,6 +37,7 @@ const TButton: React.FC<TButtonProps> = ({
     borderRadius: "4px",
     padding,
     cursor: "pointer",
+    width: block ? "100%" : "auto", // Full-width if block is true
     ...(type === "primary" && {
       background: "linear-gradient(to right, #0087E1 0%, #174495 100%)",
       border: "none",

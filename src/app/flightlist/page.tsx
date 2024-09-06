@@ -26,7 +26,7 @@ export default async function FlightList() {
 
   return (
     <div>
-      <AppHeader />
+      <AppHeader isLogedin={true} />
 
       <FlightListingPage />
       <FlightBannerCard />

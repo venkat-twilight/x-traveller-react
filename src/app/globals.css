@@ -185,7 +185,7 @@ a {
 
 .custom-stepper .rs-steps-item-icon {
   background-color: #fff; /* White background for step icons */
-  color: #0770E3; /* Blue text inside the circle */
+  color: #0770e3; /* Blue text inside the circle */
   border-radius: 50%; /* Make the icon a circle */
   width: 30px; /* Adjust size to ensure it's circular */
   height: 30px; /* Adjust size to ensure it's circular */
@@ -200,8 +200,6 @@ a {
   align-items: center;
 }
 
-
-
 /* Style to make the stepper line white */
 .rs-steps-horizontal .rs-steps-item-title:after {
   border-top-style: solid;
@@ -215,11 +213,44 @@ a {
 }
 
 /* Ensure that the stepper tail and title after elements are also white */
-.rs-steps-item-status-process .rs-steps-item-tail, 
-.rs-steps-item-status-process .rs-steps-item-title:after, 
-.rs-steps-item-tail, 
+.rs-steps-item-status-process .rs-steps-item-tail,
+.rs-steps-item-status-process .rs-steps-item-title:after,
+.rs-steps-item-tail,
 .rs-steps-item-title:after {
   border-color: #fff !important; /* White border color for active and inactive steps */
 }
 
+.custom-stepper .rs-steps-item-status-finish .rs-steps-item-title {
+  color: #50c878; /* White text for titles */
+}
 
+.custom-stepper .rs-steps-item-status-finish .rs-steps-item-line {
+  background-color: #50c878; /* White stepper line */
+}
+
+.rs-steps-horizontal
+  .rs-steps-item-status-finish
+  .rs-steps-item-content
+  .rs-steps-item-title:after {
+  border-top-style: solid;
+  border-top-width: 3px !important;
+  content: "";
+  left: 100%;
+  top: 15px;
+  width: 9999px;
+  background-color: #50c878 !important; /* White stepper line */
+  color: #50c878 !important;
+  border-color: #50c878 !important;
+}
+
+.custom-stepper .rs-steps-item-status-finish .rs-steps-item-icon {
+  background-color: #50c878;
+  color: #fff;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #50c878;
+}

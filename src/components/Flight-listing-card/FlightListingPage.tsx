@@ -2,7 +2,7 @@ import React from "react";
 import { SelectPicker } from "rsuite";
 import MemberIcon from "@rsuite/icons/Member";
 import { AutoComplete } from "rsuite";
-import { Input, InputGroup } from "rsuite";
+import { Input, InputGroup, CheckPicker } from "rsuite";
 import Twowayicon from "../../assets/images/TwoWay.svg";
 import { DatePicker } from "rsuite";
 import Calendar from "../../assets/images/Calendar.svg";
@@ -17,6 +17,7 @@ import {
   Row,
   Col,
   Heading,
+  Checkbox,
   Text,
   Stack,
   Panel,
@@ -31,7 +32,7 @@ import {
 } from "rsuite";
 import AvatarIcon from "@rsuite/icons/legacy/Avatar";
 import Flightto from "../../assets/images/Toicon.svg";
-import FlightFrom from "../../assets/images/FromIcon.svg";
+import FlightFrom from "../../assets/images/Fromicon.svg";
 
 import IndianFlag from "../../assets/images/IndianFlag.svg";
 import FlightDropdown from "../landing-page-card/Flights/FlightDropdown";
@@ -41,6 +42,15 @@ import FlightBannerCard from "./FlightListBanner/FlightListBanner";
 import { ItemDataType } from "rsuite/esm/MultiCascadeTree";
 import { FormControlBaseProps } from "rsuite/esm/internals/types";
 import TButton from "../Common/TButton";
+
+const data = [
+  "Select All",
+  "Trujet [2t]",
+  "IndiGo [6E]",
+  "Airliance Air [9I]",
+  "Air India Express-AX [AX]",
+  "Coupon Indigo [C6E]",
+].map((item) => ({ label: item, value: item }));
 
 type Option = {
   label: string;
@@ -313,23 +323,30 @@ const FlightListingPage: React.FC = () => {
         background: "linear-gradient(to right,  #0770E3 ,#0087E1,#174495)",
       }}
     >
-      <Row className={styles.showgrid} style={{
-      justifyContent: "center", // Center the columns horizontally
-      gap: "10px", // Add gap between columns
-    }}>
-         <Col xs={24} sm={12} md={4} lg={4} xl={2} xxl={2}>
-      <div
+      <Row
+        className={styles.showgrid}
         style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center", // Center the content within the column
-          marginBottom: "20px",
-          marginTop: "20px", // Add marginTop to the main container
+          justifyContent: "center", // Center the columns horizontally
+          gap: "15px", // Add gap between columns
+          width: "100%",
+          margin: "0px auto",
         }}
       >
-        <CustomDropdown title="Select way" items={ways} trigger="click" />
-      </div>
-    </Col>
+        <div style={{ display: "flex", gap: "10px" }}>
+          <Col xs={24} sm={12} md={4} lg={4} xl={2} xxl={2}>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center", // Center the content within the column
+                marginBottom: "20px",
+                marginTop: "20px", // Add marginTop to the main container
+              }}
+            >
+              <CustomDropdown title="Select way" items={ways} trigger="click" />
+            </div>
+          </Col>
+        </div>
 
         <Col xs={24} sm={12} md={5}>
           <div
@@ -480,7 +497,7 @@ const FlightListingPage: React.FC = () => {
           </div>
         </Col>
 
-        <Col xs={24} sm={12} md={3}>
+        <Col xs={24} sm={12} md={2}>
           <div style={{ display: "flex", gap: "10px", marginTop: "20px" }}>
             <div
               style={{
@@ -530,23 +547,8 @@ const FlightListingPage: React.FC = () => {
             </div>
           </div>
         </Col>
-        {/* <Col xs={24} sm={12} md={4}>
-          <div style={{ display: "flex", alignItems: "center", position: "relative", marginBottom: "20px", marginTop: "20px" }}>
-            
-          <DatePicker
-                  format="dd/MM/yyyy"
-                  value={departureDate}
-                  caretAs={CustomCaret}
-                  onChange={handleDepartureChange}
-                  // open={departurePickerOpen}
-                  // onOpen={() => setDeparturePickerOpen(true)}
-                  // onClose={() => setDeparturePickerOpen(false)}
-                  placeholder="Departure Date"
-                 
-                />
-          </div>
-        </Col> */}
-        <Col xs={24} sm={12} md={3}>
+
+        <Col xs={24} sm={12} md={2}>
           <div style={{ display: "flex", gap: "10px", marginTop: "20px" }}>
             <div
               style={{
@@ -555,14 +557,6 @@ const FlightListingPage: React.FC = () => {
                 alignItems: "flex-start",
               }}
             >
-              {/* <Text
-                  style={{
-                    marginBottom: "8px",
-                    color: "grey",
-                  }}
-                >
-                  Arrival
-                </Text> */}
               <InputGroup
                 inside
                 style={{ position: "relative", flex: 1 }}
@@ -606,12 +600,121 @@ const FlightListingPage: React.FC = () => {
             </div>
           </div>
         </Col>
-        <Col md={4} style={{ marginTop: "20px" }}>
+        <Col md={5} style={{ marginTop: "20px" }}>
           <FlightListDropdown />
         </Col>
-        <Col xs={24} sm={12} md={2} style={{ marginTop: "20px" }}>
-          <TButton label="Search Flight" />
-        </Col>
+      </Row>
+      <Row
+        className={styles.showgrid}
+        style={{
+          justifyContent: "center",
+          gap: "10px",
+          padding: "10px",
+        }}
+      >
+        <div style={{ display: "flex", gap: "10px" }}>
+          <Row>
+            <Col>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  flex: 1,
+                  position: "relative",
+                }}
+              >
+                <Stack spacing={10} direction="column" alignItems="flex-start">
+                  <CheckPicker
+                    data={data}
+                    searchable={false}
+                    style={{ width: 224 }}
+                    placeholder="Select Your Airlines"
+                  />
+                </Stack>
+              </div>
+            </Col>
+
+            <Col>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  flex: 1,
+                  position: "relative",
+                }}
+              >
+                <div
+                  style={{
+                    border: "1px solid white",
+                    display: "flex",
+                    background: "#fff",
+                    borderRadius: "8px",
+                  }}
+                >
+                  <div style={{ display: "flex", paddingRight: "20px" }}>
+                    <Checkbox style={{ color: "black" }}>
+                      Low Cost Airlines
+                    </Checkbox>
+                    <Checkbox style={{ color: "black" }}>
+                      <span
+                        style={{
+                          borderRight: "1px solid Lightgrey",
+                          paddingRight: "10px",
+                        }}
+                      >
+                        GDS Airlines
+                      </span>
+                    </Checkbox>
+                  </div>
+                  <RadioGroup
+                    name="radio-group-inline"
+                    inline
+                    defaultValue="A"
+                    style={{ gap: "10px" }}
+                  >
+                    <Radio
+                      value="A"
+                      style={{
+                        paddingRight: "10px",
+                      }}
+                    >
+                      <span style={{ color: "black" }}> Direct flight</span>
+                    </Radio>
+                    <Radio
+                      value="B"
+                      style={{
+                        paddingRight: "10px",
+                      }}
+                    >
+                      <span style={{ color: "black" }}>Near By Airports</span>
+                    </Radio>
+                    <Radio
+                      value="C"
+                      style={{
+                        paddingRight: "10px",
+                      }}
+                    >
+                      <span style={{ color: "black" }}> Students Fare</span>
+                    </Radio>
+                    <Radio
+                      value="D"
+                      style={{
+                        paddingRight: "10px",
+                      }}
+                    >
+                      <span style={{ color: "black" }}>
+                        Senior Citizen Fare
+                      </span>
+                    </Radio>
+                  </RadioGroup>
+                </div>
+              </div>
+            </Col>
+            <Col xs={24} sm={12} md={2}>
+              <TButton label="Search Flight" />
+            </Col>
+          </Row>
+        </div>
       </Row>
     </Grid>
   );

@@ -101,7 +101,12 @@ const filters: Filter[] = [
       { value: "airIndia", icon: Indigo, label: "Air India", price: 6196 },
       { value: "indiGo", icon: Vistara, label: "IndiGo", price: 6399 },
       { value: "vistara", icon: AirIndia, label: "Vistara", price: 6448 },
-      { value: "multiAirline", icon: Vistara, label: "Multi-Airline", price: 7416 },
+      {
+        value: "multiAirline",
+        icon: Vistara,
+        label: "Multi-Airline",
+        price: 7416,
+      },
     ],
   },
 ];
@@ -110,7 +115,7 @@ const FilterPanel: React.FC = () => {
   // Initialize state with "multiAirline" selected by default
   const [checkedOptions, setCheckedOptions] = useState<Map<string, string>>(
     new Map([
-      [ "multiAirline","airlines"] // Set "multiAirline" as checked by default
+      ["multiAirline", "airlines"], // Set "multiAirline" as checked by default
     ])
   );
 
@@ -134,7 +139,12 @@ const FilterPanel: React.FC = () => {
 
   // Generate tab navigation items
   const tabNavItems: TabNavItem[] = filters
-    .filter((filter) => filter.type === "departure" || filter.type === "arrival" || filter.type === "stops")
+    .filter(
+      (filter) =>
+        filter.type === "departure" ||
+        filter.type === "arrival" ||
+        filter.type === "stops"
+    )
     .map((filter) => ({
       title: filter.label,
       key: filter.type,
@@ -142,7 +152,6 @@ const FilterPanel: React.FC = () => {
         <RadioGroup
           name={filter.type}
           onChange={(value) => handleRadioChange(filter.type, value as string)} // Handle radio selection per group
-          
           value={checkedOptions.get(filter.type) || ""} // Get the selected value for the specific filter type
         >
           {filter.options?.map((option) => (
@@ -156,34 +165,61 @@ const FilterPanel: React.FC = () => {
     }));
 
   return (
-    <div style={{ width: 340,   border: "0px",
-      boxShadow: "0px 1.63px 53.13px 0px #00000017", borderRadius: 8, padding: 16,
-      height: "fit-content",backgroundColor:"#fff",marginTop:"53px"}}>
-        {/* <div style={{borderBottom:"1px solid lightgrey"}}> */}
-      <h5 style={{ margin: "0 0 16px",padding:"10px" }}>Filter</h5>
+    <div
+      style={{
+        width: 340,
+        border: "0px",
+        boxShadow: "0px 1.63px 53.13px 0px #00000017",
+        borderRadius: 8,
+        padding: 16,
+        height: "fit-content",
+        backgroundColor: "#fff",
+        marginTop: "53px",
+      }}
+    >
+      {/* <div style={{borderBottom:"1px solid lightgrey"}}> */}
+      <h5 style={{ margin: "0 0 16px", padding: "10px" }}>Filter</h5>
       {/* </div> */}
       <TTab TabNav={tabNavItems} />
 
       <div style={{ marginTop: 20 }}>
         {filters
-          .filter((filter) => filter.type === "price" || filter.type === "duration" || filter.type === "airlines")
+          .filter(
+            (filter) =>
+              filter.type === "price" ||
+              filter.type === "duration" ||
+              filter.type === "airlines"
+          )
           .map((filter) => (
             <div key={filter.type} style={{ marginBottom: 16 }}>
               <h5>{filter.label}</h5>
               {filter.type === "price" || filter.type === "duration" ? (
-                 <div style={{ padding: "10px 0" }}>
-               
-                 <Slider
-                   progress
-                   style={{ width: "100%", margin: "0 auto" }} // Make slider width 100% to fit container
-                   min={filter.minValue}
-                   max={filter.maxValue}
-                 />
-                   <div style={{ display: "flex", justifyContent: "space-between", margin: "15px 8px 8px" }}>
-                   <span>{filter.type === "price" ? `₹${filter.minValue}` : formatMinutes(filter.minValue ?? 0)}</span>
-                   <span>{filter.type === "price" ? `₹${filter.maxValue}` : formatMinutes(filter.maxValue ?? 0)}</span>
-                 </div>
-               </div>
+                <div style={{ padding: "10px 0" }}>
+                  <Slider
+                    progress
+                    style={{ width: "100%", margin: "0 auto" }} // Make slider width 100% to fit container
+                    min={filter.minValue}
+                    max={filter.maxValue}
+                  />
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      margin: "15px 8px 8px",
+                    }}
+                  >
+                    <span>
+                      {filter.type === "price"
+                        ? `₹${filter.minValue}`
+                        : formatMinutes(filter.minValue ?? 0)}
+                    </span>
+                    <span>
+                      {filter.type === "price"
+                        ? `₹${filter.maxValue}`
+                        : formatMinutes(filter.maxValue ?? 0)}
+                    </span>
+                  </div>
+                </div>
               ) : filter.type === "airlines" ? (
                 filter.options?.map((option) => (
                   <div key={option.value} style={{ padding: "5px 0" }}>
@@ -192,10 +228,25 @@ const FilterPanel: React.FC = () => {
                       onChange={() => handleCheckboxChange(option.value)}
                       style={{ display: "block" }}
                     >
-                      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", width: "95%", margin: "auto 10px" }}>
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "space-between",
+                          alignItems: "center",
+                          width: "95%",
+                          margin: "auto 10px",
+                        }}
+                      >
                         <div style={{ display: "flex", alignItems: "center" }}>
-                          <Image src={option.icon} alt={option.label} width={20} height={20} />
-                          <span style={{ marginLeft: "10px" }}>{option.label}</span>
+                          <Image
+                            src={option.icon}
+                            alt={option.label}
+                            width={20}
+                            height={20}
+                          />
+                          <span style={{ marginLeft: "10px" }}>
+                            {option.label}
+                          </span>
                         </div>
                         <div>₹{option.price ?? 0}</div>
                       </div>

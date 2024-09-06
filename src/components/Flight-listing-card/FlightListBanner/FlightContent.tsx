@@ -14,9 +14,32 @@ import Fareicon from "../../../assets/images/FareIcon.svg";
 import styles from "../../../assets/styles/flight-content.module.css";
 import FlightDetailspopup from "./FlightDetailsPopup";
 import TButton from "../../Common/TButton";
-import stop from "../../../assets/images/Stop.svg"
-import SortUpIcon from '@rsuite/icons/SortUp';
-import SortDownIcon from '@rsuite/icons/SortDown';
+import stop from "../../../assets/images/Stop.svg";
+import SortUpIcon from "@rsuite/icons/SortUp";
+import SortDownIcon from "@rsuite/icons/SortDown";
+import { AutoComplete, InputGroup } from "rsuite";
+import SearchIcon from "@rsuite/icons/Search";
+
+const data = [
+  "Eugenia",
+  "Bryan",
+  "Linda",
+  "Nancy",
+  "Lloyd",
+  "Alice",
+  "Julia",
+  "Albert",
+  "Louisa",
+  "Lester",
+  "Lola",
+  "Lydia",
+  "Hal",
+  "Hannah",
+  "Harriet",
+  "Hattie",
+  "Hazel",
+  "Hilda",
+];
 
 interface PricingOption {
   fare: string;
@@ -44,7 +67,7 @@ interface Flight {
   arrival: string;
   arrivalLocation: string;
   pricingOptions: PricingOption[];
-  minprice:string,
+  minprice: string;
 }
 
 const flights: Flight[] = [
@@ -57,7 +80,7 @@ const flights: Flight[] = [
     durationDetails: "Non Stop",
     arrival: "DEL 22:05",
     arrivalLocation: "Indira Gandhi International Airport, India",
-    minprice:"₹8,688",
+    minprice: "₹8,688",
     pricingOptions: [
       {
         fare: "SME FARE",
@@ -140,7 +163,7 @@ const flights: Flight[] = [
     durationDetails: "Non Stop",
     arrival: "DEL 22:05",
     arrivalLocation: "Indira Gandhi International Airport, India",
-    minprice:"₹8,680",
+    minprice: "₹8,680",
     pricingOptions: [
       {
         fare: "SME FARE",
@@ -223,7 +246,7 @@ const flights: Flight[] = [
     durationDetails: "Non Stop",
     arrival: "DEL 22:05",
     arrivalLocation: "Indira Gandhi International Airport, India",
-    minprice:"₹8,500",
+    minprice: "₹8,500",
     pricingOptions: [
       {
         fare: "SAVER",
@@ -306,7 +329,7 @@ const flights: Flight[] = [
     durationDetails: "Non Stop",
     arrival: "DEL 22:05",
     arrivalLocation: "Indira Gandhi International Airport, India",
-    minprice:"₹8,688",
+    minprice: "₹8,688",
     pricingOptions: [
       {
         fare: "PUBLISHED",
@@ -389,7 +412,7 @@ const flights: Flight[] = [
     durationDetails: "Non Stop",
     arrival: "DEL 22:05",
     arrivalLocation: "Indira Gandhi International Airport, India",
-    minprice:"₹8,688",
+    minprice: "₹8,688",
     pricingOptions: [
       {
         fare: "SME FARE",
@@ -596,38 +619,49 @@ const createFareDetailsPopover = (
 );
 
 const FlightContent: React.FC = () => {
-  const [sortConfig, setSortConfig] = useState<{ key: string; direction: string }>({
-    key: 'airlines',
-    direction: 'ascending',
+  const [sortConfig, setSortConfig] = useState<{
+    key: string;
+    direction: string;
+  }>({
+    key: "airlines",
+    direction: "ascending",
   });
   const [sortedFlights, setSortedFlights] = useState<Flight[]>(flights);
 
   const sortFlights = (key: string) => {
-    let direction = 'ascending';
-    if (sortConfig.key === key && sortConfig.direction === 'ascending') {
-      direction = 'descending';
+    let direction = "ascending";
+    if (sortConfig.key === key && sortConfig.direction === "ascending") {
+      direction = "descending";
     }
     setSortConfig({ key, direction });
 
     const sortedFlights = [...flights].sort((a, b) => {
-      if (key === 'price') {
-        const priceA = parseInt(a.minprice.replace('₹', '').replace(',', ''));
-        const priceB = parseInt(b.minprice.replace('₹', '').replace(',', ''));
-        return direction === 'ascending' ? priceA - priceB : priceB - priceA;
-      } else if (key === 'departure') {
+      if (key === "price") {
+        const priceA = parseInt(a.minprice.replace("₹", "").replace(",", ""));
+        const priceB = parseInt(b.minprice.replace("₹", "").replace(",", ""));
+        return direction === "ascending" ? priceA - priceB : priceB - priceA;
+      } else if (key === "departure") {
         const timeA = new Date(`1970-01-01T${a.departure}`);
         const timeB = new Date(`1970-01-01T${b.departure}`);
-        return direction === 'ascending' ? timeA.getTime() - timeB.getTime() : timeB.getTime() - timeA.getTime();
-      } else if (key === 'duration') {
-        const durationA = parseInt(a.duration.replace('h', ''));
-        const durationB = parseInt(b.duration.replace('h', ''));
-        return direction === 'ascending' ? durationA - durationB : durationB - durationA;
-      } else if (key === 'arrival') {
+        return direction === "ascending"
+          ? timeA.getTime() - timeB.getTime()
+          : timeB.getTime() - timeA.getTime();
+      } else if (key === "duration") {
+        const durationA = parseInt(a.duration.replace("h", ""));
+        const durationB = parseInt(b.duration.replace("h", ""));
+        return direction === "ascending"
+          ? durationA - durationB
+          : durationB - durationA;
+      } else if (key === "arrival") {
         const timeA = new Date(`1970-01-01T${a.arrival}`);
         const timeB = new Date(`1970-01-01T${b.arrival}`);
-        return direction === 'ascending' ? timeA.getTime() - timeB.getTime() : timeB.getTime() - timeA.getTime();
-      } else if (key === 'airlines') {
-        return direction === 'ascending' ? a.airline.localeCompare(b.airline) : b.airline.localeCompare(a.airline);
+        return direction === "ascending"
+          ? timeA.getTime() - timeB.getTime()
+          : timeB.getTime() - timeA.getTime();
+      } else if (key === "airlines") {
+        return direction === "ascending"
+          ? a.airline.localeCompare(b.airline)
+          : b.airline.localeCompare(a.airline);
       }
       return 0;
     });
@@ -636,28 +670,49 @@ const FlightContent: React.FC = () => {
   };
 
   const getSortIcon = (key: string) => {
-    if (key === 'airlines') {
+    if (key === "airlines") {
       return null; // No icon for Airlines
     }
     if (sortConfig.key === key) {
-      return sortConfig.direction === 'ascending' ? <SortUpIcon /> : <SortDownIcon />;
+      return sortConfig.direction === "ascending" ? (
+        <SortUpIcon />
+      ) : (
+        <SortDownIcon />
+      );
     }
     return <SortUpIcon />; // Default to up arrow for other columns
   };
 
   return (
-    <div style={{ padding: '20px' }}>
+    <div style={{ padding: "20px" }}>
       <div
         style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          marginBottom: '10px',
+          display: "flex",
+          justifyContent: "space-between",
+          marginBottom: "10px",
         }}
       >
-        <span style={{ color: '#222222', fontWeight: '500', fontSize: '16px' }}>
-          Sort By
+        <span style={{ color: "#222222", fontWeight: "500", fontSize: "16px" }}>
+          Flights from Bangalore → New delhi
         </span>
-        <span style={{ color: '#9E9E9E', fontWeight: '600', fontSize: '14px' }}>
+        <span style={{ color: "#9E9E9E", fontWeight: "600", fontSize: "14px" }}>
+          Showing {sortedFlights.length} Flights
+        </span>
+      </div>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          marginBottom: "10px",
+        }}
+      >
+        <InputGroup inside style={{ width: 300 }}>
+          <AutoComplete data={data} />
+          <InputGroup.Button tabIndex={-1}>
+            <SearchIcon />
+          </InputGroup.Button>
+        </InputGroup>
+        <span style={{ color: "#9E9E9E", fontWeight: "600", fontSize: "14px" }}>
           Showing {sortedFlights.length} Flights
         </span>
       </div>
@@ -665,38 +720,52 @@ const FlightContent: React.FC = () => {
       <div
         className={styles.header}
         style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          backgroundColor: '#fff',
-          padding: '10px',
-          marginBottom: '10px',
-          borderRadius: '10px',
+          display: "flex",
+          justifyContent: "space-between",
+          backgroundColor: "#fff",
+          padding: "10px",
+          marginBottom: "10px",
+          borderRadius: "10px",
         }}
       >
-        <div style={{ flex: 1, textAlign: 'center', cursor: 'pointer' }} onClick={() => sortFlights('airlines')}>
-          Airlines {getSortIcon('airlines')}
+        <div
+          style={{ flex: 1, textAlign: "center", cursor: "pointer" }}
+          onClick={() => sortFlights("airlines")}
+        >
+          Airlines {getSortIcon("airlines")}
         </div>
-        <div style={{ flex: 1, textAlign: 'center', cursor: 'pointer' }} onClick={() => sortFlights('departure')}>
-          Departure {getSortIcon('departure')}
+        <div
+          style={{ flex: 1, textAlign: "center", cursor: "pointer" }}
+          onClick={() => sortFlights("departure")}
+        >
+          Departure {getSortIcon("departure")}
         </div>
-        <div style={{ flex: 1, textAlign: 'center', cursor: 'pointer' }} onClick={() => sortFlights('duration')}>
-          Duration {getSortIcon('duration')}
+        <div
+          style={{ flex: 1, textAlign: "center", cursor: "pointer" }}
+          onClick={() => sortFlights("duration")}
+        >
+          Duration {getSortIcon("duration")}
         </div>
-        <div style={{ flex: 1, textAlign: 'center', cursor: 'pointer' }} onClick={() => sortFlights('arrival')}>
-          Arrival {getSortIcon('arrival')}
+        <div
+          style={{ flex: 1, textAlign: "center", cursor: "pointer" }}
+          onClick={() => sortFlights("arrival")}
+        >
+          Arrival {getSortIcon("arrival")}
         </div>
-        <div style={{ flex: 1, textAlign: 'center', cursor: 'pointer' }} onClick={() => sortFlights('price')}>
-          Price {getSortIcon('price')}
+        <div
+          style={{ flex: 1, textAlign: "center", cursor: "pointer" }}
+          onClick={() => sortFlights("price")}
+        >
+          Price {getSortIcon("price")}
         </div>
       </div>
 
       {sortedFlights.map((flight, index) => (
         <FlightCard key={index} flight={flight} index={index} />
       ))}
-    </div>  
+    </div>
   );
 };
-
 
 const FlightCard: React.FC<{ flight: Flight; index: number }> = ({
   flight,
@@ -706,7 +775,10 @@ const FlightCard: React.FC<{ flight: Flight; index: number }> = ({
 
   return (
     <div className={styles.text}>
-      <Panel className={styles.border} style={{ marginBottom: "10px",backgroundColor:"#fff" }}>
+      <Panel
+        className={styles.border}
+        style={{ marginBottom: "10px", backgroundColor: "#fff" }}
+      >
         <div style={{ display: "flex" }}>
           <div style={{ flex: 1, padding: "10px", textAlign: "center" }}>
             <h5>
@@ -728,7 +800,7 @@ const FlightCard: React.FC<{ flight: Flight; index: number }> = ({
             >
               {flight.departure}
             </p>
-          
+
             <p style={{ color: "#9E9E9E", textAlign: "center" }}>
               {flight.departureLocation}
             </p>
@@ -739,7 +811,9 @@ const FlightCard: React.FC<{ flight: Flight; index: number }> = ({
             >
               {flight.duration}
             </p>
-            <p><Image src={stop} alt="rect"/></p>
+            <p>
+              <Image src={stop} alt="rect" />
+            </p>
             <p style={{ color: "#9E9E9E", textAlign: "center" }}>
               {flight.durationDetails}
             </p>
