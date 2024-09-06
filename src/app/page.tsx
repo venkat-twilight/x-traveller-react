@@ -1,7 +1,7 @@
 import { Heading, Row, Col, Grid, Text, Steps } from "rsuite";
 import React from "react";
 import Image from "next/image";
-import styles from "./page.module.css";
+import styles from "@/src/app/page.module.css";
 import RootLayout from "./layout";
 import AppHeader from "../components/AppHeader";
 import AppFooter from "../components/AppFooter";

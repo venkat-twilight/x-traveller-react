@@ -2,7 +2,7 @@
 "use client";
 
 import React from "react";
-import styles from "../page.module.css";
+import styles from "@/src/app/page.module.css";
 import { User, UsersResponse } from "@/src/models/users.model";
 import AppHeader from "@/src/components/AppHeader";
 import AppBanner from "@/src/components/AppBanner";

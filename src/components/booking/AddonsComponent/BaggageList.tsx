@@ -1,6 +1,6 @@
 import React from "react";
 import { Text } from "rsuite";
-import BackPack from "../../../assets/images/Backpack.svg";
+import BackPack from "../../../assets/images/BackPack.svg";
 import Image from "next/image";
 import TButton from "../../Common/TButton";
 import PlusIcon from "@rsuite/icons/Plus";

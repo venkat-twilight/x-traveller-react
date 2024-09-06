@@ -29,14 +29,8 @@ import TrainIcon from "../assets/images/Train.svg";
 import TrainIconB from "../assets/images/TrainIconBlue.svg";
 import BusIcon from "../assets/images/Bus.svg";
 import BusIconB from "../assets/images/BusIconBlue.svg";
-import HolidayIcon from "../assets/images/Holidayicon.svg";
+import HolidayIcon from "../assets/images/HolidayIcon.svg";
 import HolidayIconB from "../assets/images/HolidayIconBlue.svg";
-import { SelectPicker } from "rsuite";
-import MemberIcon from "@rsuite/icons/Member";
-import { AutoComplete } from "rsuite";
-import { Input, InputGroup } from "rsuite";
-import Twowayicon from "../assets/images/Twoway.svg";
-import styles from "../assets/styles/AutoComplete.module.css";
 import FlightCard from "./landing-page-card/Flights/FlightCard";
 import Card from "../components/landing-page-card/Card";
 

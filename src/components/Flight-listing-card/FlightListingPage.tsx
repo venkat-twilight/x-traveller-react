@@ -1,46 +1,18 @@
 import React from "react";
-import { SelectPicker } from "rsuite";
-import MemberIcon from "@rsuite/icons/Member";
 import { AutoComplete } from "rsuite";
-import { Input, InputGroup, CheckPicker } from "rsuite";
+import { InputGroup, CheckPicker } from "rsuite";
 import Twowayicon from "../../assets/images/TwoWay.svg";
 import { DatePicker } from "rsuite";
 import Calendar from "../../assets/images/Calendar.svg";
-import { Navbar, Nav, Container, Content } from "rsuite";
-
 import Image from "next/image";
 import styles from "../../assets/styles/flight-listing.module.css";
-
-import {
-  List,
-  Grid,
-  Row,
-  Col,
-  Heading,
-  Checkbox,
-  Text,
-  Stack,
-  Panel,
-  Button,
-  ButtonGroup,
-  Placeholder,
-  IconButton,
-  Drawer,
-  RadioGroup,
-  Radio,
-  ButtonToolbar,
-} from "rsuite";
-import AvatarIcon from "@rsuite/icons/legacy/Avatar";
+import { Grid, Row, Col, Checkbox, Stack, RadioGroup, Radio } from "rsuite";
 import Flightto from "../../assets/images/Toicon.svg";
-import FlightFrom from "../../assets/images/Fromicon.svg";
-
+import FlightFrom from "../../assets/images/FromIcon.svg";
 import IndianFlag from "../../assets/images/IndianFlag.svg";
-import FlightDropdown from "../landing-page-card/Flights/FlightDropdown";
 import FlightListDropdown from "./FlightListDropdown";
 import { Dropdown } from "rsuite";
-import FlightBannerCard from "./FlightListBanner/FlightListBanner";
 import { ItemDataType } from "rsuite/esm/MultiCascadeTree";
-import { FormControlBaseProps } from "rsuite/esm/internals/types";
 import TButton from "../Common/TButton";
 
 const data = [

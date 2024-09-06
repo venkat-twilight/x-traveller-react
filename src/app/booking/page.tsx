@@ -6,7 +6,7 @@ import AppHeader from "@/src/components/AppHeader";
 import AppFooter from "@/src/components/AppFooter";
 import { User, UsersResponse } from "@/src/models/users.model";
 import BookingBase from "../../components/booking/BookingBase";
-import styles from "../page.module.css";
+import styles from "@/src/app/page.module.css";
 import Background from "../../assets/images/FooterRightImg.svg";
 
 async function fetchData() {

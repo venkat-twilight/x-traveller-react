@@ -2,7 +2,7 @@
 "use client";
 
 import React from "react";
-import styles from "../page.module.css";
+import styles from "@/src/app/page.module.css";
 import { List, Grid, Row, Col, Heading, Text, Stack } from "rsuite";
 import Image from "next/image";
 import GearIcon from "@rsuite/icons/Gear";
