@@ -17,7 +17,7 @@ import Commission from "@/src/assets/icons/CommissionsIcon.svg";
 import AgentsIcon from "@/src/assets/icons/AgentsIcon.svg";
 import latestDeals from "@/src/assets/icons/LatestDeals.svg";
 import AdvantagesBanner from "@/src/assets/images/AdvantagesBanner.svg";
-import ConsolidatorBanner from "@/src/assets/images/ConsolidatorBanner.svg";
+// import ConsolidatorBanner from "@/src/assets/images/ConsolidatorBanner.svg";
 import TButton from "../Common/TButton";
 
 // Stepper data
@@ -134,9 +134,9 @@ const LandingBase: React.FC = () => {
           </Text>
           <TButton label="Register" background="white" link="/register"/>
         </div>
-        <div>
+        {/* <div>
           <Image src={ConsolidatorBanner} alt="ConsolidatorBanner" />
-        </div>
+        </div> */}
       </header>
 
       <section className={landingStyle.statsSection}>
