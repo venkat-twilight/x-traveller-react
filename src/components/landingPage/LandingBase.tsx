@@ -5,7 +5,7 @@ import styles from "@/src/app/page.module.css";
 import landingStyle from "@/src/assets/styles/landing.module.css";
 import Image from "next/image";
 import StepperHeader from "@/src/components/StepperHeader";
-
+import { REGISTER } from "@/src/utils/constant";
 // Import Icons and Images
 import TravelAgent from "@/src/assets/icons/TravelAgentCountIcon.svg";
 import Booking from "@/src/assets/icons/BookingCountIcon.svg";
@@ -17,7 +17,7 @@ import Commission from "@/src/assets/icons/CommissionsIcon.svg";
 import AgentsIcon from "@/src/assets/icons/AgentsIcon.svg";
 import latestDeals from "@/src/assets/icons/LatestDeals.svg";
 import AdvantagesBanner from "@/src/assets/images/AdvantagesBanner.svg";
-// import ConsolidatorBanner from "@/src/assets/images/ConsolidatorBanner.svg";
+
 import TButton from "../Common/TButton";
 
 // Stepper data
@@ -132,7 +132,7 @@ const LandingBase: React.FC = () => {
             Welcome to our trusted B2B travel portal, where reliability meets
             innovation!
           </Text>
-          <TButton label="Register" background="white" link="/register"/>
+          <TButton label="Register" background="white" link={REGISTER} />
         </div>
         {/* <div>
           <Image src={ConsolidatorBanner} alt="ConsolidatorBanner" />

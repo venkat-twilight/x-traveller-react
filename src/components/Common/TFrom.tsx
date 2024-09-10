@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   Input,
   SelectPicker,
@@ -16,12 +16,18 @@ interface FieldOption {
 
 interface FieldProps {
   title: string;
-  placeholder?: string;
+  placeholder?: string | any;
   name: string;
-  type: "input" | "select" | "checkbox" | "radio" | "input_btn";
+  type:
+    | "input"
+    | "select"
+    | "checkbox"
+    | "radio"
+    | "input_btn"
+    | "password"
+    | "terms";
   options?: FieldOption[];
   value?: string | boolean;
-  layout?: "vertical" | "horizontal"; // Layout option for radio group
   searchable?: boolean;
   onChange?: (name: string, value: string | boolean) => void;
 }
@@ -33,7 +39,6 @@ const TFrom: React.FC<FieldProps> = ({
   type,
   options = [],
   value,
-  layout = "vertical", // Default to vertical layout
   searchable = false,
   onChange,
 }) => {
@@ -55,9 +60,7 @@ const TFrom: React.FC<FieldProps> = ({
       ) : (
         <div
           style={{
-            flex: 1,
-            minWidth: "150px",
-            maxWidth: "200px",
+            flex: 2,
             marginBottom: "20px",
           }}
         >
@@ -66,7 +69,6 @@ const TFrom: React.FC<FieldProps> = ({
               name={name}
               value={value as string}
               onChange={(value) => handleChange(value)}
-              inline={layout !== "horizontal"}
             >
               {options.map((option) => (
                 <Radio key={option.value} value={option.value}>
@@ -74,8 +76,15 @@ const TFrom: React.FC<FieldProps> = ({
                 </Radio>
               ))}
             </RadioGroup>
+          ) : type === "terms" ? (
+            <Checkbox
+              checked={value as boolean}
+              onChange={(checked) => handleChange(checked)}
+            >
+              {placeholder}
+            </Checkbox>
           ) : (
-            <div>
+            <>
               <div
                 style={{
                   marginBottom: "4px",
@@ -86,14 +95,14 @@ const TFrom: React.FC<FieldProps> = ({
                 {title}
               </div>
               <InputGroup inside style={{ width: "100%" }}>
-                {type === "input" && (
+                {type === "input" || type === "password" ? (
                   <Input
                     placeholder={placeholder}
+                    type={type}
                     value={value as string}
                     onChange={(value) => handleChange(value)}
                   />
-                )}
-                {type === "select" && (
+                ) : type === "select" ? (
                   <SelectPicker
                     data={options}
                     placeholder={placeholder}
@@ -102,17 +111,16 @@ const TFrom: React.FC<FieldProps> = ({
                     searchable={searchable}
                     style={{ width: "100%" }}
                   />
-                )}
-                {type === "checkbox" && (
+                ) : type === "checkbox" ? (
                   <Checkbox
                     checked={value as boolean}
-                    onChange={(value) => handleChange(value)}
+                    onChange={(checked) => handleChange(checked)}
                   >
                     {placeholder}
                   </Checkbox>
-                )}
+                ) : null}
               </InputGroup>
-            </div>
+            </>
           )}
         </div>
       )}

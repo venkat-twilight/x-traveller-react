@@ -1,0 +1,18 @@
+export const tableHeaders = [
+  { key: "wo_id", label: "WO Id" },
+  { key: "wo_date", label: "WO Date" },
+  { key: "wo_type", label: "Work Order type" },
+  { key: "propertyID", label: "Property ID" },
+  { key: "tenantID", label: "Tenant ID" },
+  { key: "leaseNo", label: "Lease No" },
+  { key: "unit", label: "Unit No" },
+  { key: "issueDetails", label: "Issue Details" },
+  { key: "complaintDate", label: "Complaint date" },
+  { key: "priority", label: "Priority" },
+  { key: "assignedTo", label: "Assigned to" },
+  { key: "status", label: "Status" },
+  { key: "remarks", label: "Remarks" },
+  { key: "visitDate", label: "Visit Date" },
+  { key: "modeOfComp", label: "Mode of Complaint" },
+  { key: "actions", label: "Actions" },
+];
