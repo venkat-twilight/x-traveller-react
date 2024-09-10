@@ -54,13 +54,22 @@ const baggageTypeList: BaggageItem[] = [
 const BaggageList: React.FC = () => {
   const [baggageType, setBaggageType] =
     React.useState<BaggageItem[]>(baggageTypeList);
-  const [addedValues, setAddedValues] = React.useState<any>(0);
+
+  const [totalPrice, setTotalPrice] = React.useState<number>(350);
+  const [totalWeight, setTotalWeight] = React.useState<number>(0);
 
   const handleAddDish = (index: number) => {
     const updatedItems = [...baggageType];
     updatedItems[index].quantity += 1;
-    updatedItems[index].isSelected = true; // Update selection state
-    setBaggageType(updatedItems); // Update state with modified array
+    updatedItems[index].isSelected = true;
+
+    // Update the total price and weight
+    setTotalPrice((prevPrice) => prevPrice + updatedItems[index].price);
+    setTotalWeight(
+      (prevWeight) => prevWeight + (updatedItems[index].value || 0)
+    );
+
+    setBaggageType(updatedItems);
   };
 
   const handleRemoveDish = (index: number) => {
@@ -68,7 +77,14 @@ const BaggageList: React.FC = () => {
     if (updatedItems[index].quantity > 0) {
       updatedItems[index].quantity -= 1;
       updatedItems[index].isSelected = updatedItems[index].quantity > 0;
-      setBaggageType(updatedItems); // Update state with modified array
+
+      // Update the total price and weight
+      setTotalPrice((prevPrice) => prevPrice - updatedItems[index].price);
+      setTotalWeight(
+        (prevWeight) => prevWeight - (updatedItems[index].value || 0)
+      );
+
+      setBaggageType(updatedItems);
     }
   };
 
@@ -89,13 +105,13 @@ const BaggageList: React.FC = () => {
             </Text>
           </div>
           <span>
-            <Text muted>{addedValues} kg Added</Text>
+            <Text muted>{totalWeight} kg Added</Text>
           </span>
         </div>
 
         <div>
           <div>
-            <Text weight="semibold">₹350</Text>
+            <Text weight="semibold">₹{totalPrice}</Text>
           </div>
           <span>Added to fare</span>
         </div>
@@ -153,15 +169,15 @@ const BaggageList: React.FC = () => {
               <TButton
                 type="ghost"
                 padding="5px 10px"
-                icon={<PlusIcon />}
-                onClick={() => handleAddDish(i)}
+                icon={<MinusIcon />}
+                onClick={() => handleRemoveDish(i)}
               />
               {item.quantity}
               <TButton
                 type="ghost"
                 padding="5px 10px"
-                icon={<MinusIcon />}
-                onClick={() => handleRemoveDish(i)}
+                icon={<PlusIcon />}
+                onClick={() => handleAddDish(i)}
               />
             </>
           </div>

@@ -254,3 +254,14 @@ a {
   justify-content: center;
   border: 2px solid #50c878;
 }
+
+.rs-nav-subtle.rs-nav-horizontal .rs-nav-bar {
+  border: none !important;
+}
+
+.rs-nav-subtle.rs-nav-horizontal .rs-nav-item.rs-nav-item-active:before {
+  bottom: 0;
+  height: 3px !important;
+  left: 0;
+  right: 0;
+}

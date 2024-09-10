@@ -305,7 +305,7 @@ const FlightListingPage: React.FC = () => {
         }}
       >
         <div style={{ display: "flex", gap: "10px" }}>
-          <Col xs={24} sm={12} md={4} lg={4} xl={2} xxl={2}>
+          <Col xs={24} sm={12} md={4} lg={4} xl={2} xxl={2}  >
             <div
               style={{
                 display: "flex",
@@ -320,7 +320,7 @@ const FlightListingPage: React.FC = () => {
           </Col>
         </div>
 
-        <Col xs={24} sm={12} md={5}>
+        <Col xs={24} sm={12} md={6}>
           <div
             style={{
               display: "flex",
@@ -580,13 +580,15 @@ const FlightListingPage: React.FC = () => {
         className={styles.showgrid}
         style={{
           justifyContent: "center",
-          gap: "10px",
+          gap: "15px",
           padding: "10px",
+          width: "100%",
+          margin: "0px auto",
         }}
       >
         <div style={{ display: "flex", gap: "10px" }}>
-          <Row>
-            <Col>
+         
+            <Col xs={24} sm={12} md={4} lg={4} xl={2} xxl={2}>
               <div
                 style={{
                   display: "flex",
@@ -599,14 +601,14 @@ const FlightListingPage: React.FC = () => {
                   <CheckPicker
                     data={data}
                     searchable={false}
-                    style={{ width: 224 }}
+                    style={{ width: "100%" }}
                     placeholder="Select Your Airlines"
                   />
                 </Stack>
               </div>
             </Col>
-
-            <Col>
+            </div>
+            <Col xs={24} sm={12} md={12}>
               <div
                 style={{
                   display: "flex",
@@ -685,8 +687,8 @@ const FlightListingPage: React.FC = () => {
             <Col xs={24} sm={12} md={2}>
               <TButton label="Search Flight" />
             </Col>
-          </Row>
-        </div>
+          
+       
       </Row>
     </Grid>
   );

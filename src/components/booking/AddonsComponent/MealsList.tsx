@@ -74,6 +74,7 @@ const mealOptionList: MealOptionList = {
 const MealsList = () => {
   const [mealOption, setMealOption] = useState<"veg" | "non_veg">("veg");
   const [mealItems, setMealItems] = useState<MealOptionList>(mealOptionList);
+  const [totalPrice, setTotalPrice] = useState<number>(350);
   const field = [
     {
       title: "Meal Preference",
@@ -86,11 +87,20 @@ const MealsList = () => {
       ],
     },
   ];
+  const updateTotalPrice = (updatedItems: MealItem[]) => {
+    const newTotalPrice = updatedItems.reduce(
+      (total, item) => total + item.price * item.quantity,
+      350 // Starting price
+    );
+    setTotalPrice(newTotalPrice); // Update total price
+  };
+
   const handleAddDish = (index: number) => {
     const updatedItems = [...mealItems[mealOption]];
     updatedItems[index].quantity += 1;
     updatedItems[index].isSelected = 1; // Update selection state
     setMealItems({ ...mealItems, [mealOption]: updatedItems });
+    updateTotalPrice(updatedItems); // Update price after adding
   };
 
   const handleRemoveDish = (index: number) => {
@@ -99,6 +109,7 @@ const MealsList = () => {
       updatedItems[index].quantity -= 1;
       updatedItems[index].isSelected = updatedItems[index].quantity > 0 ? 1 : 0;
       setMealItems({ ...mealItems, [mealOption]: updatedItems });
+      updateTotalPrice(updatedItems); // Update price after removing
     }
   };
 
@@ -128,12 +139,15 @@ const MealsList = () => {
           <div>
             Bangalore <span>&rarr;</span> Delhi
           </div>
-          <span>{getInputSelectedState()} <span>&rarr;</span> 4 items selected</span>
+          <span>
+            {getInputSelectedState()} <span>&rarr;</span>{" "}
+            {mealItems[mealOption].length} items selected
+          </span>
         </div>
         <div>
           {" "}
           <div>
-            <Text weight="semibold">₹350</Text>
+            <Text weight="semibold">₹{totalPrice}</Text>
           </div>
           <span>Added to fare</span>
         </div>
@@ -200,15 +214,15 @@ const MealsList = () => {
                   <TButton
                     type="ghost"
                     padding="5px 10px"
-                    icon={<PlusIcon />}
-                    onClick={() => handleAddDish(index)}
+                    icon={<MinusIcon />}
+                    onClick={() => handleRemoveDish(index)}
                   />
                   {item.quantity}
                   <TButton
                     type="ghost"
                     padding="5px 10px"
-                    icon={<MinusIcon />}
-                    onClick={() => handleRemoveDish(index)}
+                    icon={<PlusIcon />}
+                    onClick={() => handleAddDish(index)}
                   />
                 </>
               )}

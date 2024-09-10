@@ -11,7 +11,7 @@ import { User, UsersResponse } from "@/src/models/users.model";
 import AppHeader from "@/src/components/AppHeader";
 import AppBanner from "@/src/components/AppBanner";
 import AppFooter from "@/src/components/AppFooter";
-import FlightListingPage from "@/src/components/Flight-listing-card/FlightListingPage";
+import FlightListingPage from "../../components/Flight-listing-card/FlightListSearch";
 import FlightBannerCard from "@/src/components/Flight-listing-card/FlightListBanner/FlightListBanner";
 import Background from "../../assets/images/FooterRightImg.svg";
 

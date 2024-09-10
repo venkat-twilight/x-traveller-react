@@ -13,6 +13,7 @@ interface TButtonProps {
   onClick?: () => void;
   padding?: string;
   block?: boolean; // Add this prop
+  background?: string;
 }
 
 const TButton: React.FC<TButtonProps> = ({
@@ -23,6 +24,7 @@ const TButton: React.FC<TButtonProps> = ({
   type = "primary",
   padding = "10px 20px",
   block = false, // Default is not full-width
+  background = "linear-gradient(to right, #0087E1 0%, #174495 100%)",
 }) => {
   const router = useRouter();
 
@@ -39,9 +41,9 @@ const TButton: React.FC<TButtonProps> = ({
     cursor: "pointer",
     width: block ? "100%" : "auto", // Full-width if block is true
     ...(type === "primary" && {
-      background: "linear-gradient(to right, #0087E1 0%, #174495 100%)",
+      background: background,
       border: "none",
-      color: "white",
+      color: background === "white" ? "#0770E3" : background,
     }),
   };
 

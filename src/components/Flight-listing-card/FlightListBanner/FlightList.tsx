@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Panel, Button, Popover, Whisper } from "rsuite";
+import { Panel, Button, Popover, Whisper, Row, Col } from "rsuite";
 import "rsuite/dist/rsuite.min.css";
 import Image from "next/image";
 import ListBanner from "../../../assets/images/ListBanner.svg";
@@ -19,6 +19,13 @@ import SortUpIcon from "@rsuite/icons/SortUp";
 import SortDownIcon from "@rsuite/icons/SortDown";
 import { AutoComplete, InputGroup } from "rsuite";
 import SearchIcon from "@rsuite/icons/Search";
+import VisibleIcon from "../../../assets/icons/VisibleIcon.svg";
+import BarchartIcon from "../../../assets/icons/BarIcon.svg";
+import WeeklyFareSlider from "./WeeklyFareSlider";
+import Copyitienery from "../../../assets/icons/Copyitinery.svg";
+import Printitienery from "../../../assets/icons/Printitinery.svg";
+import Shareitienery from "../../../assets/icons/Share.svg";
+import OnestopIcon from "../../../assets/icons/Onestopicon.svg"
 
 const data = [
   "Eugenia",
@@ -46,6 +53,7 @@ interface PricingOption {
   code: string;
   seats: number;
   price: string;
+  netfare: string;
   breakdown: Breakdown;
 }
 interface Breakdown {
@@ -87,6 +95,7 @@ const flights: Flight[] = [
         code: "(PUIP)",
         seats: 2,
         price: "₹8,688",
+        netfare: "₹8,600",
         breakdown: {
           baseFare: "₹7,246",
           adultFare: "₹7,246",
@@ -101,6 +110,7 @@ const flights: Flight[] = [
         code: "(PUIP)",
         seats: 2,
         price: "₹8,688",
+        netfare: "₹8,600",
         breakdown: {
           baseFare: "₹7,246",
           adultFare: "₹7,246",
@@ -115,6 +125,7 @@ const flights: Flight[] = [
         code: "(PUIP)",
         seats: 2,
         price: "₹8,688",
+        netfare: "₹8,600",
         breakdown: {
           baseFare: "₹7,246",
           adultFare: "₹7,246",
@@ -129,6 +140,7 @@ const flights: Flight[] = [
         code: "(PUIP)",
         seats: 2,
         price: "₹8,688",
+        netfare: "₹8,600",
         breakdown: {
           baseFare: "₹7,246",
           adultFare: "₹7,246",
@@ -143,6 +155,7 @@ const flights: Flight[] = [
         code: "(PUIP)",
         seats: 2,
         price: "₹8,688",
+        netfare: "₹8,600",
         breakdown: {
           baseFare: "₹7,246",
           adultFare: "₹7,246",
@@ -160,7 +173,7 @@ const flights: Flight[] = [
     departure: "BLR 19:15",
     departureLocation: "Bengaluru International Airport, India",
     duration: "2hrs 50min",
-    durationDetails: "Non Stop",
+    durationDetails: "one Stop",
     arrival: "DEL 22:05",
     arrivalLocation: "Indira Gandhi International Airport, India",
     minprice: "₹8,680",
@@ -170,6 +183,7 @@ const flights: Flight[] = [
         code: "(PUIP)",
         seats: 2,
         price: "₹8,688",
+        netfare: "₹8,600",
         breakdown: {
           baseFare: "₹7,246",
           adultFare: "₹7,246",
@@ -184,6 +198,7 @@ const flights: Flight[] = [
         code: "(PUIP)",
         seats: 2,
         price: "₹8,688",
+        netfare: "₹8,600",
         breakdown: {
           baseFare: "₹7,246",
           adultFare: "₹7,246",
@@ -198,6 +213,7 @@ const flights: Flight[] = [
         code: "(PUIP)",
         seats: 2,
         price: "₹8,688",
+        netfare: "₹8,600",
         breakdown: {
           baseFare: "₹7,246",
           adultFare: "₹7,246",
@@ -212,6 +228,7 @@ const flights: Flight[] = [
         code: "(PUIP)",
         seats: 2,
         price: "₹8,688",
+        netfare: "₹8,600",
         breakdown: {
           baseFare: "₹7,246",
           adultFare: "₹7,246",
@@ -226,6 +243,7 @@ const flights: Flight[] = [
         code: "(PUIP)",
         seats: 2,
         price: "₹8,688",
+        netfare: "₹8,600",
         breakdown: {
           baseFare: "₹7,246",
           adultFare: "₹7,246",
@@ -253,6 +271,7 @@ const flights: Flight[] = [
         code: "(PUIP)",
         seats: 2,
         price: "₹8,688",
+        netfare: "₹8,600",
         breakdown: {
           baseFare: "₹7,246",
           adultFare: "₹7,246",
@@ -267,6 +286,7 @@ const flights: Flight[] = [
         code: "(PUIP)",
         seats: 2,
         price: "₹8,688",
+        netfare: "₹8,600",
         breakdown: {
           baseFare: "₹7,246",
           adultFare: "₹7,246",
@@ -281,6 +301,7 @@ const flights: Flight[] = [
         code: "(PUIP)",
         seats: 2,
         price: "₹8,688",
+        netfare: "₹8,600",
         breakdown: {
           baseFare: "₹7,246",
           adultFare: "₹7,246",
@@ -295,6 +316,7 @@ const flights: Flight[] = [
         code: "(PUIP)",
         seats: 2,
         price: "₹8,688",
+        netfare: "₹8,600",
         breakdown: {
           baseFare: "₹7,246",
           adultFare: "₹7,246",
@@ -309,6 +331,7 @@ const flights: Flight[] = [
         code: "(PUIP)",
         seats: 2,
         price: "₹8,688",
+        netfare: "₹8,600",
         breakdown: {
           baseFare: "₹7,246",
           adultFare: "₹7,246",
@@ -336,6 +359,7 @@ const flights: Flight[] = [
         code: "(PUIP)",
         seats: 2,
         price: "₹8,688",
+        netfare: "₹8,600",
         breakdown: {
           baseFare: "₹7,246",
           adultFare: "₹7,246",
@@ -350,6 +374,7 @@ const flights: Flight[] = [
         code: "(PUIP)",
         seats: 2,
         price: "₹8,688",
+        netfare: "₹8,600",
         breakdown: {
           baseFare: "₹7,246",
           adultFare: "₹7,246",
@@ -364,6 +389,7 @@ const flights: Flight[] = [
         code: "(PUIP)",
         seats: 2,
         price: "₹8,688",
+        netfare: "₹8,600",
         breakdown: {
           baseFare: "₹7,246",
           adultFare: "₹7,246",
@@ -378,6 +404,7 @@ const flights: Flight[] = [
         code: "(PUIP)",
         seats: 2,
         price: "₹8,688",
+        netfare: "₹8,600",
         breakdown: {
           baseFare: "₹7,246",
           adultFare: "₹7,246",
@@ -392,6 +419,7 @@ const flights: Flight[] = [
         code: "(PUIP)",
         seats: 2,
         price: "₹8,688",
+        netfare: "₹8,600",
         breakdown: {
           baseFare: "₹7,246",
           adultFare: "₹7,246",
@@ -419,6 +447,7 @@ const flights: Flight[] = [
         code: "(PUIP)",
         seats: 2,
         price: "₹8,688",
+        netfare: "₹8,600",
         breakdown: {
           baseFare: "₹7,246",
           adultFare: "₹7,246",
@@ -433,6 +462,7 @@ const flights: Flight[] = [
         code: "(PUIP)",
         seats: 2,
         price: "₹8,688",
+        netfare: "₹8,600",
         breakdown: {
           baseFare: "₹7,246",
           adultFare: "₹7,246",
@@ -447,6 +477,7 @@ const flights: Flight[] = [
         code: "(PUIP)",
         seats: 2,
         price: "₹8,688",
+        netfare: "₹8,600",
         breakdown: {
           baseFare: "₹7,246",
           adultFare: "₹7,246",
@@ -461,6 +492,8 @@ const flights: Flight[] = [
         code: "(PUIP)",
         seats: 2,
         price: "₹8,688",
+        netfare: "₹8,600",
+
         breakdown: {
           baseFare: "₹7,246",
           adultFare: "₹7,246",
@@ -475,6 +508,183 @@ const flights: Flight[] = [
         code: "(PUIP)",
         seats: 2,
         price: "₹8,688",
+        netfare: "₹8,600",
+        breakdown: {
+          baseFare: "₹7,246",
+          adultFare: "₹7,246",
+          taxAndCharges: "₹1,442",
+          userDevelopmentFee: "₹649",
+          k3Tax: "₹372",
+          airlineMisc: "₹421",
+        },
+      },
+    ],
+  },
+  {
+    icon: AirIndia,
+    airline: "Air India",
+    departure: "BLR 19:15",
+    departureLocation: "Bengaluru International Airport, India",
+    duration: "2hrs 50min",
+    durationDetails: "Non Stop",
+    arrival: "DEL 22:05",
+    arrivalLocation: "Indira Gandhi International Airport, India",
+    minprice: "₹8,688",
+    pricingOptions: [
+      {
+        fare: "PUBLISHED",
+        code: "(PUIP)",
+        seats: 2,
+        price: "₹8,688",
+        netfare: "₹8,600",
+        breakdown: {
+          baseFare: "₹7,246",
+          adultFare: "₹7,246",
+          taxAndCharges: "₹1,442",
+          userDevelopmentFee: "₹649",
+          k3Tax: "₹372",
+          airlineMisc: "₹421",
+        },
+      },
+      {
+        fare: "SPECIAL",
+        code: "(PUIP)",
+        seats: 2,
+        price: "₹8,688",
+        netfare: "₹8,600",
+        breakdown: {
+          baseFare: "₹7,246",
+          adultFare: "₹7,246",
+          taxAndCharges: "₹1,442",
+          userDevelopmentFee: "₹649",
+          k3Tax: "₹372",
+          airlineMisc: "₹421",
+        },
+      },
+      {
+        fare: "SME FARE",
+        code: "(PUIP)",
+        seats: 2,
+        price: "₹8,688",
+        netfare: "₹8,600",
+        breakdown: {
+          baseFare: "₹7,246",
+          adultFare: "₹7,246",
+          taxAndCharges: "₹1,442",
+          userDevelopmentFee: "₹649",
+          k3Tax: "₹372",
+          airlineMisc: "₹421",
+        },
+      },
+      {
+        fare: "SME FARE",
+        code: "(PUIP)",
+        seats: 2,
+        price: "₹8,688",
+        netfare: "₹8,600",
+        breakdown: {
+          baseFare: "₹7,246",
+          adultFare: "₹7,246",
+          taxAndCharges: "₹1,442",
+          userDevelopmentFee: "₹649",
+          k3Tax: "₹372",
+          airlineMisc: "₹421",
+        },
+      },
+      {
+        fare: "SME FARE",
+        code: "(PUIP)",
+        seats: 2,
+        price: "₹8,688",
+        netfare: "₹8,600",
+        breakdown: {
+          baseFare: "₹7,246",
+          adultFare: "₹7,246",
+          taxAndCharges: "₹1,442",
+          userDevelopmentFee: "₹649",
+          k3Tax: "₹372",
+          airlineMisc: "₹421",
+        },
+      },
+    ],
+  },
+  {
+    icon: Vistara,
+    airline: "Vistara",
+    departure: "BLR 19:15",
+    departureLocation: "Bengaluru International Airport, India",
+    duration: "2hrs 50min",
+    durationDetails: "Non Stop",
+    arrival: "DEL 22:05",
+    arrivalLocation: "Indira Gandhi International Airport, India",
+    minprice: "₹8,500",
+    pricingOptions: [
+      {
+        fare: "SAVER",
+        code: "(PUIP)",
+        seats: 2,
+        price: "₹8,688",
+        netfare: "₹8,600",
+        breakdown: {
+          baseFare: "₹7,246",
+          adultFare: "₹7,246",
+          taxAndCharges: "₹1,442",
+          userDevelopmentFee: "₹649",
+          k3Tax: "₹372",
+          airlineMisc: "₹421",
+        },
+      },
+      {
+        fare: "SME FARE",
+        code: "(PUIP)",
+        seats: 2,
+        price: "₹8,688",
+        netfare: "₹8,600",
+        breakdown: {
+          baseFare: "₹7,246",
+          adultFare: "₹7,246",
+          taxAndCharges: "₹1,442",
+          userDevelopmentFee: "₹649",
+          k3Tax: "₹372",
+          airlineMisc: "₹421",
+        },
+      },
+      {
+        fare: "SME FARE",
+        code: "(PUIP)",
+        seats: 2,
+        price: "₹8,688",
+        netfare: "₹8,600",
+        breakdown: {
+          baseFare: "₹7,246",
+          adultFare: "₹7,246",
+          taxAndCharges: "₹1,442",
+          userDevelopmentFee: "₹649",
+          k3Tax: "₹372",
+          airlineMisc: "₹421",
+        },
+      },
+      {
+        fare: "SME FARE",
+        code: "(PUIP)",
+        seats: 2,
+        price: "₹8,688",
+        netfare: "₹8,600",
+        breakdown: {
+          baseFare: "₹7,246",
+          adultFare: "₹7,246",
+          taxAndCharges: "₹1,442",
+          userDevelopmentFee: "₹649",
+          k3Tax: "₹372",
+          airlineMisc: "₹421",
+        },
+      },
+      {
+        fare: "SME FARE",
+        code: "(PUIP)",
+        seats: 2,
+        price: "₹8,688",
+        netfare: "₹8,600",
         breakdown: {
           baseFare: "₹7,246",
           adultFare: "₹7,246",
@@ -627,6 +837,15 @@ const FlightContent: React.FC = () => {
     direction: "ascending",
   });
   const [sortedFlights, setSortedFlights] = useState<Flight[]>(flights);
+  const [showFare, setshowFare] = useState<boolean>(false); // State with boolean type
+  const [showDate, setshowDate] = useState<boolean>(false);
+
+  const handleClick = () => {
+    setshowFare(!showFare); // Toggle visibility on click
+  };
+  const handleDateClick = () => {
+    setshowDate(!showDate); // Toggle visibility on click
+  };
 
   const sortFlights = (key: string) => {
     let direction = "ascending";
@@ -712,11 +931,31 @@ const FlightContent: React.FC = () => {
             <SearchIcon />
           </InputGroup.Button>
         </InputGroup>
-        <span style={{ color: "#9E9E9E", fontWeight: "600", fontSize: "14px" }}>
-          Showing {sortedFlights.length} Flights
-        </span>
+        <div
+          style={{
+            display: "flex",
+            backgroundColor: "white",
+            border: "1px solid white",
+            padding: "10px",
+            gap: "10px", // Add some space between the images
+            borderRadius: "5px",
+          }}
+        >
+          <Image
+            src={VisibleIcon}
+            alt="VisibleIcon"
+            width={24}
+            onClick={handleClick}
+          />
+          <Image
+            src={BarchartIcon}
+            alt="BarchartIcon"
+            width={17}
+            onClick={handleDateClick}
+          />
+        </div>
       </div>
-
+      <div>{showDate && <WeeklyFareSlider />}</div>
       <div
         className={styles.header}
         style={{
@@ -761,16 +1000,22 @@ const FlightContent: React.FC = () => {
       </div>
 
       {sortedFlights.map((flight, index) => (
-        <FlightCard key={index} flight={flight} index={index} />
+        <FlightCard
+          key={index}
+          flight={flight}
+          index={index}
+          showFare={showFare}
+        />
       ))}
     </div>
   );
 };
 
-const FlightCard: React.FC<{ flight: Flight; index: number }> = ({
-  flight,
-  index,
-}) => {
+const FlightCard: React.FC<{
+  flight: Flight;
+  index: number;
+  showFare: boolean;
+}> = ({ flight, index, showFare }) => {
   const [showPricingOptions, setShowPricingOptions] = useState(false);
 
   return (
@@ -779,6 +1024,7 @@ const FlightCard: React.FC<{ flight: Flight; index: number }> = ({
         className={styles.border}
         style={{ marginBottom: "10px", backgroundColor: "#fff" }}
       >
+        
         <div style={{ display: "flex" }}>
           <div style={{ flex: 1, padding: "10px", textAlign: "center" }}>
             <h5>
@@ -812,7 +1058,9 @@ const FlightCard: React.FC<{ flight: Flight; index: number }> = ({
               {flight.duration}
             </p>
             <p>
-              <Image src={stop} alt="rect" />
+              {flight.durationDetails === "Non Stop"?( <Image src={stop} alt="rect" />):( <Image src={OnestopIcon} alt="rect" />)}
+             
+             
             </p>
             <p style={{ color: "#9E9E9E", textAlign: "center" }}>
               {flight.durationDetails}
@@ -873,7 +1121,11 @@ const FlightCard: React.FC<{ flight: Flight; index: number }> = ({
         {showPricingOptions && (
           <Panel bordered style={{ backgroundColor: "#fbfbfb" }}>
             {flight.pricingOptions.map((option, optionIndex) => (
-              <PricingOptionRow key={optionIndex} option={option} />
+              <PricingOptionRow
+                key={optionIndex}
+                option={option}
+                showFare={showFare}
+              />
             ))}
           </Panel>
         )}
@@ -893,7 +1145,10 @@ const FlightCard: React.FC<{ flight: Flight; index: number }> = ({
   );
 };
 
-const PricingOptionRow: React.FC<{ option: PricingOption }> = ({ option }) => {
+const PricingOptionRow: React.FC<{
+  option: PricingOption;
+  showFare: boolean;
+}> = ({ option, showFare }) => {
   const [openModal, setOpenModal] = useState<boolean>(false);
 
   const handleOpen = () => setOpenModal(true);
@@ -977,10 +1232,30 @@ const PricingOptionRow: React.FC<{ option: PricingOption }> = ({ option }) => {
               />
             </Whisper>
           </p>
+          {showFare && <div>Net Fare: {option.netfare}</div>}
         </div>
-        <div style={{ flex: 1, textAlign: "center" }}>
+
+        <div style={{ flex: 1, textAlign: "center", position: "relative" }}>
+          {/* Button */}
           <TButton label="Book Now" link="/booking" />
+
+          {/* Hidden icons (initially) */}
+          <div className={styles.Copyitienery} >
+            <div style={{ flex: 1, flexDirection: "row" }}>
+              <div style={{ cursor: "pointer" }}>
+                <Image src={Copyitienery} alt="Copy Itinerary" />
+              </div>
+              <div style={{ cursor: "pointer" }}>
+                <Image src={Printitienery} alt="Print Itinerary" />
+              </div>
+              <div style={{ cursor: "pointer" }}>
+                <Image src={Shareitienery} alt="Share Itinerary" />
+              </div>
+            </div>
+          </div>
+        
         </div>
+    
       </div>
     </div>
   );

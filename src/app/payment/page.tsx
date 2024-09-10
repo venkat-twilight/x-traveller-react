@@ -23,9 +23,9 @@ export default async function Paymentconfirmation() {
 
   return (
     <div>
-      <AppHeader />
+      <AppHeader isLogedin={true} />
 
-      <FlightListingPage />
+      {/* <FlightListingPage /> */}
       <FlightPaymentDetails />
       <div
         className={styles.appFooter}

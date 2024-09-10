@@ -1,23 +1,6 @@
 "use client";
 import React from "react";
-import {
-  List,
-  Grid,
-  Row,
-  Col,
-  Heading,
-  Text,
-  Stack,
-  Panel,
-  Button,
-  ButtonGroup,
-  Placeholder,
-  IconButton,
-  Drawer,
-  RadioGroup,
-  Radio,
-  ButtonToolbar,
-} from "rsuite";
+import { Panel, RadioGroup, Radio } from "rsuite";
 import Image from "next/image";
 import FlightIcon from "../assets/images/Flight.svg";
 import FlightIconG from "../assets/images/FlightIconGrey.svg";

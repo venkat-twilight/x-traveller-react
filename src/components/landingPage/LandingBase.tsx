@@ -1,275 +1,289 @@
-/* eslint-disable @next/next/no-async-client-component */
 "use client";
 import React from "react";
-import { Heading, Row, Col, Grid, Text, Steps } from "rsuite";
+import { Heading, Row, Col, Grid, Text, Stack } from "rsuite";
 import styles from "@/src/app/page.module.css";
+import landingStyle from "@/src/assets/styles/landing.module.css";
+import Image from "next/image";
+import StepperHeader from "@/src/components/StepperHeader";
+
+// Import Icons and Images
 import TravelAgent from "@/src/assets/icons/TravelAgentCountIcon.svg";
 import Booking from "@/src/assets/icons/BookingCountIcon.svg";
 import Customer from "@/src/assets/icons/CustomerCountIcon.svg";
-import AgentsIcon from "@/src/assets/icons/AgentsIcon.svg";
 import CupIcon from "@/src/assets/icons/CupIcon.svg";
 import TimerIcon from "@/src/assets/icons/TimerIcon.svg";
 import Income from "@/src/assets/icons/IncomeIcon.svg";
 import Commission from "@/src/assets/icons/CommissionsIcon.svg";
+import AgentsIcon from "@/src/assets/icons/AgentsIcon.svg";
 import latestDeals from "@/src/assets/icons/LatestDeals.svg";
 import AdvantagesBanner from "@/src/assets/images/AdvantagesBanner.svg";
-import Image from "next/image";
-import StepperHeader from "@/src/components/StepperHeader";
+// import ConsolidatorBanner from "@/src/assets/images/ConsolidatorBanner.svg";
+import TButton from "../Common/TButton";
+
+// Stepper data
 const steperList = [
+  { title: "Select Flight" },
+  { title: "Addons" },
+  { title: "Seat Selection" },
+  { title: "Review and Confirm" },
+];
+
+const statsData = [
   {
-    title: "Select Flight",
+    src: Customer,
+    alt: "Customers Icon",
+    count: "1 Million+",
+    label: "Customers",
   },
   {
-    title: "Addons",
+    src: Booking,
+    alt: "Booking Count Icon",
+    count: "2 Million+",
+    label: "Bookings",
   },
   {
-    title: "Seat Selection",
-  },
-  {
-    title: "Review and Confirm",
+    src: TravelAgent,
+    alt: "Travel Agents Icon",
+    count: "1000+",
+    label: "Travel Agents",
   },
 ];
+
+const temp = [
+  {
+    icon: CupIcon,
+
+    background: "#FF5A5F",
+    text: "Years of business experience",
+  },
+  {
+    icon: TimerIcon,
+    background: "#3A6AAB",
+    text: "Agent support helpline",
+  },
+  {
+    icon: Income,
+    background: "#58BBFF",
+    text: "Get Awesome opportunities",
+  },
+  {
+    icon: Commission,
+    background: "#B58ED6",
+    text: "Earn good deals and commissions",
+  },
+  {
+    icon: AgentsIcon,
+    background: "#F88D02",
+    text: "Interactive exclusive portal",
+  },
+  {
+    icon: latestDeals,
+    background: "#50C878",
+    text: "Access to great deals",
+  },
+];
+
+const TravelAgentList = [
+  {
+    number: 1,
+    fontColor: "#564FFD",
+    color: "#FD6922",
+    text: "Fill in the join us form",
+  },
+  {
+    number: 2,
+    fontColor: "#E34444",
+    color: "#68B7FF",
+    text: "Send us your documents",
+  },
+  {
+    number: 3,
+    fontColor: "#50C878",
+    color: "#50C878",
+    text: "Receive your authorized license and start your travel business",
+  },
+];
+
+// Reusable IconBox component
+const IconBox = ({
+  icon,
+  background,
+  text,
+}: {
+  icon: string;
+  background: string;
+  text: string;
+}) => (
+  <div className={landingStyle.iconBox} style={{ background }}>
+    <div className={landingStyle.iconWrapper}>
+      <Image src={icon} alt={text} width={40} height={40} />
+    </div>
+    <Text size="md">{text}</Text>
+  </div>
+);
 
 const LandingBase: React.FC = () => {
   return (
     <>
-      <div
-        className={styles.container}
-        style={{
-          background: "#0770E3",
-          color: "#fff",
-          display: "flex",
-          justifyContent: "start",
-          padding: "10px",
-        }}
-      >
-        <div>
+      <header className={landingStyle.header}>
+        <div className={landingStyle.headerContent}>
           <Heading level={1}>Leading Travel Consolidator in India</Heading>
-          <Text
-            style={{
-              fontSize: "18px",
-              color: "#fff",
-            }}
-          >
+          <Text className={styles.headerText}>
             Welcome to our trusted B2B travel portal, where reliability meets
             innovation!
           </Text>
+          <TButton label="Register" background="white" link="/register"/>
         </div>
-      </div>{" "}
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-around",
-          alignItems: "center",
-          flexDirection: "row",
-          padding: "10px 0px",
-        }}
-      >
-        <div className={styles.main}>
-          <Image src={Customer} alt="TravelAgent" />
-          <Heading level={3}>1 Million+</Heading>
-          <Text size="md" muted>
-            customers
-          </Text>
-        </div>
-        <div className={styles.main}>
-          <Image src={Booking} alt="BookingCount" />
-          <Heading level={3}>2 Million+</Heading>
-          <Text size="md" muted>
-            Bookings
-          </Text>
-        </div>
-        <div className={styles.main}>
-          <Image src={TravelAgent} alt="TravelAgent" />
-          <Heading level={3}>1000+</Heading>
-          <Text size="md" muted>
-            Travel Agents
-          </Text>
-        </div>
-      </div>
-      <div
-        style={{
-          background: "#fff",
-          padding: "10px 0px",
-        }}
-      >
-        <Grid fluid>
-          <Row gutter={16}>
-            <Col xs={6}>
-              <div>
-                <Heading>
-                  Start your profitable business today with Best B2B Travel
-                  Portal in India
-                </Heading>
-              </div>
-              <div>
-                <Text size="md" muted>
-                  Travel website is one of India's foremost B2B travel portals,
-                  constantly evolving and adding value in business by giving
-                  it's distributors and agents the best technology,deals and a
-                  user-friendly platform to transact and achieve their own
-                  financial freedom
-                </Text>
-              </div>
+        {/* <div>
+          <Image src={ConsolidatorBanner} alt="ConsolidatorBanner" />
+        </div> */}
+      </header>
+
+      <section className={landingStyle.statsSection}>
+        {statsData.map((stat, index) => (
+          <div key={index} className={landingStyle.statItem}>
+            <Image src={stat.src} alt={stat.alt} width={60} height={60} />
+            <Heading level={3}>{stat.count}</Heading>
+            <Text size="md" muted>
+              {stat.label}
+            </Text>
+          </div>
+        ))}
+      </section>
+
+      <section className={landingStyle.businessSection}>
+        <Grid>
+          <Row className="show-grid">
+            <Col xs={12}>
+              <Heading level={2}>
+                Start your profitable business today with the Best B2B Travel
+                Portal in India
+              </Heading>
+              <Text size="md" muted>
+                Travel website is one of India&apos;s foremost B2B travel
+                portals, constantly evolving and adding value by providing
+                distributors and agents with the best technology, deals, and a
+                user-friendly platform to achieve financial freedom.
+              </Text>
             </Col>
+
             <Col xs={12}>
               <Grid>
-                <Row>
-                  <Col xs={12}>
-                    <div
-                      style={{
-                        background: "#FF5A5F",
-                        padding: "20px",
-                        display: "flex",
-                        width: "100%",
-                        flexDirection: "row",
-                        gap: "10px",
-                      }}
-                    >
-                      <div
-                        style={{
-                          background: "#fff",
-                          borderRadius: "10px",
-                          padding: "10px",
-                        }}
-                      >
-                        <Image src={CupIcon} alt="CupIcon" />
-                      </div>
-                      <Text size="md">Years of business experience</Text>
-                    </div>
-                  </Col>
-                  <Col xs={12}>
-                    <div
-                      style={{
-                        background: "#3A6AAB",
-                        padding: "20px",
-                        display: "flex",
-                        width: "100%",
-                        flexDirection: "row",
-                        gap: "10px",
-                      }}
-                    >
-                      <div
-                        style={{
-                          background: "#fff",
-                          borderRadius: "10px",
-                          padding: "10px",
-                        }}
-                      >
-                        <Image src={TimerIcon} alt="TimerIcon" />
-                      </div>
-                      <Text size="md">Agent support helpline</Text>
-                    </div>
-                  </Col>{" "}
-                  <Col xs={12}>
-                    <div
-                      style={{
-                        background: "#58BBFF",
-                        padding: "20px",
-                        display: "flex",
-                        width: "100%",
-                        flexDirection: "row",
-                        gap: "10px",
-                      }}
-                    >
-                      <div
-                        style={{
-                          background: "#fff",
-                          borderRadius: "10px",
-                          padding: "10px",
-                        }}
-                      >
-                        <Image src={Income} alt="Income" />
-                      </div>{" "}
-                      <Text size="md">Get Awesome oppturnities</Text>
-                    </div>
-                  </Col>
-                  <Col xs={12}>
-                    <div
-                      style={{
-                        background: "#B58ED6",
-                        padding: "20px",
-                        display: "flex",
-                        width: "100%",
-                        flexDirection: "row",
-                        gap: "10px",
-                      }}
-                    >
-                      <div
-                        style={{
-                          background: "#fff",
-                          borderRadius: "10px",
-                          padding: "10px",
-                        }}
-                      >
-                        <Image src={Commission} alt="Commission" />
-                      </div>{" "}
-                      <Text size="md">Earn good deals and commissions</Text>
-                    </div>
-                  </Col>{" "}
-                  <Col xs={12}>
-                    <div
-                      style={{
-                        background: "#F88D02",
-                        padding: "20px",
-                        display: "flex",
-                        flexDirection: "row",
-                        gap: "10px",
-                      }}
-                    >
-                      <div
-                        style={{
-                          background: "#fff",
-                          borderRadius: "10px",
-                          padding: "10px",
-                        }}
-                      >
-                        <Image src={AgentsIcon} alt="AgentsIcon" />
-                      </div>{" "}
-                      <Text size="md">Get Interactive exclusive portal</Text>
-                    </div>
-                  </Col>{" "}
-                  <Col xs={12}>
-                    <div
-                      style={{
-                        background: "#50C878",
-                        padding: "20px",
-                        display: "flex",
-                        width: "100%",
-                        flexDirection: "row",
-                        gap: "10px",
-                      }}
-                    >
-                      <div
-                        style={{
-                          background: "#fff",
-                          borderRadius: "10px",
-                          padding: "10px",
-                        }}
-                      >
-                        <Image src={latestDeals} alt="latestDeals" />
-                      </div>{" "}
-                      <Text size="md">Access to the great deals</Text>
-                    </div>
-                  </Col>
+                <Row gutter={16}>
+                  {temp.map((item, index) => (
+                    <Col key={index} xs={12}>
+                      <IconBox
+                        icon={item.icon}
+                        background={item.background}
+                        text={item.text}
+                      />
+                    </Col>
+                  ))}
                 </Row>
               </Grid>
             </Col>
           </Row>
         </Grid>
+      </section>
+
+      <section className={styles.processSection}>
+        <Stack
+          alignItems="center"
+          direction="column"
+          justifyContent="center"
+          style={{ height: "100%" }}
+        >
+          <Heading level={3}>How to become a Travel Agent?</Heading>
+          <Text size="md">
+            Follow these three simple steps and you are good to go!
+          </Text>
+        </Stack>
+        <Stack
+          alignItems="center"
+          direction="row"
+          justifyContent="center"
+          style={{ height: "100%", padding: "20px" }}
+        >
+          {TravelAgentList.map((step, index) => (
+            <div
+              key={index}
+              style={{
+                padding: "10px",
+                borderBottom: `6px solid ${step.color}`,
+              }}
+            >
+              <Stack
+                alignItems="center"
+                direction="row"
+                justifyContent="space-around"
+                spacing={15}
+                style={{ height: "100%", padding: "15px" }}
+              >
+                <div
+                  style={{
+                    padding: "10px",
+                    background: "#fff",
+                    borderRadius: "50%",
+                    width: "45px",
+                    height: "45px",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Text
+                    as="b"
+                    size="xl"
+                    style={{
+                      color: step.fontColor,
+                    }}
+                  >
+                    {step.number}
+                  </Text>
+                </div>
+                <Text
+                  style={{
+                    width: "250px",
+                  }}
+                  size="lg"
+                >
+                  {step.text}
+                </Text>
+                {TravelAgentList.length - 1 > index && (
+                  <Text size="lg"> {`---------->`}</Text>
+                )}
+              </Stack>
+            </div>
+          ))}
+        </Stack>
+      </section>
+
+      <section
+        className={styles.advantagesSection}
+        style={{
+          background: "#fff",
+          width: "100%",
+        }}
+      >
         <Grid fluid>
-          <Row className="show-grid">
+          <Row>
             <Col xs={12}>
-              <Image src={AdvantagesBanner} alt="AdvantagesBanner" />
+              <Image
+                src={AdvantagesBanner}
+                alt="Advantages Banner"
+                width={500}
+                height={400}
+              />
             </Col>
             <Col xs={12}>
               <Heading level={2}>Advantages of Travel Website</Heading>
               <StepperHeader step={0} list={steperList} />
             </Col>
-          </Row>{" "}
+          </Row>
         </Grid>
-      </div>
+      </section>
     </>
   );
 };
+
 export default LandingBase;

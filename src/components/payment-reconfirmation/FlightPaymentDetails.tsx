@@ -145,6 +145,7 @@ const Tabledata = {
 };
 
 export default function FlightPaymentDetails() {
+  const flightListUrl = "/flightlist";
   // const [formData, setFormData] = useState(() =>
   //   fields.reduce((acc, field) => {
   //     acc[field.name] = field.type === "checkbox" ? false : "";
@@ -176,44 +177,62 @@ export default function FlightPaymentDetails() {
               style={{
                 backgroundColor: "#FFFFFF",
                 borderRadius: "15px",
-                padding: "10px",
+                padding: "2px",
                 boxShadow: "0 3px 10px rgb(0 0 0 / 0.2)",
                 marginBottom: "20px", // Add margin-bottom to create a gap between the two panels
               }}
             >
-              <div style={{ display: "flex", justifyContent: "space-between" }}>
-                <div
-                  style={{
-                    borderLeft: "4px solid orange",
-                    padding: "10px",
-                  }}
-                >
-                  <div
+              <Grid fluid>
+                <Row gutter={16}>
+                  <Col xs={18}>
+                    <div
+                      style={{
+                        borderLeft: "4px solid orange",
+                        padding: "10px",
+                      }}
+                    >
+                      <div
+                        style={{
+                          fontSize: "12px",
+                          fontWeight: 500,
+                          color: "#222222",
+                        }}
+                      >
+                        Depart 14th July 2024
+                      </div>
+                      <div
+                        style={{
+                          fontSize: "14px",
+                          fontWeight: 700,
+                        }}
+                      >
+                        Bangalore (BLE) → New Delhi (DEL)
+                      </div>
+                      <div
+                        style={{
+                          color: "#9E9E9E",
+                          padding: "0px 0px 10px",
+                        }}
+                      >
+                        Non Stop | 02 hrs 50 min
+                      </div>
+                    </div>
+                  </Col>
+                  <Col
+                    xs={6}
                     style={{
-                      fontSize: "12px",
-                      fontWeight: 500,
-                      color: "#222222",
+                      display: "flex",
+                      justifyContent: "flex-end", // Align to the right
+                      alignItems: "center", // Vertically center
+                      marginTop: "30px", // Adjust this value to slightly move the button upwards
                     }}
                   >
-                    Depart 14th July 2024
-                  </div>
-                  <div
-                    style={{
-                      fontSize: "14px",
-                      fontWeight: 700,
-                    }}
-                  >
-                    Bangalore (BLE) → New Delhi (DEL)
-                  </div>
-                  <div style={{ color: "#9E9E9E", padding: "0px 0px 10px" }}>
-                    Non Stop | 02 hrs 50 min
-                  </div>
-                </div>
-                <div style={{ color: "blue", marginTop: "12px" }}>
-                  <h5>change flights</h5>
-                </div>
-              </div>
+                    <TButton label={"Change Flight"} link={flightListUrl} />
+                  </Col>
+                </Row>
+              </Grid>
             </Panel>
+
             <Row>
               <Col xs={18}>
                 <Panel

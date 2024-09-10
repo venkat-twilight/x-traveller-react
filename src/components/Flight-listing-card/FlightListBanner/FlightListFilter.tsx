@@ -39,7 +39,7 @@ const TTab: React.FC<TTabProps> = ({ TabNav }) => {
 
 type FilterOption = {
   value: string;
-  icon: string;
+  icon?: string;
   label: string;
   price?: number;
 };
@@ -109,15 +109,40 @@ const filters: Filter[] = [
       },
     ],
   },
+  {
+    type: "faretypes",
+    label: "Fare Types",
+    options: [
+      { value: "normalfare", label: "Normal Fare" },  // No icon needed
+      { value: "specialfare", label: "Special Fare" }, // No icon needed
+      { value: "branded", label: "Branded Fare" },     // No icon needed
+      { value: "published", label: "Published Fare" }, // No icon needed
+      { value: "corporate", label: "Corporate Fare" }, // No icon needed
+      { value: "others", label: "Others" },            // No icon needed
+    ],
+  },
+  {
+    type: "connectingairports",
+    label: "Connecting Airports",
+    options: [
+      { value: "Ahmedabad", label: "Ahmedabad" },  // No icon needed
+      { value: "Amritstar", label: "Amritstar" }, // No icon needed
+      { value: "bangalore", label: "Bangalore" },     // No icon needed
+      { value: "Chandigarh", label: "Chandigarh" }, // No icon needed
+     
+    ],
+  },
 ];
 
 const FilterPanel: React.FC = () => {
-  // Initialize state with "multiAirline" selected by default
+
   const [checkedOptions, setCheckedOptions] = useState<Map<string, string>>(
     new Map([
-      ["multiAirline", "airlines"], // Set "multiAirline" as checked by default
+      ["multiAirline", "airlines"], 
     ])
   );
+  const [checkedFareTypes, setCheckedFareTypes] = useState<string[]>([]);
+  const [checkedConnectingAirports, setCheckedConnectingAirports] = useState<string[]>([]);
 
   // Function to handle radio button changes
   const handleRadioChange = (type: string, value: string) => {
@@ -136,8 +161,22 @@ const FilterPanel: React.FC = () => {
       return newCheckedOptions;
     });
   };
+  const handleFareTypeChange = (value: string) => {
+    setCheckedFareTypes((prev) =>
+      prev.includes(value)
+        ? prev.filter((item) => item !== value) 
+        : [...prev, value] 
+    );
+  };
+  const handleConnectingAirportTypeChange = (value: string) => {
+    setCheckedFareTypes((prev) =>
+      prev.includes(value)
+        ? prev.filter((item) => item !== value) 
+        : [...prev, value] 
+    );
+  };
 
-  // Generate tab navigation items
+ 
   const tabNavItems: TabNavItem[] = filters
     .filter(
       (filter) =>
@@ -188,7 +227,9 @@ const FilterPanel: React.FC = () => {
             (filter) =>
               filter.type === "price" ||
               filter.type === "duration" ||
-              filter.type === "airlines"
+              filter.type === "airlines"||
+              filter.type === "faretypes"||
+              filter.type === "connectingairports"
           )
           .map((filter) => (
             <div key={filter.type} style={{ marginBottom: 16 }}>
@@ -220,7 +261,7 @@ const FilterPanel: React.FC = () => {
                     </span>
                   </div>
                 </div>
-              ) : filter.type === "airlines" ? (
+              ) : filter.type === "airlines"  ? (
                 filter.options?.map((option) => (
                   <div key={option.value} style={{ padding: "5px 0" }}>
                     <Checkbox
@@ -238,12 +279,13 @@ const FilterPanel: React.FC = () => {
                         }}
                       >
                         <div style={{ display: "flex", alignItems: "center" }}>
+                        {option.icon && (
                           <Image
                             src={option.icon}
                             alt={option.label}
                             width={20}
                             height={20}
-                          />
+                          />)}
                           <span style={{ marginLeft: "10px" }}>
                             {option.label}
                           </span>
@@ -253,7 +295,31 @@ const FilterPanel: React.FC = () => {
                     </Checkbox>
                   </div>
                 ))
-              ) : null}
+              ) : filter.type === "faretypes" ? (
+                filter.options?.map((option) => (
+                  <div key={option.value} style={{ padding: "5px 0" }}>
+                    <Checkbox
+                      checked={checkedFareTypes.includes(option.value)}
+                      onChange={() => handleFareTypeChange(option.value)}
+                      style={{ display: "block" }}
+                    >
+                      {option.label}
+                    </Checkbox>
+                  </div>
+                ))
+              ) : filter.type === "connectingairports" ? (
+                filter.options?.map((option) => (
+                  <div key={option.value} style={{ padding: "5px 0" }}>
+                    <Checkbox
+                      checked={checkedConnectingAirports.includes(option.value)}
+                      onChange={() => handleConnectingAirportTypeChange(option.value)}
+                      style={{ display: "block" }}
+                    >
+                      {option.label}
+                    </Checkbox>
+                  </div>
+                ))
+              ) :null}
             </div>
           ))}
       </div>

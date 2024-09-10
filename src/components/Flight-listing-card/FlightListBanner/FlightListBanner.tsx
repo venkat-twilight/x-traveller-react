@@ -1,18 +1,15 @@
 import React from "react";
-import FilterPanel from "./SideNav";
-import FlightContent from "./FlightContent";
-
-// interface HotelCardProps {
-//   backdrop: string;
-// }
+import FilterPanel from "./FlightListFilter";
+import FlightContent from "./FlightList";
 
 const FlightBannerCard: React.FC = () => {
   return (
-    <div style={{ width: "100%" }}>
+    <div>
       <div
         style={{
-          // padding: "40px 0px",
-          display: "flex",
+          display: "grid",
+          gridTemplateColumns: "3fr 1fr", // Adjust the column widths (3:1 ratio for content and filter panel)
+          gap: "20px", // Gap between FlightContent and FilterPanel
           width: "70%",
           margin: "auto",
         }}

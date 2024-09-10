@@ -283,7 +283,7 @@ const BookingBase: React.FC = () => {
                   >
                     <Grid fluid>
                       <Row gutter={16}>
-                        <Col xs={6}>
+                        <Col xs={18}>
                           <div
                             style={{
                               borderLeft: "4px solid orange",
@@ -317,13 +317,19 @@ const BookingBase: React.FC = () => {
                             </div>
                           </div>
                         </Col>
-                        <Col xs={6} xsPush={14}>
-                          <div>
-                            <TButton
-                              label={"Change Flight"}
-                              link={flightListUrl}
-                            />
-                          </div>
+                        <Col
+                          xs={6}
+                          style={{
+                            display: "flex",
+                            justifyContent: "flex-end", // Align to the right
+                            alignItems: "center", // Vertically center
+                            marginTop: "30px", // Adjust this value to slightly move the button upwards
+                          }}
+                        >
+                          <TButton
+                            label={"Change Flight"}
+                            link={flightListUrl}
+                          />
                         </Col>
                       </Row>
                     </Grid>
