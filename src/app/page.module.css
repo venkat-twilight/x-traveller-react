@@ -108,14 +108,15 @@
 .logo {
   position: relative;
 }
-.appFooter{
+.appFooter {
   display: flex;
   justify-content: center;
-  background-color: #F5F6FB;
-   /* Replace with the actual path to your image */
+  background-color: #f5f6fb;
+  /* Replace with the actual path to your image */
+  background: "src/assets/images/FooterRightImg.svg";
   background-position: right bottom;
   background-repeat: no-repeat;
-  background-size: contain; 
+  background-size: contain;
 }
 
 /* Enable hover only on non-touch devices */

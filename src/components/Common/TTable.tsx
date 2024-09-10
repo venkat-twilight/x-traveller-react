@@ -1,7 +1,5 @@
+import Image from "next/image";
 import React from "react";
-import { Table } from "rsuite";
-
-const { Column, HeaderCell, Cell } = Table;
 
 interface DataItem {
   [key: string]: string;
@@ -10,54 +8,81 @@ interface DataItem {
 interface DataTableProps {
   data: DataItem[];
   headers: string[];
+  icons?: { [key: string]: string };
 }
 
-const TTable: React.FC<DataTableProps> = ({ data, headers }) => {
+const TTable: React.FC<DataTableProps> = ({ data, headers, icons }) => {
   return (
-    <div style={{ marginTop: "20px" }}>
-      <Table
-        data={data}
-        autoHeight
+    <div
+      style={{ marginTop: "20px", borderRadius: "10px", overflow: "hidden" }}
+    >
+      {/* Header Row */}
+      <div
         style={{
-          borderRadius: "10px",
-          transition: "transform 0.3s ease-in-out",
-          overflow: "hidden",
+          display: "flex",
+          backgroundColor: "#F6F6FB",
+          borderBottom: "2px solid #e5e5e5",
 
-          backgroundColor: "#b8b8b8",
+          fontWeight: "bold",
+          borderRadius: "10px",
+          marginBottom: "10px",
         }}
       >
         {headers.map((header, index) => (
-          <Column key={index} flexGrow={1} align="center">
-            <HeaderCell
+          <div
+            key={index}
+            style={{
+              flex: 1,
+              textAlign: "center",
+
+              padding: "10px",
+            }}
+          >
+            {header}
+          </div>
+        ))}
+      </div>
+
+      {/* Data Rows */}
+      {data.map((row, rowIndex) => (
+        <div
+          key={rowIndex}
+          style={{
+            display: "flex",
+            border: "1px solid #e5e5e5",
+            borderRadius: rowIndex === 0 ? "10px " : "0",
+            marginBottom: "5px",
+            backgroundColor:"#fff"
+          }}
+        >
+          {headers.map((header, colIndex) => (
+            <div
+              key={colIndex}
               style={{
-                backgroundColor: "#D9D9D9",
-                borderRadius:
-                  index === 0
-                    ? "10px 0 0 10px"
-                    : index === headers.length - 1
-                    ? "0 10px 10px 0"
-                    : "0",
-                padding: "10px",
+                flex: 1,
                 textAlign: "center",
-                fontWeight: "bold",
+                padding: "10px",
+                borderRadius: rowIndex === 0 ? "10px" : "0",
+                borderBottom: "none",
               }}
             >
-              {header}
-            </HeaderCell>
-            <Cell
-              dataKey={header.toLowerCase().replace(/\s+/g, "")}
-              style={{
-                borderRadius:
-                  index === 0
-                    ? "10px 0 0 10px"
-                    : index === headers.length - 1
-                    ? "0 10px 10px 0"
-                    : "0",
-              }}
-            />
-          </Column>
-        ))}
-      </Table>
+              {icons && icons[header] && (
+                <Image
+                  src={icons[header]}
+                  alt=""
+                  style={{
+                    width: "20px",
+                    height: "20px",
+                    marginRight: "5px",
+                    verticalAlign: "middle",
+                  }}
+                />
+              )}
+              {row[header.toLowerCase().replace(/\s+/g, "")]}
+            </div>
+          ))}
+        </div>
+      ))}
     </div>
   );
 };

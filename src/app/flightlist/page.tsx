@@ -2,7 +2,7 @@
 "use client";
 
 import React from "react";
-import styles from "../page.module.css";
+import styles from "@/src/app/page.module.css";
 import { List, Grid, Row, Col, Heading, Text, Stack } from "rsuite";
 import Image from "next/image";
 import GearIcon from "@rsuite/icons/Gear";
@@ -11,8 +11,9 @@ import { User, UsersResponse } from "@/src/models/users.model";
 import AppHeader from "@/src/components/AppHeader";
 import AppBanner from "@/src/components/AppBanner";
 import AppFooter from "@/src/components/AppFooter";
-import FlightListingPage from "@/src/components/Flight-listing-card/FlightListingPage";
+import FlightListingPage from "../../components/Flight-listing-card/FlightListSearch";
 import FlightBannerCard from "@/src/components/Flight-listing-card/FlightListBanner/FlightListBanner";
+import Background from "../../assets/images/FooterRightImg.svg";
 
 async function fetchData() {
   const res = await fetch(`${process.env.API_URL}/api/users?page=2`);
@@ -25,11 +26,21 @@ export default async function FlightList() {
 
   return (
     <div>
-      <AppHeader />
-      
+      <AppHeader isLogedin={true} />
+
       <FlightListingPage />
       <FlightBannerCard />
-      <AppFooter />
+      <div
+        className={styles.appFooter}
+        style={{
+          backgroundImage: `url(${Background.src})`,
+          backgroundPosition: "right bottom",
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "contain",
+        }}
+      >
+        <AppFooter />
+      </div>
       {/* <div className={styles.appFooter}>
         <AppFooter />
       </div> */}

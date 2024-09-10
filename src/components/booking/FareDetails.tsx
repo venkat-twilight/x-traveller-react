@@ -18,7 +18,7 @@ const FareDetailsPanel: React.FC<FareDetailsProps> = ({ list, Total }) => {
   return (
     <Panel
       bordered
-      style={{ borderRadius: "14px", border: "1px solid lightgrey" }}
+      style={{ borderRadius: "14px", border: "1px solid lightgrey",background:"#fff" }}
     >
       <div style={headerStyle}>Fare Details</div>
       <div className={styles.FareList}>
@@ -97,7 +97,7 @@ const rowAmtStyle: React.CSSProperties = {
   display: "flex",
   justifyContent: "space-between",
   alignItems: "center",
-  padding: "11px 3px 10px",
+  padding: "8px 3px 5px",
   width: "100%",
   boxSizing: "border-box",
   margin: 0, // Ensure no margin between rows

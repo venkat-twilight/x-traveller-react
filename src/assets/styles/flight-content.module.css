@@ -16,3 +16,20 @@
   font-size: 18px;
   background-color: "#f2f4f5";
 }
+
+/* Initially hide the icon container */
+.Copyitienery {
+  position: absolute;
+  top: 50%; /* Align vertically to the button */
+  left: 95%; /* Place it next to the button on the right */
+  transform: translateY(-50%); /* Center vertically */
+  display: none; /* Hidden by default */
+}
+
+div:hover > .Copyitienery {
+  display: flex;
+  
+}
+
+
+

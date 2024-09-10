@@ -116,6 +116,7 @@ const Card: React.FC<CardProps> = ({
       boxShadow: "0px 18.63px 53.13px 0px #00000017",
       transition: "transform 0.3s ease-in-out",
       borderRadius: "18px",
+      background:"#fff"
     }}
   >
     <div style={{ flex: "1 1 auto", position: "relative", height: "200px" }}>

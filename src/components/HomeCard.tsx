@@ -1,41 +1,19 @@
+"use client";
 import React from "react";
-import {
-  List,
-  Grid,
-  Row,
-  Col,
-  Heading,
-  Text,
-  Stack,
-  Panel,
-  Button,
-  ButtonGroup,
-  Placeholder,
-  IconButton,
-  Drawer,
-  RadioGroup,
-  Radio,
-  ButtonToolbar,
-} from "rsuite";
+import { Panel, RadioGroup, Radio } from "rsuite";
 import Image from "next/image";
 import FlightIcon from "../assets/images/Flight.svg";
-import FlightIconG from "../assets/images/FlightIconG.svg";
+import FlightIconG from "../assets/images/FlightIconGrey.svg";
 import HotelIcon from "../assets/images/Hotel.svg";
-import HotelIconB from "../assets/images/HomeiconB.svg";
+import HotelIconB from "../assets/images/HomeIconBlue.svg";
 import CabsIconB from "../assets/images/Cabs.svg";
-import CabsIcon from "../assets/images/CabIconB.svg";
+import CabsIcon from "../assets/images/CabIconBlue.svg";
 import TrainIcon from "../assets/images/Train.svg";
-import TrainIconB from "../assets/images/TrainiconB.svg";
+import TrainIconB from "../assets/images/TrainIconBlue.svg";
 import BusIcon from "../assets/images/Bus.svg";
-import BusIconB from "../assets/images/BusiconB.svg";
-import HolidayIcon from "../assets/images/Holidayicon.svg";
-import HolidayIconB from "../assets/images/HolidayiconB.svg";
-import { SelectPicker } from "rsuite";
-import MemberIcon from "@rsuite/icons/Member";
-import { AutoComplete } from "rsuite";
-import { Input, InputGroup } from "rsuite";
-import Twowayicon from "../assets/images/Twoway.svg";
-import styles from "../assets/styles/AutoComplete.module.css";
+import BusIconB from "../assets/images/BusIconBlue.svg";
+import HolidayIcon from "../assets/images/HolidayIcon.svg";
+import HolidayIconB from "../assets/images/HolidayIconBlue.svg";
 import FlightCard from "./landing-page-card/Flights/FlightCard";
 import Card from "../components/landing-page-card/Card";
 
@@ -174,7 +152,7 @@ const HomeCard = () => {
           overflow: "visible",
           color: "lightgrey",
           padding: "0",
-          height: backdrop === "Flight" ? "auto" : "301px",
+          height: backdrop === "Flight" ? "auto" : "364px",
         }}
       >
         {renderCard()}
