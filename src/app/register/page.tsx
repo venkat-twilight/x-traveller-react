@@ -7,9 +7,7 @@ import { User, UsersResponse } from "@/src/models/users.model";
 import AppHeader from "@/src/components/AppHeader";
 import AppBanner from "@/src/components/AppBanner";
 import AppFooter from "@/src/components/AppFooter";
-import FlightListingPage from "@/src/components/Flight-listing-card/FlightListingPage";
-import FlightBannerCard from "@/src/components/Flight-listing-card/FlightListBanner/FlightListBanner";
-import FlightPaymentDetails from "@/src/components/payment-reconfirmation/FlightPaymentDetails";
+
 import Background from "../../assets/images/FooterRightImg.svg";
 import RegisterBase from "@/src/components/register/RegisterBase";
 

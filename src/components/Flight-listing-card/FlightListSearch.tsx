@@ -222,7 +222,7 @@ const options: Option[] = [
 const ways = ["One-way", "Two-way", "Multi-City"];
 const today = new Date();
 
-const FlightListingPage: React.FC = () => {
+const FlightListSearch: React.FC = () => {
   const [activeKey, setActiveKey] = React.useState("null");
   const [isFocused, setIsFocused] = React.useState(false);
   const [open, setOpen] = React.useState(false);
@@ -694,4 +694,4 @@ const FlightListingPage: React.FC = () => {
   );
 };
 
-export default FlightListingPage;
+export default FlightListSearch;
