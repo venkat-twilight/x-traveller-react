@@ -572,7 +572,7 @@ const FlightListSearch: React.FC = () => {
             </div>
           </div>
         </Col>
-        <Col md={5} style={{ marginTop: "20px" }}>
+        <Col md={4} style={{ marginTop: "20px" }}>
           <FlightListDropdown />
         </Col>
       </Row>
