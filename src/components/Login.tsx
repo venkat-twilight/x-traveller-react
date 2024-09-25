@@ -36,11 +36,11 @@ const Login = forwardRef<LoginRef>(({}, ref) => {
 
   const [forgotpwd, setForgotpwd] = useState(false);
 
-  useEffect(() => {
-    if (auth.isAuthenticated) {
-      router.push(HOME);
-    }
-  }, [auth, router]);
+  // useEffect(() => {
+  //   if (auth.isAuthenticated) {
+  //   router.push(HOME);
+  //   }
+  // }, [auth, router]);
 
   // useImperativeHandle to expose methods to the parent component
   useImperativeHandle(ref, () => ({
@@ -86,7 +86,8 @@ const Login = forwardRef<LoginRef>(({}, ref) => {
     const passwordError = validateField("password", formValues.password);
 
     if (!emailError && !passwordError) {
-      dispatch(login(formValues) as any);
+      //dispatch(login(formValues) as any);
+      router.push(HOME);
       handleModalClose();
     } else {
       setValidationErrors({

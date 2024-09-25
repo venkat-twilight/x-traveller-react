@@ -15,11 +15,11 @@ const ClientAuth: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 
   const auth = useSelector((state: any) => state.auth);
 
-  useEffect(() => {
-    if (!auth.isAuthenticated) {
-      router.push("/");
-    }
-  }, [auth]);
+  // useEffect(() => {
+  //   if (!auth.isAuthenticated) {
+  //     router.push("/");
+  //   }
+  // }, [auth]);
 
   return (
     <>
