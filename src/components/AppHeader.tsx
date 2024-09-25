@@ -43,8 +43,9 @@ const AppHeader: React.FC = () => {
     (state: any) => state.auth.token
   );
 
+ 
   const handleLogOut = () => {
-    dispatch(handleLogout(authToken));
+   handleLogout(dispatch, authToken); // Call handleLogout with dispatch
   };
 
   return (
