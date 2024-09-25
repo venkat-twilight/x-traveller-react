@@ -13,6 +13,8 @@ import { fetchCityListData } from "@/src/serves/city.api";
 import { cityItemProps } from "@/src/models/city.model";
 import { debounce } from "lodash"; // Adding lodash for debounce
 
+
+
 const RegisterForm = () => {
   const dispatch: AppDispatch = useDispatch();
   const router = useRouter();
@@ -211,7 +213,7 @@ const transformStateData = (data: { id?: number; state: string }[]) => {
     ?.filter((item) => item.id !== undefined)
     .map((item) => ({
       label: item.state,
-      value: item.id,
+      value: item.id ?? 0, 
     }));
 };
 
@@ -220,6 +222,6 @@ const transformCityData = (data: cityItemProps[]) => {
     ?.filter((item) => item.state_id !== undefined)
     .map((item) => ({
       label: item.city,
-      value: item.state_id,
+      value: item.state_id ?? 0, 
     }));
 };
