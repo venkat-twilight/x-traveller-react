@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { Checkbox, SelectPicker } from "rsuite";
 import { AutoComplete } from "rsuite";
@@ -105,6 +106,17 @@ const options: Option[] = [
     airport: "John F. Kennedy International Airport",
     address: "Jamaica, NY 11430, USA",
   },
+
+  // {
+  //     "id": 935,
+  //     "code": "YKF",
+  //     "airportname": "Kitchener Waterloo Regional",
+  //     "citycode": "YKF",
+  //     "city": "Kitchener",
+  //     "countrycode": "CA",
+  //     "country": "Canada",
+  //     "country_flag": "ca.svg"
+  // },
   {
     label: "Canada",
     value: "Canada",
@@ -252,17 +264,66 @@ const FlightCard: React.FC<CardProps> = () => {
   );
   const [departureDate, setDepartureDate] = React.useState<Date | null>(today);
   const [arrivalDate, setArrivalDate] = React.useState<Date | null>(null);
+
+  const [tripData, setTripData] = React.useState({
+    tripDetails: {
+      routeInfo: [
+        {
+          source: {
+            city: "chennai",
+            airportCode: "MAA",
+          },
+          destination: {
+            city: "mumbai",
+            airportCode: "BOM",
+          },
+          date: "2024-09-05",
+        },
+      ],
+      cabinClass: "economy",
+      mode: "oneway",
+      isDomesticTrip: 1,
+    },
+    passengerDetails: {
+      adult: 2,
+      child: 0,
+      infant: 0,
+    },
+    searchParams: {
+      isDirectFlight: 1,
+      isConnectingFlight: 1,
+    },
+  });
+  const [fromValue, setFromValue] = React.useState<string | null>(null);
+  const [toValue, setToValue] = React.useState<string | null>(null);
   const [departurePickerOpen, setDeparturePickerOpen] = React.useState(false);
   const [arrivalPickerOpen, setArrivalPickerOpen] = React.useState(false);
 
-  const [fromValue, setFromValue] = React.useState<string | null>(null);
-  const [toValue, setToValue] = React.useState<string | null>(null);
+  // const setFromValue = (value: string) => {
+  //   setTripData(prevData => ({
+  //     ...prevData,
+  //     tripDetails: {
+  //       ...prevData.tripDetails,
+  //       routeInfo: prevData.tripDetails.routeInfo.map(route => ({
+  //         ...route,
+  //         source: {
+  //           ...route.source,
+  //           city: value // Adjust accordingly
+  //         }
+  //       }))
+  //     }
+  //   }));
+  // };
 
   const adjustedFromValue: string | undefined =
     fromValue === null ? undefined : fromValue;
 
   const adjustedToValue: string | undefined =
     toValue === null ? undefined : toValue;
+
+  // const adjustedFromValue = tripData.tripDetails.routeInfo[0].source.city;
+  // const adjustedToValue = tripData.tripDetails.routeInfo[0].destination.city;
+  // const departureDate = new Date(tripData.tripDetails.routeInfo[0].date);
 
   const handleSwap = () => {
     setFromValue(toValue);
@@ -283,6 +344,7 @@ const FlightCard: React.FC<CardProps> = () => {
     if (!date || !departureDate) return false;
     return date < departureDate;
   };
+
   //   const handleChange = (value: string | null) => {
   //     setSelectedValue(value);
 
@@ -370,7 +432,48 @@ const FlightCard: React.FC<CardProps> = () => {
                     placeholder="Select a location"
                     renderMenuItem={renderMenuItem}
                     value={adjustedFromValue}
-                    onChange={setFromValue}
+                    onChange={(e) => {
+                      const selectedOption: any = options.find(
+                        (option) => option.value === e
+                      );
+                      setFromValue(e);
+                      // selectedOption &&
+                      //   setTripData((prevData: any) => {
+                      //     let temp = [
+                      //       {
+                      //         source: {
+                      //           city: selectedOption.city,
+                      //           airportCode: selectedOption.airport,
+                      //         },
+                      //       },
+                      //     ];
+                      //     return {
+                      //       ...prevData,
+                      //       tripDetails: {
+                      //         ...prevData.tripDetails,
+                      //         routeInfo: [
+                      //           ...prevData.tripDetails.routeInfo,
+                      //           ...temp,
+                      //         ],
+                      //       },
+                      //     };
+                      //   });
+                      setTripData((prevData) => ({
+                        ...prevData,
+                        tripDetails: {
+                          ...prevData.tripDetails,
+                          routeInfo: prevData.tripDetails.routeInfo.map(
+                            (route) => ({
+                              ...route,
+                              source: {
+                                ...route.source,
+                                city: selectedOption, // Adjust accordingly
+                              },
+                            })
+                          ),
+                        },
+                      }));
+                    }}
                   />
                 </InputGroup>
               </div>

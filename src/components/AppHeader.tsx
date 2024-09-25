@@ -1,52 +1,20 @@
 "use client";
-import React, { useState } from "react";
-import {
-  Navbar,
-  Nav,
-  Button,
-  Dropdown,
-  IconButtonProps,
-  InputGroup,
-  Input,
-  Avatar,
-} from "rsuite";
+import React, { useRef, useState } from "react";
+import { Navbar, Nav, Dropdown, Avatar, Tag } from "rsuite";
 import Image from "next/image";
 import IconButton from "rsuite/IconButton";
 import MoreIcon from "../assets/images/Trippledot.svg";
-import Logo from "../assets/images/Logo.svg";
+import Logo from "../assets/images/Logos.svg";
 import styles from "../assets/styles/home.module.css";
-import Profile from "../assets/images/Profile.svg";
-import PageIcon from "@rsuite/icons/Page";
-import FolderFillIcon from "@rsuite/icons/FolderFill";
+import { handleLogout } from "../serves/login.api";
 import DetailIcon from "@rsuite/icons/Detail";
-import FileDownloadIcon from "@rsuite/icons/FileDownload";
 import Login from "./Login";
 import TButton from "./Common/TButton";
-import { TagGroup, Tag } from "rsuite";
+import { useSelector, useDispatch } from "react-redux";
+import { useRouter } from "next/navigation"; // Correct import for Next.js router
+import { HOME } from "../utils/constant";
 
-interface AppHeaderProps {
-  isLogedin: boolean;
-}
-
-// Define Password component
-const Password = React.forwardRef<HTMLDivElement, any>((props, ref) => {
-  const [visible, setVisible] = React.useState<boolean>(false);
-
-  return (
-    <InputGroup inside ref={ref} {...props}>
-      <Input type={visible ? "text" : "password"} />
-    </InputGroup>
-  );
-});
-
-// Assign displayName to Password component to avoid the ESLint warning
-Password.displayName = "PasswordInput";
-
-// Render icon button for the dropdown
-const renderIconButton = (
-  props: IconButtonProps,
-  ref: React.Ref<HTMLButtonElement>
-) => {
+const renderIconButton = (props: any, ref: React.Ref<HTMLButtonElement>) => {
   return (
     <IconButton
       {...props}
@@ -59,31 +27,24 @@ const renderIconButton = (
 };
 
 const loginMenu = [
-  {
-    label: "Get Started",
-    eventKey: "getstarted",
-  },
-  { eventKey: "Sub users", label: "subusers" },
-
-  {
-    label: "Careers",
-    eventKey: "careers",
-  },
-  {
-    label: "Contact us",
-    eventKey: "contactus",
-  },
+  { label: "Get Started", eventKey: "getstarted" },
+  { eventKey: "subusers", label: "Sub users" },
+  { label: "Careers", eventKey: "careers" },
+  { label: "Contact us", eventKey: "contactus" },
 ];
 
-const AppHeader: React.FC<AppHeaderProps> = ({ isLogedin }) => {
-  const [open, setOpen] = useState(false); // State to control modal visibility
+const AppHeader: React.FC = () => {
+  const dispatch = useDispatch();
+  const router = useRouter();
+  const loginRef = useRef<any>(null); // Create a ref for Login component
+  const user = useSelector((state: any) => state.auth.data?.user_data);
+  const isLogedin = useSelector((state: any) => state.auth.isAuthenticated);
+  const authToken: string | null = useSelector(
+    (state: any) => state.auth.token
+  );
 
-  const handleModalOpen = () => {
-    setOpen(true);
-  };
-
-  const handleModalClose = () => {
-    setOpen(false);
+  const handleLogOut = () => {
+    dispatch(handleLogout(authToken));
   };
 
   return (
@@ -91,10 +52,11 @@ const AppHeader: React.FC<AppHeaderProps> = ({ isLogedin }) => {
       <Navbar id="mmain">
         <div className={styles.navbar_container}>
           <Nav style={{ flex: 1, cursor: "pointer" }}>
-            <a href="/home">
+            <a href={HOME}>
               <Image src={Logo} alt="Logo" />
             </a>
           </Nav>
+
           {!isLogedin && (
             <Nav style={{ cursor: "pointer" }}>
               {loginMenu.map((item) => (
@@ -104,7 +66,6 @@ const AppHeader: React.FC<AppHeaderProps> = ({ isLogedin }) => {
               ))}
             </Nav>
           )}
-
           {!isLogedin ? (
             <Nav
               style={{
@@ -113,20 +74,19 @@ const AppHeader: React.FC<AppHeaderProps> = ({ isLogedin }) => {
                 cursor: "pointer",
               }}
             >
-              <TButton label="Login" type="primary" onClick={handleModalOpen} />
+              <TButton
+                label="Login"
+                type="primary"
+                onClick={() => {
+                  loginRef.current.openModal();
+                }}
+              />
             </Nav>
           ) : (
             <>
-              <Nav style={{ flex: 1, cursor: "pointer" }}>
-                <Nav.Item eventKey="1">Dashboard</Nav.Item>
-                <Nav.Item eventKey="2">MyBookings</Nav.Item>
-                <Nav.Item eventKey="3">Accounts</Nav.Item>
-                <Nav.Item eventKey="4">Recharge</Nav.Item>
-                <Nav.Item eventKey="5">Sales</Nav.Item>
-              </Nav>
               <Nav style={{ cursor: "pointer", marginRight: "10px" }}>
                 <Tag size="lg" color="blue">
-                  MyBalance : $45000
+                  MyBalance : {user.balance ? user.balance : "$45000"}
                 </Tag>
               </Nav>
               <Nav>
@@ -138,31 +98,23 @@ const AppHeader: React.FC<AppHeaderProps> = ({ isLogedin }) => {
                     marginLeft: "10px",
                   }}
                 >
-                  <Avatar src={Profile.src} circle />
-                  <span style={{ marginLeft: "10px" }}>Johnson</span>
+                  <Avatar src={user.Profile ? user.Profile : null} circle />
+                  <span style={{ marginLeft: "10px" }}>
+                    {user ? user.first_name + " " + user.last_name : "Guest"}
+                  </span>
                   <div id="icon-dropdown">
                     <Dropdown
                       renderToggle={renderIconButton}
                       placement="bottomEnd"
                     >
-                      {/* <Dropdown.Item icon={<PageIcon />}>
-                        Dashboard
-                      </Dropdown.Item>
-                      <Dropdown.Item icon={<FolderFillIcon />}>
-                        My Bookings
-                      </Dropdown.Item>
-                      <Dropdown.Item icon={<FileDownloadIcon />}>
-                        Accounts
-                      </Dropdown.Item>
-                      <Dropdown.Item icon={<DetailIcon />}>
-                        Recharge
-                      </Dropdown.Item>
-                      <Dropdown.Item icon={<DetailIcon />}>Sales</Dropdown.Item> */}
                       <Dropdown.Item icon={<DetailIcon />}>
                         My profile
                       </Dropdown.Item>
-                      <Dropdown.Item icon={<DetailIcon />}>
-                        <TButton label="Log out" type="link" link="/" />
+                      <Dropdown.Item
+                        icon={<DetailIcon />}
+                        onClick={handleLogOut}
+                      >
+                        Log out
                       </Dropdown.Item>
                     </Dropdown>
                   </div>
@@ -172,8 +124,8 @@ const AppHeader: React.FC<AppHeaderProps> = ({ isLogedin }) => {
           )}
         </div>
       </Navbar>
-      {/* Modal Component */}
-      <Login open={open} onClose={handleModalClose} />
+
+      <Login ref={loginRef} />
     </>
   );
 };

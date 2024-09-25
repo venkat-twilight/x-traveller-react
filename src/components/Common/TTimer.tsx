@@ -1,11 +1,5 @@
-import { ArowBack } from "@rsuite/icons";
+import { TimerProps } from "@/src/models/common.model";
 import React from "react";
-
-interface TimerProps {
-  seconds?: number; // Optional prop for the initial time in seconds
-  fontColor?: string; // Optional prop for the font color of non-zero values
-  timeInSec?: number; // Optional prop for setting a specific time
-}
 
 const TTimer: React.FC<TimerProps> = ({
   seconds = 0,

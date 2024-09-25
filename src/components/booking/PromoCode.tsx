@@ -1,6 +1,6 @@
 import React from "react";
 import { Panel } from "rsuite";
-import TFrom from "../Common/TFrom";
+import TForm from "../Common/TForm";
 
 const PromoCode: React.FC = () => {
   const promoFeild = [
@@ -24,7 +24,7 @@ const PromoCode: React.FC = () => {
       {promoFeild.length > 0 && (
         <div style={rowStyle}>
           {promoFeild.map((field, idx) => (
-            <TFrom
+            <TForm
               key={idx}
               title={field.title}
               placeholder={field.placeholder}

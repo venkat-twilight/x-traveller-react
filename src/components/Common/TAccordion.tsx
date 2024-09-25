@@ -1,14 +1,7 @@
+import { AccordionProps } from "@/src/models/common.model";
 import Image from "next/image";
-import React, { ReactNode } from "react";
+import React from "react";
 import { Panel, PanelGroup } from "rsuite";
-
-interface AccordionProps {
-  header?: string; // The header text
-  render?: ReactNode; // The content to render inside the accordion
-  classname?: string; // Custom class for styling
-  defaultExpanded?: boolean; // Boolean to set if the accordion is expanded by default
-  icon?: string ; // New icon prop of type ReactNode
-}
 
 const TAccordion: React.FC<AccordionProps> = ({
   header,

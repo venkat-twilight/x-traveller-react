@@ -5,7 +5,7 @@ import PlusIcon from "@rsuite/icons/Plus";
 import MinusIcon from "@rsuite/icons/Minus";
 import TButton from "../../Common/TButton";
 import { Text } from "rsuite";
-import TFrom from "../../Common/TFrom";
+import TForm from "../../Common/TForm";
 
 // Define types for meal items and options
 interface MealItem {
@@ -154,7 +154,7 @@ const MealsList = () => {
       </div>
       <div style={{ marginBottom: "20px" }}>
         {field.map((field, idx) => (
-          <TFrom
+          <TForm
             key={idx}
             title={field.title}
             name={field.name}

@@ -14,6 +14,11 @@ import FlightListDropdown from "./FlightListDropdown";
 import { Dropdown } from "rsuite";
 import { ItemDataType } from "rsuite/esm/MultiCascadeTree";
 import TButton from "../Common/TButton";
+import { useDispatch, useSelector } from 'react-redux';
+import { setFlightType } from '../../features/flightSlice';
+
+
+
 
 const data = [
   "Select All",
@@ -36,6 +41,7 @@ type Option = {
 const CustomCaret: React.FC = () => (
   <div style={{ width: "10px", height: "16px" }}></div> // Empty div or custom component
 );
+
 
 const renderMenuItem = (label: React.ReactNode, item: ItemDataType) => {
   const option = options.find((opt) => opt.value === String(item.value));
@@ -222,7 +228,9 @@ const options: Option[] = [
 const ways = ["One-way", "Two-way", "Multi-City"];
 const today = new Date();
 
-const FlightListSearch: React.FC = () => {
+const FlightListingPage: React.FC = () => {
+  const flightType = useSelector((state: any) => state.flight.flightType);
+const dispatch = useDispatch();
   const [activeKey, setActiveKey] = React.useState("null");
   const [isFocused, setIsFocused] = React.useState(false);
   const [open, setOpen] = React.useState(false);
@@ -236,6 +244,7 @@ const FlightListSearch: React.FC = () => {
 
   const [fromValue, setFromValue] = React.useState<string | null>();
   const [toValue, setToValue] = React.useState<string | null | undefined>(null);
+
 
   const adjustedFromValue: string | undefined =
     fromValue === null ? undefined : fromValue;
@@ -258,6 +267,12 @@ const FlightListSearch: React.FC = () => {
     setArrivalPickerOpen(false);
   };
 
+
+
+  const handleFlightTypeChange = (eventKey: string) => {
+    dispatch(setFlightType(eventKey)); // Dispatch the Redux action
+  };
+
   const disableBeforeDeparture = (date?: Date): boolean => {
     if (!date || !departureDate) return false;
     return date < departureDate;
@@ -277,15 +292,24 @@ const FlightListSearch: React.FC = () => {
     [key: string]: any; // Allow any additional props
   }
 
+  
+
   const CustomDropdown: React.FC<CustomDropdownProps> = ({
     title,
     items,
     ...props
   }) => (
     <div style={{ margin: "auto", width: "55%" }}>
-      <Dropdown title={title} size="lg" className={styles.dropdownbtn}>
-        <Dropdown.Item>New File</Dropdown.Item>
-      </Dropdown>
+ 
+ <Dropdown
+      onSelect={handleFlightTypeChange} // Call the handle function on selection
+      title={flightType || 'Select Flight Type'} // Use the Redux state as the title
+      style={{ marginBottom: '20px' }}
+    >
+      <Dropdown.Item eventKey="One Way">One Way</Dropdown.Item>
+      <Dropdown.Item eventKey="Round Trip">Round Trip</Dropdown.Item>
+      <Dropdown.Item eventKey="Multi City">Multi City</Dropdown.Item>
+    </Dropdown>
     </div>
   );
   return (
@@ -575,7 +599,9 @@ const FlightListSearch: React.FC = () => {
         <Col md={4} style={{ marginTop: "20px" }}>
           <FlightListDropdown />
         </Col>
+       
       </Row>
+   
       <Row
         className={styles.showgrid}
         style={{
@@ -690,8 +716,272 @@ const FlightListSearch: React.FC = () => {
           
        
       </Row>
+      {flightType=== "Multi City"&& (<Row  className={styles.showgrid}
+        style={{
+          justifyContent: "center", // Center the columns horizontally
+          gap: "15px", // Add gap between columns
+          width: "100%",
+          margin: "0px auto",
+        }}>
+          <div style={{ display: "flex", gap: "10px" }}>
+         
+          <Col xs={24} sm={12} md={6}>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              position: "relative",
+              marginBottom: "20px",
+              marginTop: "20px", // Add marginTop to the main container
+            }}
+          >
+            {/* "From" TextField */}
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                flex: 1,
+                position: "relative",
+              }}
+            >
+              <InputGroup
+                inside
+                style={{
+                  position: "relative",
+                  width: "100%",
+                  outline: "none",
+                }}
+              >
+                <InputGroup.Addon
+                  style={{
+                    padding: "0 17px",
+                    display: "flex",
+                    alignItems: "center",
+                  }}
+                >
+                  <div
+                    style={{
+                      position: "absolute",
+                      left: "4px",
+                      top: "45%",
+                      transform: "translateY(-50%)",
+                      zIndex: 1,
+                    }}
+                  >
+                    <Image
+                      src={FlightFrom}
+                      alt="Flight Icon"
+                      style={{ width: 25, height: 25 }}
+                    />
+                  </div>
+                </InputGroup.Addon>
+                <AutoComplete
+                  data={options.map((option) => ({
+                    label: option.label,
+                    value: option.value,
+                    airport: option.airport,
+                    address: option.address,
+                  }))}
+                  onFocus={() => setIsFocused(true)}
+                  onBlur={() => setIsFocused(false)}
+                  placeholder="Select a location"
+                  renderMenuItem={renderMenuItem}
+                  value={adjustedFromValue}
+                  onChange={setFromValue}
+                />
+              </InputGroup>
+            </div>
+
+            {/* Centered Icon */}
+            <div
+              style={{
+                position: "absolute",
+                left: "51%",
+                transform: "translateX(-50%)",
+                top: "7px",
+                width: "24px",
+                height: "24px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                zIndex: 2,
+              }}
+              onClick={handleSwap}
+            >
+              <Image
+                src={Twowayicon}
+                alt="icon"
+                style={{ width: "100%", height: "100%" }}
+              />
+            </div>
+
+            {/* "To" TextField */}
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                flex: 1,
+                position: "relative",
+              }}
+            >
+              <InputGroup
+                inside
+                style={{
+                  position: "relative",
+                  width: "100%",
+                  //   borderRadius: '0 8px 8px 0',
+                  outline: "none",
+                  marginLeft: "9px", // Add a small gap between the text fields
+                }}
+              >
+                <InputGroup.Addon
+                  style={{
+                    padding: "0 17px",
+                    display: "flex",
+                    alignItems: "center",
+                  }}
+                >
+                  <div
+                    style={{
+                      position: "absolute",
+                      left: "12px",
+                      top: "50%",
+                      transform: "translateY(-50%)",
+                      zIndex: 1,
+                    }}
+                  >
+                    <Image
+                      src={Flightto}
+                      alt="Flight Icon"
+                      style={{ width: 20, height: 20 }}
+                    />
+                  </div>
+                </InputGroup.Addon>
+                <AutoComplete
+                  data={options.map((option) => ({
+                    label: option.label,
+                    value: option.value,
+                  }))}
+                  placeholder="Select a location"
+                  onFocus={() => setIsFocused(true)}
+                  onBlur={() => setIsFocused(false)}
+                  renderMenuItem={renderMenuItem}
+                  value={adjustedToValue}
+                  onChange={setToValue}
+                />
+              </InputGroup>
+            </div>
+          </div>
+        </Col>
+
+        <Col xs={24} sm={12} md={2}>
+          <div style={{ display: "flex", gap: "10px", marginTop: "20px" }}>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "flex-start",
+              }}
+            >
+              <InputGroup
+                inside
+                style={{ position: "relative", flex: 1 }}
+                onClick={() =>
+                  departureDate
+                    ? setDeparturePickerOpen(false)
+                    : setDeparturePickerOpen(true)
+                }
+              >
+                <InputGroup.Addon>
+                  <div
+                    style={{
+                      position: "absolute",
+                      left: "4px",
+                      top: "50%",
+                      transform: "translateY(-50%)",
+                      zIndex: 1,
+                    }}
+                  >
+                    <Image
+                      src={Calendar}
+                      alt="Calendar Icon"
+                      style={{ width: 17, height: 16 }}
+                    />
+                  </div>
+                </InputGroup.Addon>
+                <DatePicker
+                  format="dd/MM/yyyy"
+                  value={departureDate}
+                  caretAs={CustomCaret}
+                  onChange={handleDepartureChange}
+                  // open={departurePickerOpen}
+                  // onOpen={() => setDeparturePickerOpen(true)}
+                  // onClose={() => setDeparturePickerOpen(false)}
+                  placeholder="Departure Date"
+                  style={{ width: "100%" }}
+                />
+              </InputGroup>
+            </div>
+          </div>
+        </Col>
+
+        <Col xs={24} sm={12} md={2}>
+          <div style={{ display: "flex", gap: "10px", marginTop: "20px" }}>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "flex-start",
+              }}
+            >
+              <InputGroup
+                inside
+                style={{ position: "relative", flex: 1 }}
+                onClick={() =>
+                  !arrivalDate
+                    ? setArrivalPickerOpen(true)
+                    : setArrivalPickerOpen(false)
+                }
+                className={styles.calendar}
+              >
+                <InputGroup.Addon>
+                  <div
+                    style={{
+                      position: "absolute",
+                      left: "4px",
+                      top: "50%",
+                      transform: "translateY(-50%)",
+                      zIndex: 1,
+                    }}
+                  >
+                    <Image
+                      src={Calendar}
+                      alt="Calendar Icon"
+                      style={{ width: 17, height: 16 }}
+                    />
+                  </div>
+                </InputGroup.Addon>
+                <DatePicker
+                  format="dd/MM/yyyy"
+                  caretAs={CustomCaret}
+                  value={arrivalDate}
+                  onChange={handleArrivalChange}
+                  // open={arrivalPickerOpen}
+                  // onOpen={() => setArrivalPickerOpen(true)}
+                  // onClose={() => setArrivalPickerOpen(false)}
+                  placeholder="Click to add the return flight"
+                  disabledDate={disableBeforeDeparture}
+                  style={{ width: "100%" }}
+                />
+              </InputGroup>
+            </div>
+          </div>
+        </Col>
+       
+        </div>
+        </Row>)}
     </Grid>
   );
 };
 
-export default FlightListSearch;
+export default FlightListingPage;

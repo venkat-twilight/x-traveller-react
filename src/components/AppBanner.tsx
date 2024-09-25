@@ -1,14 +1,10 @@
 import React from "react";
-import Image from "next/image";
 import Background from "../assets/images/HomeBackgroundImage.svg";
 import { Text, Stack } from "rsuite";
 import styles from "../assets/styles/app-banner.module.css";
 import HomeCard from "./HomeCard";
 import OffersforYou from "./OffersforYou";
 import PopularTouristspots from "./PopularTouristspots";
-import AppFooter from "./AppFooter";
-import { Panel, Placeholder, Row, Col } from "rsuite";
-import NoticeBoard from "../assets/icons/NoticeBoard.svg";
 import NoticeBoardPanel from "./Preferences";
 
 export default function AppBanner() {
@@ -38,15 +34,11 @@ export default function AppBanner() {
         </div>
       </div>
       <div style={{ margin: "auto", width: "65%" }}>
-        <div>
-          <NoticeBoardPanel />
-        </div>
+        <NoticeBoardPanel />
       </div>
 
       <div style={{ margin: "auto", width: "67%" }}>
-        <div>
-          <OffersforYou />
-        </div>
+        <OffersforYou />
       </div>
       <div className={styles.centeredCard}>
         <div className={styles.centeredpopCard}>

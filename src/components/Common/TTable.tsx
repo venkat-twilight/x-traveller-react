@@ -1,15 +1,6 @@
+import { DataTableProps } from "@/src/models/common.model";
 import Image from "next/image";
 import React from "react";
-
-interface DataItem {
-  [key: string]: string;
-}
-
-interface DataTableProps {
-  data: DataItem[];
-  headers: string[];
-  icons?: { [key: string]: string };
-}
 
 const TTable: React.FC<DataTableProps> = ({ data, headers, icons }) => {
   return (
@@ -52,7 +43,7 @@ const TTable: React.FC<DataTableProps> = ({ data, headers, icons }) => {
             border: "1px solid #e5e5e5",
             borderRadius: rowIndex === 0 ? "10px " : "0",
             marginBottom: "5px",
-            backgroundColor:"#fff"
+            backgroundColor: "#fff",
           }}
         >
           {headers.map((header, colIndex) => (

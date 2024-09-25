@@ -8,7 +8,7 @@ import TTimer from "../Common/TTimer";
 import TAccordion from "../Common/TAccordion";
 import FareDetailsPanel from "./FareDetails";
 import Image from "next/image";
-import TFrom from "../Common/TFrom";
+import TForm from "../Common/TForm";
 import Addons from "./Addons";
 import TTable from "../Common/TTable";
 import TButton from "../Common/TButton";
@@ -358,7 +358,7 @@ const BookingBase: React.FC = () => {
                       PassengerFields.length > 0 && (
                         <div style={rowStyle}>
                           {PassengerFields.map((field, idx) => (
-                            <TFrom
+                            <TForm
                               key={idx}
                               title={field.title}
                               placeholder={field.placeholder}
@@ -384,7 +384,7 @@ const BookingBase: React.FC = () => {
                         {GSTFields.length > 0 && (
                           <div style={rowStyle}>
                             {GSTFields.map((field, idx) => (
-                              <TFrom
+                              <TForm
                                 key={idx}
                                 title={field.title}
                                 placeholder={field.placeholder}
@@ -675,7 +675,7 @@ const BookingBase: React.FC = () => {
                   ContectFields.length > 0 && (
                     <div style={rowStyle}>
                       {ContectFields.map((field, idx) => (
-                        <TFrom
+                        <TForm
                           key={idx}
                           title={field.title}
                           placeholder={field.placeholder}

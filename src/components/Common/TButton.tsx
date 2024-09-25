@@ -1,30 +1,21 @@
 /* eslint-disable @next/next/no-async-client-component */
 "use client";
 
+import { TButtonProps } from "@/src/models/common.model";
 import { useRouter } from "next/navigation";
-import React, { ReactNode } from "react";
+import React from "react";
 import { Button } from "rsuite";
-
-interface TButtonProps {
-  label?: string;
-  type?: "primary" | "default" | "link" | "ghost";
-  icon?: ReactNode;
-  link?: string;
-  onClick?: () => void;
-  padding?: string;
-  block?: boolean; // Add this prop
-  background?: string;
-}
 
 const TButton: React.FC<TButtonProps> = ({
   label,
   link,
   onClick,
+  disabled,
   icon,
   type = "primary",
   padding = "10px 20px",
   block = false, // Default is not full-width
-  background = "linear-gradient(to right, #0087E1 0%, #174495 100%)",
+  background = "#1A6AE5",
 }) => {
   const router = useRouter();
 
@@ -37,13 +28,14 @@ const TButton: React.FC<TButtonProps> = ({
 
   const buttonStyle = {
     borderRadius: "4px",
-    padding,
+    padding: type === "link" ? "0px" : padding,
     cursor: "pointer",
+    textDecoration: "none",
     width: block ? "100%" : "auto", // Full-width if block is true
     ...(type === "primary" && {
       background: background,
       border: "none",
-      color: background === "white" ? "#0770E3" : background,
+      color: background === "white" ? "#0770E3" : "white",
     }),
   };
 
@@ -51,6 +43,7 @@ const TButton: React.FC<TButtonProps> = ({
     <Button
       appearance={type}
       style={buttonStyle}
+      disabled={disabled}
       onClick={link ? handleClick : onClick}
     >
       {label || icon}

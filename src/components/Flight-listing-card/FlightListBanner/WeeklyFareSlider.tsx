@@ -5,6 +5,10 @@ import RightArrowIcon from "../../../assets/images/RightArrowIconB.svg";
 import Image from "next/image";
 import styles from "../../../assets/styles/weekly-farefetails.module.css";
 
+
+interface WeeklyFareDetailsProps {
+  flightType: string; // Adjust the type based on your actual use case
+}
 const panelData = [
   { day: "Mon", date: "12", month: "Sep", fare: "₹3566" },
   { day: "Tue", date: "13", month: "Sep", fare: "₹3678" },
@@ -20,9 +24,9 @@ const panelData = [
   { day: "Fri", date: "23", month: "Sep", fare: "₹4798" },
 ];
 
-const WeeklyFareDetails = () => {
+const WeeklyFareDetails : React.FC<WeeklyFareDetailsProps> = ({flightType}) => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const itemsPerPage = 6; // Number of items to show at a time
+  const itemsPerPage = flightType === "One Way"? 6: 4; // Number of items to show at a time
   const [active, setActive] = useState(panelData[0].day); // Default first item selected
 
   const handleNext = () => {
@@ -47,11 +51,12 @@ const WeeklyFareDetails = () => {
   };
 
   return (
-    <div style={{ textAlign: "center", margin: "20px 0" }}>
+    <div style={{ textAlign: "center", margin: "20px 0",  }}>
       <div
         style={{
           position: "relative",
           background: "#fff",
+       
           // padding: "10px",
           border: "1px solid lightgrey",
           overflow: "hidden",
@@ -98,7 +103,8 @@ const WeeklyFareDetails = () => {
                 key={card.day}
                 eventKey={card.day}
                 style={{
-                  flex: "0 0 calc(100% / 6)", // 6 items per row
+                  flex: `0 0 calc(100% / ${flightType === "One Way" ? 6 : 4})`,// 6 items per row
+                
                   textAlign: "center",
                   borderRight:"1px solid lightgrey"
                 }}

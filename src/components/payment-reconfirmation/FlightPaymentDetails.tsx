@@ -1,16 +1,8 @@
 import React from "react";
-import { List, Grid, Row, Col, Heading, Text, Stack, Panel, Tag } from "rsuite";
-import WhatsApp from "../../assets/icons/WhatsApp.svg";
-import Gmail from "../../assets/icons/Gmail.svg";
+import { Grid, Row, Col, Panel } from "rsuite";
 import { FlightInfo } from "@/src/components/Flight-listing-card/FlightListBanner/FlightDetailsPopup";
 import styles from "../../assets/styles/booking.module.css";
-import TTimer from "../Common/TTimer";
-import TAccordion from "../Common/TAccordion";
 import FareDetailsPanel from "../booking/FareDetails";
-import Image from "next/image";
-import TFrom from "../Common/TFrom";
-import TWarning from "../Common/TWarning";
-import Addons from "../booking/Addons";
 import TTable from "../Common/TTable";
 import luggage from "../../assets/images/Luggage.svg";
 import TButton from "../Common/TButton";
@@ -96,18 +88,15 @@ const Tabledata = {
   sections: [
     {
       title: "Passenger Details",
-      headers: ["BaggageType", "Check in", "Cabin"],
+      headers: ["Passenger Name", "Sector" ],
       data: [
         {
-          baggagetype: "Adult",
-          checkin: "15 Kgs (1 Piece only)",
-          cabin: "7 Kgs (1 Piece only)",
+          passengername: "Mr.John",
+          sector: "BLR - DEL",
+        
         },
       ],
-      icons: {
-        "Check in": luggage,
-        Cabin: luggage,
-      },
+     
     },
     {
       title: "Fare Details",
@@ -273,7 +262,7 @@ export default function FlightPaymentDetails() {
                     <TTable
                       headers={section.headers}
                       data={section.data}
-                      icons={section.icons as { [key: string]: string }}
+                      
                     />
                   </Panel>
                 </div>

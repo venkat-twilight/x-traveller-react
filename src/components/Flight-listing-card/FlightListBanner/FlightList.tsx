@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Panel, Button, Popover, Whisper, Row, Col } from "rsuite";
+import { Panel, Button, Popover, Whisper, Row, Col, Dropdown } from "rsuite";
 import "rsuite/dist/rsuite.min.css";
 import Image from "next/image";
 import ListBanner from "../../../assets/images/ListBanner.svg";
@@ -25,7 +25,10 @@ import WeeklyFareSlider from "./WeeklyFareSlider";
 import Copyitienery from "../../../assets/icons/Copyitinery.svg";
 import Printitienery from "../../../assets/icons/Printitinery.svg";
 import Shareitienery from "../../../assets/icons/Share.svg";
-import OnestopIcon from "../../../assets/icons/Onestopicon.svg"
+import OnestopIcon from "../../../assets/icons/Onestopicon.svg";
+import Flight from "../../../assets/images/RightArrowIconB.svg"
+import { useDispatch, useSelector } from 'react-redux';
+import { setFlightType } from '../../../features/flightSlice';
 
 const data = [
   "Eugenia",
@@ -839,6 +842,7 @@ const FlightContent: React.FC = () => {
   const [sortedFlights, setSortedFlights] = useState<Flight[]>(flights);
   const [showFare, setshowFare] = useState<boolean>(false); // State with boolean type
   const [showDate, setshowDate] = useState<boolean>(false);
+   // const [cities, setCities] = useState([1]);
 
   const handleClick = () => {
     setshowFare(!showFare); // Toggle visibility on click
@@ -846,6 +850,9 @@ const FlightContent: React.FC = () => {
   const handleDateClick = () => {
     setshowDate(!showDate); // Toggle visibility on click
   };
+  // const addCity = () => {
+  //   setCities([...cities, cities.length + 1]);
+  // };
 
   const sortFlights = (key: string) => {
     let direction = "ascending";
@@ -902,8 +909,120 @@ const FlightContent: React.FC = () => {
     return <SortUpIcon />; // Default to up arrow for other columns
   };
 
+  // const [flightType, setFlightType] = useState("One Way"); // Default to "One Way"
+
+  // const handleFlightTypeChange = (value: any) => {
+  //   setFlightType(value);
+  // };
+
+  const flightType = useSelector((state: any) => state.flight.flightType);
+
+  // const dispatch = useDispatch();
+
+
+  // const handleFlightTypeChange = (eventKey: string) => {
+  //   dispatch(setFlightType(eventKey)); // Dispatch the Redux action
+  // };
+
   return (
     <div style={{ padding: "20px" }}>
+    {/* Flight Type Dropdown */}
+    {/* <Dropdown
+      onSelect={handleFlightTypeChange} // Call the handle function on selection
+      title={flightType || 'Select Flight Type'} // Use the Redux state as the title
+      style={{ marginBottom: '20px' }}
+    >
+      <Dropdown.Item eventKey="One Way">One Way</Dropdown.Item>
+      <Dropdown.Item eventKey="Round Trip">Round Trip</Dropdown.Item>
+      <Dropdown.Item eventKey="Multi City">Multi City</Dropdown.Item>
+    </Dropdown> */}
+  
+    {/* Flight Cards based on flightType */}
+    {flightType === "One Way" ? (
+      <div>
+        {/* One Way Flight Content */}
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            marginBottom: "10px",
+          }}
+        >
+          <span style={{ color: "#222222", fontWeight: "500", fontSize: "16px" }}>
+            Flights from Bangalore → New Delhi
+          </span>
+          <span style={{ color: "#9E9E9E", fontWeight: "600", fontSize: "14px" }}>
+            Showing {sortedFlights.length} Flights
+          </span>
+        </div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            marginBottom: "10px",
+          }}
+        >
+          <InputGroup inside style={{ width: 300 }}>
+            <AutoComplete data={data} />
+            <InputGroup.Button tabIndex={-1}>
+              <SearchIcon />
+            </InputGroup.Button>
+          </InputGroup>
+          <div
+            style={{
+              display: "flex",
+              backgroundColor: "white",
+              border: "1px solid white",
+              padding: "10px",
+              gap: "10px",
+              borderRadius: "5px",
+            }}
+          >
+            <Image
+              src={VisibleIcon}
+              alt="VisibleIcon"
+              width={24}
+              onClick={handleClick}
+            />
+            <Image
+              src={BarchartIcon}
+              alt="BarchartIcon"
+              width={17}
+              onClick={handleDateClick}
+            />
+          </div>
+        </div>
+        <div>{showDate && <WeeklyFareSlider flightType={flightType}/>}</div>
+        <div
+          className={styles.header}
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            backgroundColor: "#fff",
+            padding: "10px",
+            marginBottom: "10px",
+            borderRadius: "10px",
+          }}
+        >
+          {["Airlines", "Departure", "Duration", "Arrival", "Price"].map(
+            (label, index) => (
+              <div
+                key={index}
+                style={{ flex: 1, textAlign: "center", cursor: "pointer" }}
+                onClick={() => sortFlights(label.toLowerCase())}
+              >
+                {label} {getSortIcon(label.toLowerCase())}
+              </div>
+            )
+          )}
+        </div>
+        {sortedFlights.map((flight, index) => (
+          <FlightCard key={index} flight={flight} index={index} showFare={showFare} />
+        ))}
+      </div>
+    ) : flightType === "Round Trip" ? (
+      <div>
+      {/* Render Round Trip Content */}
       <div
         style={{
           display: "flex",
@@ -911,13 +1030,19 @@ const FlightContent: React.FC = () => {
           marginBottom: "10px",
         }}
       >
-        <span style={{ color: "#222222", fontWeight: "500", fontSize: "16px" }}>
-          Flights from Bangalore → New delhi
+        <span
+          style={{ color: "#222222", fontWeight: "500", fontSize: "16px" }}
+        >
+          Flights from Bangalore → New Delhi
         </span>
-        <span style={{ color: "#9E9E9E", fontWeight: "600", fontSize: "14px" }}>
+        <span
+          style={{ color: "#9E9E9E", fontWeight: "600", fontSize: "14px" }}
+        >
           Showing {sortedFlights.length} Flights
         </span>
       </div>
+
+      {/* Search Input */}
       <div
         style={{
           display: "flex",
@@ -937,7 +1062,7 @@ const FlightContent: React.FC = () => {
             backgroundColor: "white",
             border: "1px solid white",
             padding: "10px",
-            gap: "10px", // Add some space between the images
+            gap: "10px",
             borderRadius: "5px",
           }}
         >
@@ -955,59 +1080,160 @@ const FlightContent: React.FC = () => {
           />
         </div>
       </div>
-      <div>{showDate && <WeeklyFareSlider />}</div>
+
+      {/* Weekly Fare Slider */}
+
+      {/* Flight Cards for Round Trip */}
       <div
-        className={styles.header}
         style={{
           display: "flex",
           justifyContent: "space-between",
-          backgroundColor: "#fff",
-          padding: "10px",
-          marginBottom: "10px",
-          borderRadius: "10px",
+          marginBottom: "20px",
         }}
       >
-        <div
-          style={{ flex: 1, textAlign: "center", cursor: "pointer" }}
-          onClick={() => sortFlights("airlines")}
-        >
-          Airlines {getSortIcon("airlines")}
+        <div style={{ flex: "0 0 calc(50% - 10px)", marginRight: "10px" }}>
+          <h4>Departure Flight</h4>
+          {showDate && <WeeklyFareSlider flightType={flightType}/>}
+          <div
+            className={styles.header}
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              backgroundColor: "#fff",
+              padding: "10px",
+              marginBottom: "10px",
+              borderRadius: "10px",
+            }}
+          >
+            {["Airlines", "Departure", "Duration", "Arrival", "Price"].map(
+              (label:string , index:number) => (
+                <div
+                  key={index}
+                  style={{
+                    flex:  label === "Departure" ? "3" : "2", 
+                    textAlign: "center",
+                    cursor: "pointer",
+                  }}
+                  onClick={() => sortFlights(label.toLowerCase())}
+                >
+                  {label} {getSortIcon(label.toLowerCase())}
+                </div>
+              )
+            )}
+          </div>
+          {sortedFlights
+            .slice(0, Math.ceil(sortedFlights.length / 2))
+            .map((flight, index) => (
+              <FlightCard
+                key={index}
+                flight={flight}
+                index={index}
+                showFare={showFare}
+              />
+            ))}
         </div>
-        <div
-          style={{ flex: 1, textAlign: "center", cursor: "pointer" }}
-          onClick={() => sortFlights("departure")}
-        >
-          Departure {getSortIcon("departure")}
-        </div>
-        <div
-          style={{ flex: 1, textAlign: "center", cursor: "pointer" }}
-          onClick={() => sortFlights("duration")}
-        >
-          Duration {getSortIcon("duration")}
-        </div>
-        <div
-          style={{ flex: 1, textAlign: "center", cursor: "pointer" }}
-          onClick={() => sortFlights("arrival")}
-        >
-          Arrival {getSortIcon("arrival")}
-        </div>
-        <div
-          style={{ flex: 1, textAlign: "center", cursor: "pointer" }}
-          onClick={() => sortFlights("price")}
-        >
-          Price {getSortIcon("price")}
+        <div style={{ flex: "0 0 calc(50% - 10px)" }}>
+          <h4>Return Flight</h4>
+          {showDate && <WeeklyFareSlider flightType={flightType}/>}
+          <div
+            className={styles.header}
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              backgroundColor: "#fff",
+              padding: "10px",
+              marginBottom: "10px",
+              borderRadius: "10px",
+            }}
+          >
+            {["Airlines", "Departure", "Duration", "Arrival", "Price"].map(
+              (label:string, index:number) => (
+                <div
+                  key={index}
+                  style={{
+                    flex:  label === "Departure" ? "3" : "2",
+                    textAlign: "center",
+                    cursor: "pointer",
+                  }}
+                  onClick={() => sortFlights(label.toLowerCase())}
+                >
+                  {label} {getSortIcon(label.toLowerCase())}
+                </div>
+              )
+            )}
+          </div>
+          {sortedFlights
+            .slice(Math.ceil(sortedFlights.length / 2))
+            .map((flight, index) => (
+              <FlightCard
+                key={index}
+                flight={flight}
+                index={index}
+                showFare={showFare}
+              />
+            ))}
         </div>
       </div>
-
-      {sortedFlights.map((flight, index) => (
-        <FlightCard
-          key={index}
-          flight={flight}
-          index={index}
-          showFare={showFare}
-        />
-      ))}
     </div>
+    ) 
+    : (
+      // <div>
+      //   {/* Multi City Flight Content */}
+      //     {/* Add More Cities Button */}
+      //     {cities.length < 3 && (
+      //     <div style={{ display: "flex", justifyContent: "center" }}>
+      //       <button onClick={addCity} style={{ cursor: "pointer" }}>
+      //         Add City <Image src={Flight} width={16} height={16} alt="Add" />
+      //       </button>
+      //     </div>
+      //   )}
+      //   <div
+      //     style={{
+      //       display: "flex",
+      //       justifyContent: "space-between",
+      //       marginBottom: "20px",
+      //     }}
+      //   >
+      //     {/* Loop through cities for Multi City flights */}
+      //     {cities.map((city, cityIndex) => (
+      //       <div
+      //         key={cityIndex}
+      //         style={{ flex: "0 0 calc(50% - 10px)", marginRight: "10px" }}
+      //       >
+      //         <h4>
+      //           Flight {cityIndex + 1}: From {city.from} → {city.to}
+      //         </h4>
+      //         <InputGroup inside style={{ width: 300 }}>
+      //           <AutoComplete data={data} />
+      //           <InputGroup.Button tabIndex={-1}>
+      //             <SearchIcon />
+      //           </InputGroup.Button>
+      //         </InputGroup>
+      //         {showDate && <WeeklyFareSlider />}
+      //         <div className={styles.header}>
+      //           {["Airlines", "Departure", "Duration", "Arrival", "Price"].map(
+      //             (label, index) => (
+      //               <div key={index} style={{ flex: 1, textAlign: "center" }}>
+      //                 {label} {getSortIcon(label.toLowerCase())}
+      //               </div>
+      //             )
+      //           )}
+      //         </div>
+      //         {sortedFlights.slice(0, Math.ceil(sortedFlights.length / 2)).map(
+      //           (flight, index) => (
+      //             <FlightCard key={index} flight={flight} showFare={showFare} />
+      //           )
+      //         )}
+      //       </div>
+      //     ))}
+      //   </div>
+  
+      
+      // </div>
+      null
+    )
+    }
+  </div>
   );
 };
 
@@ -1024,7 +1250,6 @@ const FlightCard: React.FC<{
         className={styles.border}
         style={{ marginBottom: "10px", backgroundColor: "#fff" }}
       >
-        
         <div style={{ display: "flex" }}>
           <div style={{ flex: 1, padding: "10px", textAlign: "center" }}>
             <h5>
@@ -1058,9 +1283,11 @@ const FlightCard: React.FC<{
               {flight.duration}
             </p>
             <p>
-              {flight.durationDetails === "Non Stop"?( <Image src={stop} alt="rect" />):( <Image src={OnestopIcon} alt="rect" />)}
-             
-             
+              {flight.durationDetails === "Non Stop" ? (
+                <Image src={stop} alt="rect" />
+              ) : (
+                <Image src={OnestopIcon} alt="rect" />
+              )}
             </p>
             <p style={{ color: "#9E9E9E", textAlign: "center" }}>
               {flight.durationDetails}
@@ -1130,17 +1357,17 @@ const FlightCard: React.FC<{
           </Panel>
         )}
       </Panel>
-      {index === 1 && (
+      {/* {index === 1 && (
         <div style={{ textAlign: "center", margin: "20px 0" }}>
           <Image
             src={ListBanner}
             alt="Promotional Banner"
-            width="955"
+            width="1055"
             height="160"
             style={{ objectFit: "cover" }}
           />
         </div>
-      )}
+      )} */}
     </div>
   );
 };
@@ -1153,6 +1380,8 @@ const PricingOptionRow: React.FC<{
 
   const handleOpen = () => setOpenModal(true);
   const handleClose = () => setOpenModal(false);
+
+  const flightType = useSelector((state: any) => state.flight.flightType);
   return (
     <div
       className={styles.text}
@@ -1165,7 +1394,7 @@ const PricingOptionRow: React.FC<{
           alignItems: "center",
         }}
       >
-        <div style={{ flex: 1, textAlign: "left" }}>
+        <div style={{ flex:flightType === 'One Way' ? 1 :3, textAlign: "left" }}>
           <p style={{ fontSize: "22px", fontWeight: "600", color: "#222222" }}>
             {option.fare}
           </p>
@@ -1188,13 +1417,14 @@ const PricingOptionRow: React.FC<{
             Seats
           </p>
         </div>
-        <div style={{ flex: 1, textAlign: "center" }}>
+        <div style={{ flex:flightType === 'One Way' ? 1 :3, textAlign: "center" }}>
           <Button
             appearance="link"
             style={{
               textDecoration: "none",
               color: "#0770E3",
               fontWeight: "600",
+              textWrap: flightType === 'One Way' ? 'nowrap' : 'wrap',
             }}
             onClick={handleOpen}
           >
@@ -1202,7 +1432,7 @@ const PricingOptionRow: React.FC<{
           </Button>
           <FlightDetailspopup open={openModal} onClose={handleClose} />
         </div>
-        <div style={{ flex: 1, textAlign: "center" }}>
+        <div style={{ flex:flightType === 'One Way' ? 1 :4, textAlign: "center" }}>
           <p
             style={{
               position: "relative",
@@ -1235,12 +1465,12 @@ const PricingOptionRow: React.FC<{
           {showFare && <div>Net Fare: {option.netfare}</div>}
         </div>
 
-        <div style={{ flex: 1, textAlign: "center", position: "relative" }}>
+        <div style={{ flex:flightType === 'One Way' ? 1 :5, textAlign: "center", position: "relative" }}>
           {/* Button */}
           <TButton label="Book Now" link="/booking" />
 
           {/* Hidden icons (initially) */}
-          <div className={styles.Copyitienery} >
+          <div className={styles.Copyitienery}>
             <div style={{ flex: 1, flexDirection: "row" }}>
               <div style={{ cursor: "pointer" }}>
                 <Image src={Copyitienery} alt="Copy Itinerary" />
@@ -1253,9 +1483,7 @@ const PricingOptionRow: React.FC<{
               </div>
             </div>
           </div>
-        
         </div>
-    
       </div>
     </div>
   );
