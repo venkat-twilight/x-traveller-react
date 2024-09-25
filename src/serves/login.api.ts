@@ -25,16 +25,17 @@ export const login = (payload: LoginCredentials) => async (dispatch: any) => {
   }
 };
 
-export const handleLogout = (payload: any) => async (dispatch: any) => {
-  dispatch(fetchLogoutStart()); // Use parsed response
+
+export const handleLogout = async (dispatch: any, payload: any) => {
+  dispatch(fetchLogoutStart()); // Dispatch start action
   try {
     const data = await env.post("/auth/logout", payload);
     localStorage.removeItem("accessToken");
-    dispatch(fetchLogoutSuccess(data)); // Use parsed response
+    dispatch(fetchLogoutSuccess(data)); // Dispatch success action
     return data;
   } catch (error: any) {
     console.error(error);
-    dispatch(fetchLogoutFailure(error)); // Use parsed response
+    dispatch(fetchLogoutFailure(error)); // Dispatch failure action
     return error;
   }
 };
